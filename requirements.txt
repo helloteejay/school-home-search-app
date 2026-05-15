@@ -1,0 +1,9 @@
+streamlit>=1.32.0
+pandas>=2.1.0
+geopandas>=0.14.0
+shapely>=2.0.0
+folium>=0.15.0
+streamlit-folium>=0.18.0
+streamlit-aggrid>=0.3.4
+requests>=2.31.0
+numpy>=1.26.0
