@@ -90,6 +90,71 @@ def _empty_result(listings: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(columns=cols)
 
 
+# Levels that count as "elementary-equivalent." K-8 schools serve elementary
+# grades, so for an elementary-focused filter we treat them the same.
+_ELEMENTARY_LEVELS = {"Elementary", "K-8"}
+
+
+def filter_listings_in_top_elementary_zones(
+    listings: pd.DataFrame,
+    schools: gpd.GeoDataFrame,
+    min_rating: int = 8,
+    include_magnet: bool = False,
+) -> pd.DataFrame:
+    """Elementary-focused filter — the primary use case.
+
+    A home survives if it sits inside an Elementary (or K-8) attendance
+    zone with ``rating >= min_rating``. Middle and high zones are ignored
+    by the filter but can be looked up separately for context.
+
+    ``include_magnet`` is ``False`` by default: schools whose ``admission_type``
+    is ``"magnet"`` are excluded because geographic residency doesn't grant
+    enrollment there (MAST, Henry S. West Lab, Coral Reef Senior, etc.).
+    """
+    if listings.empty or schools.empty:
+        return _empty_result(listings)
+
+    elementary = schools[schools["level"].isin(_ELEMENTARY_LEVELS)].copy()
+    if not include_magnet and "admission_type" in elementary.columns:
+        elementary = elementary[elementary["admission_type"] == "boundary"]
+    elementary = elementary[elementary["rating"] >= int(min_rating)]
+    if elementary.empty:
+        return _empty_result(listings)
+
+    listings_gdf = listings_to_geodataframe(listings)
+
+    cols = ["school_id", "school_name", "level", "rating"]
+    if "admission_type" in elementary.columns:
+        cols.append("admission_type")
+    cols.append("geometry")
+
+    joined = gpd.sjoin(
+        listings_gdf,
+        elementary[cols],
+        how="inner",
+        predicate="within",
+    )
+
+    if joined.empty:
+        return _empty_result(listings)
+
+    # If a home falls inside two overlapping elementary zones (rare but
+    # possible at boundary seams), keep the higher-rated one.
+    joined = (
+        joined.sort_values("rating", ascending=False)
+        .drop_duplicates(subset="listing_id", keep="first")
+    )
+
+    out = joined.drop(columns=["geometry", "index_right"]).rename(
+        columns={
+            "school_name": "assigned_school",
+            "rating": "school_rating",
+            "level": "school_level",
+        }
+    )
+    return out.reset_index(drop=True)
+
+
 def rating_to_color(rating: int) -> str:
     """Map a 1-10 GreatSchools-style rating to a Folium-friendly hex color."""
     if rating >= 9:

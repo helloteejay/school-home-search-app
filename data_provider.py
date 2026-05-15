@@ -47,7 +47,11 @@ class SchoolDataProvider(ABC):
     ) -> gpd.GeoDataFrame:
         """Return a GeoDataFrame with columns:
 
-        ``school_id, school_name, level, rating, zip_code, geometry``
+        ``school_id, school_name, level, rating, zip_code, admission_type, geometry``
+
+        ``admission_type`` is ``"boundary"`` (attendance-zone enrollment) or
+        ``"magnet"`` (application/lottery). Live providers without an explicit
+        magnet flag should default to ``"boundary"``.
 
         ``geometry`` must be a Shapely polygon in EPSG:4326 (lat/lon).
         """
@@ -208,6 +212,10 @@ class GreatSchoolsProvider(SchoolDataProvider):
                     "level": school.get("level", "Unknown"),
                     "rating": int(rating),
                     "zip_code": str(zip_code).strip(),
+                    # GreatSchools metadata doesn't natively flag magnet status
+                    # across all plans — assume boundary and override on the
+                    # client side for known magnet/lab schools.
+                    "admission_type": school.get("admission_type", "boundary"),
                     "geometry": shape(boundary),
                 })
         return gpd.GeoDataFrame(rows, geometry="geometry", crs="EPSG:4326")

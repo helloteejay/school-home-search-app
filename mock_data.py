@@ -26,52 +26,63 @@ from shapely.geometry import Polygon
 
 # ---------------------------------------------------------------------------
 # School fixture data — top-rated public schools in Broward + Miami-Dade.
-# Format: (name, level, rating, lat, lon, zone_radius_deg, zip_code)
+# Format: (name, level, rating, lat, lon, zone_radius_deg, zip_code, admission_type)
+#
+# admission_type values:
+#   "boundary" — attendance is determined by where you live (the use case
+#                this app is built for)
+#   "magnet"   — admission by application/lottery; living in the polygon
+#                does NOT guarantee enrollment. Filtered out by default so
+#                TJ's family doesn't get false confidence from a magnet zone.
+#
 # Radii are tuned to give visible-but-distinct polygons on the map at a
 # typical zoom of ~10 over both counties.
 # ---------------------------------------------------------------------------
 
-FL_SCHOOLS: List[Tuple[str, str, int, float, float, float, str]] = [
+FL_SCHOOLS: List[Tuple[str, str, int, float, float, float, str, str]] = [
     # ---- Broward County ----
     # Weston cluster
-    ("Eagle Ridge Elementary",      "Elementary", 10, 26.0930, -80.4007, 0.012, "33326"),
-    ("Country Isles Elementary",    "Elementary", 10, 26.1090, -80.4138, 0.011, "33326"),
-    ("Tequesta Trace Middle",       "Middle",      9, 26.0975, -80.4099, 0.018, "33326"),
-    ("Cypress Bay High",            "High",        9, 26.0860, -80.4061, 0.030, "33327"),
+    ("Eagle Ridge Elementary",      "Elementary", 10, 26.0930, -80.4007, 0.012, "33326", "boundary"),
+    ("Country Isles Elementary",    "Elementary", 10, 26.1090, -80.4138, 0.011, "33326", "boundary"),
+    ("Tequesta Trace Middle",       "Middle",      9, 26.0975, -80.4099, 0.018, "33326", "boundary"),
+    ("Cypress Bay High",            "High",        9, 26.0860, -80.4061, 0.030, "33327", "boundary"),
     # Parkland cluster
-    ("Riverglades Elementary",      "Elementary", 10, 26.3225, -80.2330, 0.013, "33067"),
-    ("Park Trails Elementary",      "Elementary", 10, 26.3115, -80.2575, 0.014, "33076"),
-    ("Westglades Middle",           "Middle",      9, 26.3115, -80.2515, 0.020, "33076"),
-    ("Marjory Stoneman Douglas HS", "High",        8, 26.3105, -80.2702, 0.030, "33076"),
+    ("Riverglades Elementary",      "Elementary", 10, 26.3225, -80.2330, 0.013, "33067", "boundary"),
+    ("Park Trails Elementary",      "Elementary", 10, 26.3115, -80.2575, 0.014, "33076", "boundary"),
+    ("Westglades Middle",           "Middle",      9, 26.3115, -80.2515, 0.020, "33076", "boundary"),
+    ("Marjory Stoneman Douglas HS", "High",        8, 26.3105, -80.2702, 0.030, "33076", "boundary"),
     # Cooper City cluster
-    ("Embassy Creek Elementary",    "Elementary", 10, 26.0573, -80.2858, 0.012, "33330"),
-    ("Pioneer Middle",              "Middle",      9, 26.0593, -80.2870, 0.017, "33330"),
-    ("Cooper City High",            "High",        8, 26.0608, -80.2942, 0.025, "33330"),
+    ("Embassy Creek Elementary",    "Elementary", 10, 26.0573, -80.2858, 0.012, "33330", "boundary"),
+    ("Pioneer Middle",              "Middle",      9, 26.0593, -80.2870, 0.017, "33330", "boundary"),
+    ("Cooper City High",            "High",        8, 26.0608, -80.2942, 0.025, "33330", "boundary"),
     # Coral Springs / Coconut Creek (mid-tier)
-    ("Heron Heights Elementary",    "Elementary",  9, 26.2640, -80.2730, 0.013, "33076"),
-    ("Coral Springs High",          "High",        7, 26.2475, -80.2530, 0.025, "33065"),
+    ("Heron Heights Elementary",    "Elementary",  9, 26.2640, -80.2730, 0.013, "33076", "boundary"),
+    ("Coral Springs High",          "High",        7, 26.2475, -80.2530, 0.025, "33065", "boundary"),
 
     # ---- Miami-Dade County ----
     # Pinecrest / Palmetto Bay
-    ("Pinecrest Elementary",        "Elementary", 10, 25.6620, -80.3055, 0.012, "33156"),
-    ("Coral Reef Elementary",       "Elementary",  9, 25.6580, -80.3015, 0.012, "33156"),
-    ("Palmetto Middle",             "Middle",      8, 25.6483, -80.3185, 0.018, "33156"),
-    ("Miami Palmetto Senior High",  "High",        8, 25.6573, -80.3192, 0.027, "33176"),
+    ("Pinecrest Elementary",        "Elementary", 10, 25.6620, -80.3055, 0.012, "33156", "boundary"),
+    ("Coral Reef Elementary",       "Elementary",  9, 25.6580, -80.3015, 0.012, "33156", "boundary"),
+    ("Palmetto Middle",             "Middle",      8, 25.6483, -80.3185, 0.018, "33156", "boundary"),
+    ("Miami Palmetto Senior High",  "High",        8, 25.6573, -80.3192, 0.027, "33176", "boundary"),
     # Coral Gables
-    ("Sunset Elementary",           "Elementary", 10, 25.7110, -80.2818, 0.010, "33143"),
-    ("Henry S. West Laboratory",    "Elementary",  9, 25.7195, -80.2750, 0.010, "33134"),
-    ("Ponce de Leon Middle",        "Middle",      8, 25.7263, -80.2705, 0.015, "33134"),
-    ("Coral Gables Senior High",    "High",        8, 25.7273, -80.2769, 0.025, "33134"),
-    # Aventura
-    ("Aventura Waterways K-8",      "Elementary",  9, 25.9595, -80.1500, 0.013, "33180"),
-    ("Dr. Michael M. Krop High",    "High",        7, 25.9528, -80.1798, 0.025, "33180"),
-    # Doral
-    ("Eugenia B. Thomas K-8",       "Elementary",  9, 25.8120, -80.4040, 0.014, "33178"),
-    ("Doral Academy / Reagan HS",   "High",        8, 25.7800, -80.3700, 0.022, "33178"),
-    # Key Biscayne
-    ("MAST Academy",                "High",       10, 25.7383, -80.1693, 0.015, "33149"),
-    # Magnet — high-rated but technically choice-based
-    ("Coral Reef Senior High",      "High",       10, 25.6347, -80.3895, 0.020, "33177"),
+    ("Sunset Elementary",           "Elementary", 10, 25.7110, -80.2818, 0.010, "33143", "boundary"),
+    # Henry S. West Lab is a UM partnership lab school — admission by lottery
+    # weighted to faculty/staff. NOT a normal residential elementary.
+    ("Henry S. West Laboratory",    "Elementary",  9, 25.7195, -80.2750, 0.010, "33134", "magnet"),
+    ("Ponce de Leon Middle",        "Middle",      8, 25.7263, -80.2705, 0.015, "33134", "boundary"),
+    ("Coral Gables Senior High",    "High",        8, 25.7273, -80.2769, 0.025, "33134", "boundary"),
+    # Aventura — K-8 is residency-based for Aventura residents.
+    ("Aventura Waterways K-8",      "Elementary",  9, 25.9595, -80.1500, 0.013, "33180", "boundary"),
+    ("Dr. Michael M. Krop High",    "High",        7, 25.9528, -80.1798, 0.025, "33180", "boundary"),
+    # Doral K-8 is residency-based.
+    ("Eugenia B. Thomas K-8",       "Elementary",  9, 25.8120, -80.4040, 0.014, "33178", "boundary"),
+    ("Doral Academy / Reagan HS",   "High",        8, 25.7800, -80.3700, 0.022, "33178", "boundary"),
+    # Key Biscayne — MAST is a magnet HS (marine science). Application-based.
+    ("MAST Academy",                "High",       10, 25.7383, -80.1693, 0.015, "33149", "magnet"),
+    # Coral Reef Senior High is application-based magnet (medical sciences,
+    # international studies, agriscience programs). Geography doesn't help.
+    ("Coral Reef Senior High",      "High",       10, 25.6347, -80.3895, 0.020, "33177", "magnet"),
 ]
 
 
@@ -159,10 +170,11 @@ def _irregular_polygon(lat: float, lon: float, radius_deg: float, seed: int) -> 
 def generate_schools(cfg: MockConfig | None = None) -> gpd.GeoDataFrame:
     """Return a GeoDataFrame of mock South Florida schools w/ attendance zones.
 
-    Columns: school_id, school_name, level, rating (1-10), zip_code, geometry.
+    Columns: school_id, school_name, level, rating (1-10), zip_code,
+    admission_type ("boundary" or "magnet"), geometry.
     """
     rows = []
-    for i, (name, level, rating, lat, lon, r, zip_code) in enumerate(FL_SCHOOLS):
+    for i, (name, level, rating, lat, lon, r, zip_code, admission_type) in enumerate(FL_SCHOOLS):
         # Seed each polygon deterministically by name so re-runs render the
         # same boundaries.
         poly = _irregular_polygon(lat, lon, r, seed=abs(hash(name)) % (2**31))
@@ -172,6 +184,7 @@ def generate_schools(cfg: MockConfig | None = None) -> gpd.GeoDataFrame:
             "level": level,
             "rating": rating,
             "zip_code": zip_code,
+            "admission_type": admission_type,
             "geometry": poly,
         })
     return gpd.GeoDataFrame(rows, geometry="geometry", crs="EPSG:4326")

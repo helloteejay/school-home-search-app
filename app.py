@@ -56,12 +56,15 @@ def _providers():
 
 
 @st.cache_data(show_spinner=False)
-def _load_schools(zip_codes: tuple[str, ...], min_rating: int):
+def _load_schools(zip_codes: tuple[str, ...]):
+    """Load ALL schools (no rating prefilter — the elementary filter in
+    geo_engine handles that). Returns a GeoDataFrame in EPSG:4326.
+    """
     school_provider, _ = _providers()
     try:
         return school_provider.get_schools(
             zip_codes=list(zip_codes) if zip_codes else None,
-            min_rating=min_rating,
+            min_rating=1,
         )
     except Exception as exc:
         logger.exception("School provider failed")
@@ -69,7 +72,7 @@ def _load_schools(zip_codes: tuple[str, ...], min_rating: int):
         # Return an empty GeoDataFrame with the expected columns.
         import geopandas as gpd
         return gpd.GeoDataFrame(
-            columns=["school_id", "school_name", "level", "rating", "zip_code", "geometry"],
+            columns=["school_id", "school_name", "level", "rating", "zip_code", "admission_type", "geometry"],
             geometry="geometry",
             crs="EPSG:4326",
         )
@@ -117,13 +120,26 @@ def render_sidebar() -> dict:
     zip_codes: List[str] = [z.strip() for z in zip_raw.split(",") if z.strip()]
 
     st.sidebar.markdown("---")
-    st.sidebar.markdown("**Schools**")
+    st.sidebar.markdown("**Elementary school**")
     min_rating = st.sidebar.slider(
-        "Minimum GreatSchools rating",
+        "Minimum elementary rating",
         min_value=1,
         max_value=10,
         value=8,
-        help="Only homes inside attendance zones with this rating or higher will be shown.",
+        help=(
+            "Only homes inside an elementary attendance zone with this rating "
+            "or higher are shown. Middle and high school zones are ignored "
+            "for filtering."
+        ),
+    )
+    include_magnet = st.sidebar.checkbox(
+        "Include magnet / lab schools",
+        value=False,
+        help=(
+            "Off by default. Magnet schools (e.g. Henry S. West Lab) admit "
+            "by application/lottery — living in their geographic zone does "
+            "NOT guarantee enrollment."
+        ),
     )
 
     st.sidebar.markdown("---")
@@ -142,6 +158,7 @@ def render_sidebar() -> dict:
         "city": city,
         "zip_codes": zip_codes,
         "min_rating": int(min_rating),
+        "include_magnet": bool(include_magnet),
         "max_price": float(max_price),
         "min_beds": int(min_beds),
         "min_baths": int(min_baths),
@@ -188,7 +205,7 @@ def build_map(schools, qualifying_listings: pd.DataFrame) -> folium.Map:
                 f"{row['address']}<br>"
                 f"{int(row['bedrooms'])} bd / {row['bathrooms']} ba · "
                 f"{int(row['sqft']):,} sqft<br>"
-                f"<b>School:</b> {row['assigned_school']} "
+                f"<b>Elementary:</b> {row['assigned_school']} "
                 f"({int(row['school_rating'])}/10)<br>"
                 f'<a href="{row["listing_url"]}" target="_blank">View listing</a>'
             )
@@ -264,9 +281,9 @@ def render_table(df: pd.DataFrame) -> None:
         gb.configure_column("bathrooms", header_name="Baths", flex=0.6, minWidth=60)
         gb.configure_column("sqft", header_name="Sqft", type=["numericColumn"], flex=0.8, minWidth=70)
         gb.configure_column("year_built", header_name="Year", flex=0.7, minWidth=60)
-        gb.configure_column("assigned_school", header_name="School", flex=2.4, minWidth=140)
-        gb.configure_column("school_rating", header_name="Rating", flex=0.8, minWidth=70)
-        gb.configure_column("school_level", header_name="Level", flex=1, minWidth=80)
+        gb.configure_column("assigned_school", header_name="Elementary", flex=2.4, minWidth=140)
+        gb.configure_column("school_rating", header_name="Elem Rating", flex=0.9, minWidth=80)
+        gb.configure_column("school_level", header_name="Type", flex=0.8, minWidth=70)
         gb.configure_column("zip_code", header_name="ZIP", flex=0.7, minWidth=60)
         gb.configure_column(
             "listing_url", header_name="Listing",
@@ -296,18 +313,19 @@ def render_table(df: pd.DataFrame) -> None:
 # ---------------------------------------------------------------------------
 
 def main() -> None:
-    st.title("Find homes inside top-rated school zones")
+    st.title("Find homes inside top elementary school zones")
     st.caption(
-        "Active listings cross-referenced with school attendance boundaries. "
-        "MVP covers Broward + Miami-Dade (Weston, Parkland, Cooper City, "
-        "Pinecrest, Coral Gables, Aventura, Doral, Key Biscayne). Mock data "
-        "by default — set `USE_LIVE_DATA=true` to hit live APIs."
+        "Active listings filtered to homes that sit inside a top-rated "
+        "elementary attendance zone. MVP covers Broward + Miami-Dade "
+        "(Weston, Parkland, Cooper City, Pinecrest, Coral Gables, Aventura, "
+        "Doral, Key Biscayne). Mock data by default — set "
+        "`USE_LIVE_DATA=true` to hit live APIs."
     )
 
     filters = render_sidebar()
 
     # Cache keys are hashable, so convert lists to tuples before passing in.
-    schools = _load_schools(tuple(filters["zip_codes"]), filters["min_rating"])
+    schools = _load_schools(tuple(filters["zip_codes"]))
     listings = _load_listings(
         tuple(filters["zip_codes"]),
         filters["max_price"],
@@ -315,13 +333,24 @@ def main() -> None:
         filters["min_baths"],
     )
 
-    qualifying = geo_engine.filter_listings_in_top_schools(
-        listings, schools, min_rating=filters["min_rating"]
+    qualifying = geo_engine.filter_listings_in_top_elementary_zones(
+        listings,
+        schools,
+        min_rating=filters["min_rating"],
+        include_magnet=filters["include_magnet"],
     )
+
+    # The map only shows elementary zones that match the rating + magnet
+    # filter so the visual stays aligned with what the table is built from.
+    elem_levels = {"Elementary", "K-8"}
+    qualifying_schools = schools[schools["level"].isin(elem_levels)].copy()
+    if not filters["include_magnet"] and "admission_type" in qualifying_schools.columns:
+        qualifying_schools = qualifying_schools[qualifying_schools["admission_type"] == "boundary"]
+    qualifying_schools = qualifying_schools[qualifying_schools["rating"] >= filters["min_rating"]]
 
     # Top metrics
     c1, c2, c3, c4 = st.columns(4)
-    c1.metric("Schools (>= rating)", len(schools))
+    c1.metric("Elementary zones", len(qualifying_schools))
     c2.metric("Listings considered", len(listings))
     c3.metric("Homes in top zones", len(qualifying))
     if not qualifying.empty:
@@ -330,7 +359,7 @@ def main() -> None:
         c4.metric("Median price", "—")
 
     st.subheader("Map")
-    fmap = build_map(schools, qualifying)
+    fmap = build_map(qualifying_schools, qualifying)
     st_folium(fmap, width=None, height=560, returned_objects=[])
 
     st.subheader("Qualifying homes")
