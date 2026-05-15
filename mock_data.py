@@ -1,121 +1,187 @@
-"""Mock data generator for offline development.
+"""Mock data generator — South Florida edition (Broward + Miami-Dade).
 
-Produces realistic-looking school attendance boundaries (as a tiled grid of
-polygons over a target city) and active real estate listings scattered within
-those boundaries. All output mirrors the schema returned by the live providers
-so the rest of the app does not know — or care — that it is running on fixtures.
+Produces realistic-looking school attendance boundaries for the top-rated
+public schools across Broward and Miami-Dade counties, plus active listings
+priced for each neighborhood. Replaces the original Austin grid scaffold.
+
+All output mirrors the schema returned by the live providers so the rest of
+the app does not know — or care — that it is running on fixtures.
+
+Note: school centroids and ratings are approximations of public data, not
+guarantees of current GreatSchools ratings. Swap in a live SchoolDataProvider
+once you've licensed boundary data.
 """
 
 from __future__ import annotations
 
+import math
 import random
 from dataclasses import dataclass
-from typing import List
+from typing import List, Tuple
 
 import geopandas as gpd
 import pandas as pd
-from shapely.geometry import Point, Polygon
+from shapely.geometry import Polygon
 
-# Austin, TX downtown-ish anchor. Easy to change for another city.
-DEFAULT_CENTER_LAT = 30.2672
-DEFAULT_CENTER_LON = -97.7431
 
-# Grid configuration. A 4x4 tile of ~0.025 degrees per cell roughly covers
-# a 10x10 mile slice of a metro area — enough variety to test filters.
-GRID_ROWS = 4
-GRID_COLS = 4
-CELL_DEG = 0.025
+# ---------------------------------------------------------------------------
+# School fixture data — top-rated public schools in Broward + Miami-Dade.
+# Format: (name, level, rating, lat, lon, zone_radius_deg, zip_code)
+# Radii are tuned to give visible-but-distinct polygons on the map at a
+# typical zoom of ~10 over both counties.
+# ---------------------------------------------------------------------------
 
-# Pool of school names to draw from for the mock zones.
-SCHOOL_POOL = [
-    "Oakridge Elementary", "Hillcrest Middle", "Cedar Creek High",
-    "Maplewood Elementary", "Riverbend Middle", "Summit Ridge High",
-    "Lakeview Elementary", "Pinecrest Middle", "Crestwood High",
-    "Bluebonnet Elementary", "Wildflower Middle", "Heritage Oaks High",
-    "Sunset Valley Elementary", "Stone Mountain Middle", "Eagle Pass High",
-    "Cypress Springs Elementary",
+FL_SCHOOLS: List[Tuple[str, str, int, float, float, float, str]] = [
+    # ---- Broward County ----
+    # Weston cluster
+    ("Eagle Ridge Elementary",      "Elementary", 10, 26.0930, -80.4007, 0.012, "33326"),
+    ("Country Isles Elementary",    "Elementary", 10, 26.1090, -80.4138, 0.011, "33326"),
+    ("Tequesta Trace Middle",       "Middle",      9, 26.0975, -80.4099, 0.018, "33326"),
+    ("Cypress Bay High",            "High",        9, 26.0860, -80.4061, 0.030, "33327"),
+    # Parkland cluster
+    ("Riverglades Elementary",      "Elementary", 10, 26.3225, -80.2330, 0.013, "33067"),
+    ("Park Trails Elementary",      "Elementary", 10, 26.3115, -80.2575, 0.014, "33076"),
+    ("Westglades Middle",           "Middle",      9, 26.3115, -80.2515, 0.020, "33076"),
+    ("Marjory Stoneman Douglas HS", "High",        8, 26.3105, -80.2702, 0.030, "33076"),
+    # Cooper City cluster
+    ("Embassy Creek Elementary",    "Elementary", 10, 26.0573, -80.2858, 0.012, "33330"),
+    ("Pioneer Middle",              "Middle",      9, 26.0593, -80.2870, 0.017, "33330"),
+    ("Cooper City High",            "High",        8, 26.0608, -80.2942, 0.025, "33330"),
+    # Coral Springs / Coconut Creek (mid-tier)
+    ("Heron Heights Elementary",    "Elementary",  9, 26.2640, -80.2730, 0.013, "33076"),
+    ("Coral Springs High",          "High",        7, 26.2475, -80.2530, 0.025, "33065"),
+
+    # ---- Miami-Dade County ----
+    # Pinecrest / Palmetto Bay
+    ("Pinecrest Elementary",        "Elementary", 10, 25.6620, -80.3055, 0.012, "33156"),
+    ("Coral Reef Elementary",       "Elementary",  9, 25.6580, -80.3015, 0.012, "33156"),
+    ("Palmetto Middle",             "Middle",      8, 25.6483, -80.3185, 0.018, "33156"),
+    ("Miami Palmetto Senior High",  "High",        8, 25.6573, -80.3192, 0.027, "33176"),
+    # Coral Gables
+    ("Sunset Elementary",           "Elementary", 10, 25.7110, -80.2818, 0.010, "33143"),
+    ("Henry S. West Laboratory",    "Elementary",  9, 25.7195, -80.2750, 0.010, "33134"),
+    ("Ponce de Leon Middle",        "Middle",      8, 25.7263, -80.2705, 0.015, "33134"),
+    ("Coral Gables Senior High",    "High",        8, 25.7273, -80.2769, 0.025, "33134"),
+    # Aventura
+    ("Aventura Waterways K-8",      "Elementary",  9, 25.9595, -80.1500, 0.013, "33180"),
+    ("Dr. Michael M. Krop High",    "High",        7, 25.9528, -80.1798, 0.025, "33180"),
+    # Doral
+    ("Eugenia B. Thomas K-8",       "Elementary",  9, 25.8120, -80.4040, 0.014, "33178"),
+    ("Doral Academy / Reagan HS",   "High",        8, 25.7800, -80.3700, 0.022, "33178"),
+    # Key Biscayne
+    ("MAST Academy",                "High",       10, 25.7383, -80.1693, 0.015, "33149"),
+    # Magnet — high-rated but technically choice-based
+    ("Coral Reef Senior High",      "High",       10, 25.6347, -80.3895, 0.020, "33177"),
 ]
 
-# Street name pool for synthetic addresses.
-STREETS = [
-    "Bluebonnet Ln", "Mockingbird Dr", "Live Oak St", "Pecan Grove Way",
-    "Hill Country Rd", "Greenbelt Cir", "Shoal Creek Blvd", "Travis Heights Ave",
-    "Barton Springs Rd", "Mesa Verde Dr", "Riverside Pkwy", "Tarrytown Ct",
+
+# Friendly city names + state per ZIP so generated listings carry the right
+# location label.
+FL_CITIES_BY_ZIP = {
+    "33326": ("Weston", "FL"),
+    "33327": ("Weston", "FL"),
+    "33330": ("Cooper City", "FL"),
+    "33076": ("Parkland", "FL"),
+    "33067": ("Parkland", "FL"),
+    "33065": ("Coral Springs", "FL"),
+    "33156": ("Pinecrest", "FL"),
+    "33176": ("Palmetto Bay", "FL"),
+    "33134": ("Coral Gables", "FL"),
+    "33143": ("Coral Gables", "FL"),
+    "33180": ("Aventura", "FL"),
+    "33149": ("Key Biscayne", "FL"),
+    "33178": ("Doral", "FL"),
+    "33177": ("Miami", "FL"),
+}
+
+
+# (low, high) listing price band per ZIP, anchored to 2025 South Florida
+# realities. Mock listings draw uniformly from this range.
+ZIP_PRICE_BANDS = {
+    "33326": (700_000,   2_500_000),  # Weston
+    "33327": (800_000,   3_000_000),  # Weston west
+    "33330": (500_000,   1_300_000),  # Cooper City
+    "33076": (700_000,   2_200_000),  # Parkland
+    "33067": (700_000,   2_000_000),  # Parkland
+    "33065": (400_000,     900_000),  # Coral Springs
+    "33156": (1_000_000, 4_000_000),  # Pinecrest
+    "33176": (600_000,   1_500_000),  # Palmetto Bay (outer)
+    "33134": (800_000,   3_500_000),  # Coral Gables
+    "33143": (1_000_000, 4_000_000),  # South Miami / Gables
+    "33180": (500_000,   2_500_000),  # Aventura
+    "33149": (1_500_000, 8_000_000),  # Key Biscayne
+    "33178": (450_000,   1_400_000),  # Doral
+    "33177": (350_000,     750_000),  # Miami south
+}
+
+
+# Florida-feeling street names for synthetic addresses.
+FL_STREETS = [
+    "Ocean Dr", "Bayshore Blvd", "Palm Ave", "Hibiscus Ln", "Royal Palm Way",
+    "Sunset Dr", "Coral Way", "Biscayne Blvd", "Las Olas Blvd", "Sample Rd",
+    "Pines Blvd", "Stirling Rd", "Sheridan St", "Hollywood Blvd", "Dixie Hwy",
+    "Coconut Palm Dr", "Mahogany Ln", "Banyan Trail", "Mangrove Ct", "Seagrape Ln",
+    "Flamingo Rd", "Pelican Way", "Royal Poinciana Blvd", "Heron Bay Dr",
 ]
 
 
 @dataclass
 class MockConfig:
-    """Knobs for the mock generator. Defaults give a believable Austin scenario."""
+    """Knobs for the mock generator. Defaults give a realistic SoFlo scenario."""
 
-    center_lat: float = DEFAULT_CENTER_LAT
-    center_lon: float = DEFAULT_CENTER_LON
-    grid_rows: int = GRID_ROWS
-    grid_cols: int = GRID_COLS
-    cell_deg: float = CELL_DEG
-    n_listings: int = 120
+    n_listings: int = 180
     seed: int = 42
 
 
-def _build_grid_polygons(cfg: MockConfig) -> List[Polygon]:
-    """Tile a rectangular grid of polygons centered on (center_lat, center_lon)."""
-    polys: List[Polygon] = []
-    # Compute lower-left corner so the grid is centered on the anchor point.
-    lon0 = cfg.center_lon - (cfg.grid_cols * cfg.cell_deg) / 2.0
-    lat0 = cfg.center_lat - (cfg.grid_rows * cfg.cell_deg) / 2.0
-    for r in range(cfg.grid_rows):
-        for c in range(cfg.grid_cols):
-            x0 = lon0 + c * cfg.cell_deg
-            y0 = lat0 + r * cfg.cell_deg
-            x1 = x0 + cfg.cell_deg
-            y1 = y0 + cfg.cell_deg
-            polys.append(Polygon([(x0, y0), (x1, y0), (x1, y1), (x0, y1)]))
-    return polys
+# ---------------------------------------------------------------------------
+# Polygon helpers
+# ---------------------------------------------------------------------------
 
+def _irregular_polygon(lat: float, lon: float, radius_deg: float, seed: int) -> Polygon:
+    """Build an 8-vertex polygon around (lat, lon) with jittered radii so
+    attendance zones look organic rather than square.
+    """
+    rng = random.Random(seed)
+    pts = []
+    for i in range(8):
+        angle = i * (math.pi / 4)
+        jitter = rng.uniform(0.7, 1.25)
+        dx = math.cos(angle) * radius_deg * jitter
+        dy = math.sin(angle) * radius_deg * jitter
+        pts.append((lon + dx, lat + dy))
+    return Polygon(pts)
+
+
+# ---------------------------------------------------------------------------
+# Public API — used by data_provider.MockSchoolProvider / MockListingsProvider
+# ---------------------------------------------------------------------------
 
 def generate_schools(cfg: MockConfig | None = None) -> gpd.GeoDataFrame:
-    """Return a GeoDataFrame of mock schools with attendance polygons.
+    """Return a GeoDataFrame of mock South Florida schools w/ attendance zones.
 
     Columns: school_id, school_name, level, rating (1-10), zip_code, geometry.
     """
-    cfg = cfg or MockConfig()
-    rng = random.Random(cfg.seed)
-    polys = _build_grid_polygons(cfg)
-
-    # Bias the rating distribution so there is meaningful filtering to do.
-    rating_pool = [3, 4, 5, 6, 6, 7, 7, 8, 8, 8, 9, 9, 10, 10, 7, 5]
-    rng.shuffle(rating_pool)
-    rating_pool = (rating_pool * ((len(polys) // len(rating_pool)) + 1))[: len(polys)]
-
     rows = []
-    for i, poly in enumerate(polys):
-        name = SCHOOL_POOL[i % len(SCHOOL_POOL)]
-        # Level is implied by the name suffix to keep things readable.
-        if "Elementary" in name:
-            level = "Elementary"
-        elif "Middle" in name:
-            level = "Middle"
-        else:
-            level = "High"
+    for i, (name, level, rating, lat, lon, r, zip_code) in enumerate(FL_SCHOOLS):
+        # Seed each polygon deterministically by name so re-runs render the
+        # same boundaries.
+        poly = _irregular_polygon(lat, lon, r, seed=abs(hash(name)) % (2**31))
         rows.append({
             "school_id": f"SCH-{i+1:03d}",
             "school_name": name,
             "level": level,
-            "rating": rating_pool[i],
-            # Fake ZIP varies by grid row so ZIP filtering does something.
-            "zip_code": f"7870{(i % 9) + 1}",
+            "rating": rating,
+            "zip_code": zip_code,
             "geometry": poly,
         })
-
-    gdf = gpd.GeoDataFrame(rows, geometry="geometry", crs="EPSG:4326")
-    return gdf
+    return gpd.GeoDataFrame(rows, geometry="geometry", crs="EPSG:4326")
 
 
 def generate_listings(
     schools_gdf: gpd.GeoDataFrame,
     cfg: MockConfig | None = None,
 ) -> pd.DataFrame:
-    """Generate mock active listings scattered within the school grid bounds.
+    """Generate mock active listings — most inside school zones, some outside.
 
     Returns a plain DataFrame (not a GeoDataFrame) with lat/lon columns so it
     matches the shape of typical real estate API responses.
@@ -123,32 +189,74 @@ def generate_listings(
     cfg = cfg or MockConfig()
     rng = random.Random(cfg.seed + 1)
 
-    minx, miny, maxx, maxy = schools_gdf.total_bounds
     listings = []
-    for i in range(cfg.n_listings):
-        lon = rng.uniform(minx, maxx)
+    listing_id = 100_000
+
+    # ~80% of listings placed inside a school polygon (so the spatial filter
+    # has something meaningful to keep), priced for that neighborhood.
+    in_zone_count = int(cfg.n_listings * 0.8)
+    schools = list(schools_gdf.itertuples(index=False))
+    per_school = max(in_zone_count // max(len(schools), 1), 1)
+
+    for school in schools:
+        zip_code = school.zip_code
+        city, state = FL_CITIES_BY_ZIP.get(zip_code, ("Miami", "FL"))
+        low, high = ZIP_PRICE_BANDS.get(zip_code, (400_000, 1_000_000))
+        minx, miny, maxx, maxy = school.geometry.bounds
+        for _ in range(per_school):
+            lon = rng.uniform(minx, maxx)
+            lat = rng.uniform(miny, maxy)
+            price = rng.randint(low, high)
+            beds = rng.choices([2, 3, 4, 5, 6], weights=[1, 3, 5, 3, 1])[0]
+            baths = rng.choices([1.5, 2, 2.5, 3, 3.5, 4], weights=[1, 4, 3, 4, 2, 1])[0]
+            sqft = int(beds * rng.uniform(450, 850))
+            listings.append({
+                "listing_id": f"MLS-{listing_id}",
+                "address": f"{rng.randint(100, 9999)} {rng.choice(FL_STREETS)}",
+                "city": city,
+                "state": state,
+                "zip_code": zip_code,
+                "price": price,
+                "bedrooms": beds,
+                "bathrooms": baths,
+                "sqft": sqft,
+                "year_built": rng.randint(1965, 2024),
+                "latitude": lat,
+                "longitude": lon,
+                "listing_url": (
+                    f"https://www.redfin.com/FL/{city.replace(' ', '-')}/"
+                    f"home/{listing_id}"
+                ),
+            })
+            listing_id += 1
+
+    # Add a sprinkling of listings OUTSIDE the top-school polygons so the
+    # spatial filter has visible rejects (and the "all listings" debug view
+    # shows realistic noise).
+    minx, miny, maxx, maxy = schools_gdf.total_bounds
+    n_outside = cfg.n_listings - len(listings)
+    for _ in range(max(n_outside, 0)):
         lat = rng.uniform(miny, maxy)
-        beds = rng.choices([2, 3, 4, 5, 6], weights=[1, 4, 5, 2, 1])[0]
-        baths = rng.choices([1, 2, 3, 4], weights=[1, 4, 4, 1])[0]
-        sqft = rng.randint(900, 4200)
-        # Price scales loosely with size + a noise term — realistic for Austin.
-        price = int(sqft * rng.uniform(280, 520) + rng.randint(-25000, 25000))
+        lon = rng.uniform(minx, maxx)
+        price = rng.randint(300_000, 1_500_000)
         listings.append({
-            "listing_id": f"MLS-{100000 + i}",
-            "address": f"{rng.randint(100, 9999)} {rng.choice(STREETS)}",
-            "city": "Austin",
-            "state": "TX",
-            "zip_code": f"7870{rng.randint(1, 9)}",
+            "listing_id": f"MLS-{listing_id}",
+            "address": f"{rng.randint(100, 9999)} {rng.choice(FL_STREETS)}",
+            "city": "Miami",
+            "state": "FL",
+            # Random "off-grid" ZIP so it doesn't accidentally match a top zone.
+            "zip_code": f"330{rng.randint(40, 99)}",
             "price": price,
-            "bedrooms": beds,
-            "bathrooms": baths,
-            "sqft": sqft,
-            "year_built": rng.randint(1955, 2024),
+            "bedrooms": rng.choices([2, 3, 4], weights=[2, 4, 3])[0],
+            "bathrooms": rng.choices([1.5, 2, 2.5, 3], weights=[1, 3, 2, 1])[0],
+            "sqft": rng.randint(900, 2500),
+            "year_built": rng.randint(1960, 2024),
             "latitude": lat,
             "longitude": lon,
-            # Simulated listing URL so the table link column has something to open.
-            "listing_url": f"https://example-listings.local/property/MLS-{100000 + i}",
+            "listing_url": f"https://www.redfin.com/FL/Miami/home/{listing_id}",
         })
+        listing_id += 1
+
     return pd.DataFrame(listings)
 
 

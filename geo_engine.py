@@ -119,3 +119,25 @@ def schools_bbox(
 
     minx, miny, maxx, maxy = schools.total_bounds
     return ((miny, minx), (maxy, maxx))
+
+
+def zoom_for_bbox(south: float, west: float, north: float, east: float) -> int:
+    """Heuristic initial zoom for a lat/lon bbox.
+
+    Folium's ``fit_bounds`` is unreliable inside streamlit-folium because the
+    iframe is sized after the map initializes — Leaflet computes the wrong
+    zoom against a smaller-than-final container. Setting ``zoom_start`` from
+    the bbox up front avoids the race.
+    """
+    span = max(abs(north - south), abs(east - west))
+    if span > 5:
+        return 6
+    if span > 2:
+        return 8
+    if span > 0.5:
+        return 10
+    if span > 0.1:
+        return 11
+    if span > 0.03:
+        return 12
+    return 13

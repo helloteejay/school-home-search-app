@@ -12,7 +12,10 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-The app boots with mock data for Austin, TX — no API keys required.
+The app boots with mock data for Broward + Miami-Dade counties, FL — covering
+top-rated public school zones in Weston, Parkland, Cooper City, Coral Springs,
+Pinecrest, Palmetto Bay, Coral Gables, Aventura, Doral, and Key Biscayne. No
+API keys required.
 
 ## Files
 
@@ -21,7 +24,7 @@ The app boots with mock data for Austin, TX — no API keys required.
 | `app.py` | Streamlit UI, sidebar filters, Folium map, AgGrid table |
 | `data_provider.py` | Abstract `SchoolDataProvider` / `ListingsDataProvider` interfaces, mock implementations, and live HTTP skeletons (GreatSchools, Realty Mole) |
 | `geo_engine.py` | Point-in-polygon filtering with Shapely/GeoPandas + map-color helpers |
-| `mock_data.py` | Generates a 4×4 grid of school zones + ~120 scattered listings |
+| `mock_data.py` | ~27 real Broward + Miami-Dade schools w/ polygon zones + ~180 listings priced by ZIP |
 | `requirements.txt` | Dependencies |
 
 ## Switching to live data

@@ -28,7 +28,7 @@ import geo_engine
 
 # Optional dependency — fall back to st.dataframe if the user hasn't installed it.
 try:
-    from st_aggrid import AgGrid, GridOptionsBuilder
+    from st_aggrid import AgGrid, GridOptionsBuilder, JsCode
 
     HAS_AGGRID = True
 except ImportError:  # pragma: no cover — runtime UI choice only
@@ -105,11 +105,14 @@ def render_sidebar() -> dict:
     st.sidebar.header("Search filters")
 
     st.sidebar.markdown("**Location**")
-    city = st.sidebar.text_input("City, State", value="Austin, TX")
+    city = st.sidebar.text_input("City, State", value="Broward + Miami-Dade, FL")
     zip_raw = st.sidebar.text_input(
         "ZIP codes (comma-separated, optional)",
         value="",
-        help="Leave blank to include every zone in the data.",
+        help=(
+            "Leave blank to include every zone. Try 33326 (Weston), 33076 "
+            "(Parkland), 33156 (Pinecrest), 33134 (Coral Gables)."
+        ),
     )
     zip_codes: List[str] = [z.strip() for z in zip_raw.split(",") if z.strip()]
 
@@ -129,7 +132,7 @@ def render_sidebar() -> dict:
         "Max price ($)",
         min_value=100_000,
         max_value=10_000_000,
-        value=900_000,
+        value=1_500_000,
         step=25_000,
     )
     min_beds = st.sidebar.slider("Min bedrooms", 1, 6, 3)
@@ -153,8 +156,9 @@ def build_map(schools, qualifying_listings: pd.DataFrame) -> folium.Map:
     """Build the Folium map: shaded school polygons + clustered home pins."""
     (south, west), (north, east) = geo_engine.schools_bbox(schools, qualifying_listings)
     center = [(south + north) / 2, (west + east) / 2]
+    zoom = geo_engine.zoom_for_bbox(south, west, north, east)
 
-    fmap = folium.Map(location=center, zoom_start=12, tiles="cartodbpositron")
+    fmap = folium.Map(location=center, zoom_start=zoom, tiles="cartodbpositron")
 
     # School polygons, color-coded by rating.
     for _, row in schools.iterrows():
@@ -195,8 +199,10 @@ def build_map(schools, qualifying_listings: pd.DataFrame) -> folium.Map:
                 icon=folium.Icon(color="blue", icon="home", prefix="fa"),
             ).add_to(cluster)
 
-    # Fit-bounds keeps everything visible regardless of city.
-    fmap.fit_bounds([[south, west], [north, east]])
+    # NB: ``fmap.fit_bounds`` was previously called here but the streamlit-
+    # folium iframe is sized AFTER Leaflet initializes — fit_bounds picks the
+    # wrong zoom against the pre-resize container. zoom_for_bbox above gives
+    # the right initial zoom; the user can still drag/zoom to refine.
     folium.LayerControl(collapsed=True).add_to(fmap)
     return fmap
 
@@ -220,15 +226,51 @@ def render_table(df: pd.DataFrame) -> None:
     view = df[DISPLAY_COLUMNS].copy()
 
     if HAS_AGGRID:
+        # JsCode wrappers are required for streamlit-aggrid >=1.0 — a bare
+        # string is treated as a column-field reference, not a JS function.
+        price_formatter = JsCode(
+            "function(params) { "
+            "return params.value != null ? '$' + Number(params.value).toLocaleString() : ''; "
+            "}"
+        )
+        # AgGrid >=31 (under streamlit-aggrid 1.x's React wrapper) escapes
+        # string returns and crashes on raw DOM elements returned from a
+        # plain function. The class-style renderer with init()/getGui()
+        # bypasses React entirely — AgGrid mounts the element directly.
+        link_renderer = JsCode("""
+            class UrlCellRenderer {
+              init(params) {
+                this.eGui = document.createElement('a');
+                this.eGui.textContent = 'View';
+                this.eGui.setAttribute('href', params.value || '#');
+                this.eGui.setAttribute('target', '_blank');
+                this.eGui.setAttribute('rel', 'noopener');
+              }
+              getGui() { return this.eGui; }
+              refresh() { return false; }
+            }
+        """)
+
         gb = GridOptionsBuilder.from_dataframe(view)
-        gb.configure_default_column(filter=True, sortable=True, resizable=True)
-        gb.configure_column("price", type=["numericColumn"], valueFormatter="'$' + x.toLocaleString()")
+        gb.configure_default_column(filter=True, sortable=True, resizable=True, flex=1)
+        # Flex weights let columns share whatever width the iframe ends up at —
+        # min widths alone caused the rightmost columns (ZIP, Listing) to clip.
+        gb.configure_column("address", header_name="Address", flex=3, minWidth=160)
         gb.configure_column(
-            "listing_url",
-            cellRenderer=(
-                "function(p){return p.value ? "
-                "`<a href=\"${p.value}\" target=\"_blank\">View</a>` : ''}"
-            ),
+            "price", header_name="Price", type=["numericColumn"],
+            valueFormatter=price_formatter, flex=1.4, minWidth=100,
+        )
+        gb.configure_column("bedrooms", header_name="Beds", flex=0.6, minWidth=60)
+        gb.configure_column("bathrooms", header_name="Baths", flex=0.6, minWidth=60)
+        gb.configure_column("sqft", header_name="Sqft", type=["numericColumn"], flex=0.8, minWidth=70)
+        gb.configure_column("year_built", header_name="Year", flex=0.7, minWidth=60)
+        gb.configure_column("assigned_school", header_name="School", flex=2.4, minWidth=140)
+        gb.configure_column("school_rating", header_name="Rating", flex=0.8, minWidth=70)
+        gb.configure_column("school_level", header_name="Level", flex=1, minWidth=80)
+        gb.configure_column("zip_code", header_name="ZIP", flex=0.7, minWidth=60)
+        gb.configure_column(
+            "listing_url", header_name="Listing",
+            cellRenderer=link_renderer, flex=0.7, minWidth=70,
         )
         AgGrid(
             view,
@@ -236,7 +278,6 @@ def render_table(df: pd.DataFrame) -> None:
             allow_unsafe_jscode=True,
             theme="streamlit",
             height=420,
-            fit_columns_on_grid_load=True,
         )
     else:
         st.dataframe(
@@ -258,7 +299,9 @@ def main() -> None:
     st.title("Find homes inside top-rated school zones")
     st.caption(
         "Active listings cross-referenced with school attendance boundaries. "
-        "Mock data is used by default — set `USE_LIVE_DATA=true` to hit live APIs."
+        "MVP covers Broward + Miami-Dade (Weston, Parkland, Cooper City, "
+        "Pinecrest, Coral Gables, Aventura, Doral, Key Biscayne). Mock data "
+        "by default — set `USE_LIVE_DATA=true` to hit live APIs."
     )
 
     filters = render_sidebar()
