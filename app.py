@@ -72,7 +72,10 @@ def _load_schools(zip_codes: tuple[str, ...]):
         # Return an empty GeoDataFrame with the expected columns.
         import geopandas as gpd
         return gpd.GeoDataFrame(
-            columns=["school_id", "school_name", "level", "rating", "zip_code", "admission_type", "geometry"],
+            columns=[
+                "school_id", "school_name", "level", "rating", "zip_code",
+                "admission_type", "boundary_source", "geometry",
+            ],
             geometry="geometry",
             crs="EPSG:4326",
         )
@@ -192,7 +195,8 @@ def build_map(schools, qualifying_listings: pd.DataFrame) -> folium.Map:
             tooltip=folium.Tooltip(
                 f"<b>{row['school_name']}</b><br>"
                 f"Rating: {row['rating']}/10 ({row['level']})<br>"
-                f"ZIP: {row['zip_code']}"
+                f"ZIP: {row['zip_code']}<br>"
+                f"Boundary: {('district GIS' if row.get('boundary_source') == 'district' else 'approximate')}"
             ),
         ).add_to(fmap)
 

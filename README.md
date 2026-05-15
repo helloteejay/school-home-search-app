@@ -29,7 +29,29 @@ API keys required.
 | `mock_data.py` | ~27 real Broward + Miami-Dade schools w/ polygon zones + ~180 listings priced by ZIP |
 | `requirements.txt` | Dependencies |
 | `data/SchoolGrades24.xlsx` | Florida DOE 2023-24 School Grades (source of `FL_SCHOOLS` ratings) |
+| `data/boundaries/*.geojson` | Real elementary attendance polygons from Broward + Miami-Dade GIS feeds |
 | `scripts/fetch_school_grades.py` | Re-fetch the FL DOE file + print drift vs. current `FL_SCHOOLS` |
+| `scripts/fetch_school_boundaries.py` | Re-fetch the district GIS GeoJSONs into `data/boundaries/` |
+
+## Boundary source
+
+Real elementary attendance polygons come from each district's open data
+ArcGIS hub:
+
+- **Broward**: `services.arcgis.com/JMAJrTsHNLrSsWf5/.../AllSchoolBoundaries/FeatureServer/8`
+- **Miami-Dade**: `services.arcgis.com/8Pc9XBTAsYuxx9Ny/.../ElementaryAttendanceBoundary_gdb/FeatureServer/0`
+
+Cached locally as `data/boundaries/{broward,miamidade}_elementary.geojson`.
+Each school in `FL_SCHOOLS` carries a `boundary_source` of `"district"`
+(real polygon) or `"synthetic"` (centroid-based jittered hexagon fallback,
+used only when no real boundary is available — currently Heron Heights
+Elementary and the magnet schools).
+
+To refresh:
+
+```bash
+python scripts/fetch_school_boundaries.py --force
+```
 
 ## Ratings source
 

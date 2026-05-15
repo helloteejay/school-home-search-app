@@ -47,11 +47,16 @@ class SchoolDataProvider(ABC):
     ) -> gpd.GeoDataFrame:
         """Return a GeoDataFrame with columns:
 
-        ``school_id, school_name, level, rating, zip_code, admission_type, geometry``
+        ``school_id, school_name, level, rating, zip_code, admission_type,
+        geometry, boundary_source``
 
         ``admission_type`` is ``"boundary"`` (attendance-zone enrollment) or
         ``"magnet"`` (application/lottery). Live providers without an explicit
         magnet flag should default to ``"boundary"``.
+
+        ``boundary_source`` is ``"district"`` if the polygon came from a
+        district GIS feed (authoritative) or ``"synthetic"`` if it's an
+        approximation around the school centroid (fallback only).
 
         ``geometry`` must be a Shapely polygon in EPSG:4326 (lat/lon).
         """

@@ -1,29 +1,36 @@
 """Mock data generator — South Florida edition (Broward + Miami-Dade).
 
-Produces realistic-looking school attendance boundaries for the top-rated
-public schools across Broward and Miami-Dade counties, plus active listings
-priced for each neighborhood. Replaces the original Austin grid scaffold.
+Produces school attendance boundaries for the top-rated public schools
+across Broward and Miami-Dade counties, plus active listings priced for
+each neighborhood. Replaces the original Austin grid scaffold.
 
 All output mirrors the schema returned by the live providers so the rest of
 the app does not know — or care — that it is running on fixtures.
 
-School ratings come from the Florida DOE 2023-24 School Grades
-(``data/SchoolGrades24.xlsx``, fetched from fldoe.org). Run
-``scripts/fetch_school_grades.py`` to refresh when the next year publishes.
-Centroids and polygon radii are still approximations — district GIS
-boundary data is the next swap. See README for status.
+**Two data sources are layered:**
+
+1. **Ratings** — Florida DOE 2023-24 School Grades (``data/SchoolGrades24.xlsx``,
+   fetched from fldoe.org). Refresh with ``scripts/fetch_school_grades.py``.
+2. **Polygons** — real attendance-zone GeoJSON from each district's GIS
+   open data hub (Broward, Miami-Dade), cached in ``data/boundaries/``.
+   When a FL_SCHOOLS entry maps to a feature in those files we use the
+   real polygon; otherwise we fall back to a synthetic jittered hexagon
+   around the school centroid (only magnets + charter-ish schools end up
+   on the fallback path). Refresh with ``scripts/fetch_school_boundaries.py``.
 """
 
 from __future__ import annotations
 
+import json
 import math
 import random
 from dataclasses import dataclass
-from typing import Any, Dict, List
+from pathlib import Path
+from typing import Any, Dict, List, Optional
 
 import geopandas as gpd
 import pandas as pd
-from shapely.geometry import Polygon
+from shapely.geometry import Polygon, shape
 
 
 # ---------------------------------------------------------------------------
@@ -188,6 +195,9 @@ class MockConfig:
 def _irregular_polygon(lat: float, lon: float, radius_deg: float, seed: int) -> Polygon:
     """Build an 8-vertex polygon around (lat, lon) with jittered radii so
     attendance zones look organic rather than square.
+
+    Used as a fallback when real district boundary data isn't available
+    for a school (magnets, charter-ish schools, etc.).
     """
     rng = random.Random(seed)
     pts = []
@@ -201,24 +211,114 @@ def _irregular_polygon(lat: float, lon: float, radius_deg: float, seed: int) -> 
 
 
 # ---------------------------------------------------------------------------
+# Real district boundary loader
+# ---------------------------------------------------------------------------
+
+_BOUNDARY_FILES = {
+    "broward":   "data/boundaries/broward_elementary.geojson",
+    "miamidade": "data/boundaries/miamidade_elementary.geojson",
+}
+
+# Maps each FL_SCHOOLS entry to the exact name in the district GeoJSON.
+# Schools omitted here have no real boundary available (magnets, charter
+# schools, or missing from the district feed) and will fall back to a
+# synthetic polygon. ZIP filter disambiguates when the district feed has
+# multiple schools with the same name.
+_BOUNDARY_MAP: Dict[str, Dict[str, Any]] = {
+    # Broward
+    "Eagle Ridge Elementary":     {"county": "broward",   "name": "EAGLE RIDGE ELEMENTARY"},
+    "Country Isles Elementary":   {"county": "broward",   "name": "COUNTRY ISLES ELEMENTARY"},
+    "Riverglades Elementary":     {"county": "broward",   "name": "RIVERGLADES ELEMENTARY"},
+    "Park Trails Elementary":     {"county": "broward",   "name": "PARK TRAILS ELEMENTARY"},
+    "Embassy Creek Elementary":   {"county": "broward",   "name": "EMBASSY CREEK ELEMENTARY"},
+    # Miami-Dade
+    "Pinecrest Elementary":       {"county": "miamidade", "name": "Pinecrest Elementary",            "zip": 33156},
+    "Coral Reef Elementary":      {"county": "miamidade", "name": "Coral Reef Elementary"},
+    "Sunset Elementary":          {"county": "miamidade", "name": "Sunset Elementary",               "zip": 33143},
+    "Aventura Waterways K-8":     {"county": "miamidade", "name": "Aventura Waterways K-8 Center"},
+    "Eugenia B. Thomas K-8":      {"county": "miamidade", "name": "Thomas, Eugenia B. K-8 Center"},
+    # Henry S. West Laboratory: magnet, no attendance boundary (excluded by
+    #   the elementary filter via admission_type="magnet" anyway).
+    # Heron Heights Elementary: not in Broward's attendance-zone feed. Likely
+    #   charter or recently created. Falls back to circle.
+}
+
+_REPO_ROOT = Path(__file__).resolve().parent
+_boundary_cache: Optional[Dict[str, Polygon]] = None
+
+
+def _load_boundary_cache() -> Dict[str, Polygon]:
+    """Lazy-load both district GeoJSONs and index by ``(county, NAME)``."""
+    global _boundary_cache
+    if _boundary_cache is not None:
+        return _boundary_cache
+
+    cache: Dict[str, Polygon] = {}
+    for county, rel in _BOUNDARY_FILES.items():
+        path = _REPO_ROOT / rel
+        if not path.exists():
+            # Files not present yet — silently skip; every school will use
+            # the circle fallback.
+            continue
+        with path.open() as f:
+            gj = json.load(f)
+        for feat in gj.get("features", []):
+            props = feat.get("properties") or {}
+            name = props.get("NAME")
+            if not name or not feat.get("geometry"):
+                continue
+            zipc = props.get("ZIPCODE")
+            zip_part = str(int(zipc)) if zipc else ""
+            cache[f"{county}::{name}::{zip_part}"] = shape(feat["geometry"])
+            # Also store without ZIP so the lookup can hit by name only when
+            # the ZIP isn't specified or matters.
+            cache[f"{county}::{name}::"] = shape(feat["geometry"])
+
+    _boundary_cache = cache
+    return cache
+
+
+def _real_boundary_for(school_name: str) -> Optional[Polygon]:
+    """Return the real attendance polygon for ``school_name`` if we have it."""
+    mapping = _BOUNDARY_MAP.get(school_name)
+    if not mapping:
+        return None
+    cache = _load_boundary_cache()
+    county = mapping["county"]
+    target_name = mapping["name"]
+    zip_part = str(mapping["zip"]) if "zip" in mapping else ""
+    return cache.get(f"{county}::{target_name}::{zip_part}")
+
+
+# ---------------------------------------------------------------------------
 # Public API — used by data_provider.MockSchoolProvider / MockListingsProvider
 # ---------------------------------------------------------------------------
 
 def generate_schools(cfg: MockConfig | None = None) -> gpd.GeoDataFrame:
-    """Return a GeoDataFrame of mock South Florida schools w/ attendance zones.
+    """Return a GeoDataFrame of South Florida schools w/ attendance zones.
 
-    Columns: school_id, school_name, level, rating (1-10), rating_pct (the
-    raw FL DOE "Percent of Total Possible Points"), rating_source, zip_code,
-    admission_type ("boundary" or "magnet"), geometry.
+    For each school in FL_SCHOOLS, attempts to load the real attendance
+    polygon from the district's GeoJSON file (cached under
+    ``data/boundaries/``). Falls back to a deterministic jittered hexagon
+    around the school centroid when no real boundary is available — only
+    magnets and a couple of unaccounted-for schools hit the fallback.
+
+    Columns: school_id, school_name, level, rating (1-10), rating_pct (raw
+    FL DOE "Percent of Total Possible Points"), rating_source, zip_code,
+    admission_type, geometry, boundary_source ("district" or "synthetic").
     """
     rows = []
     for i, s in enumerate(FL_SCHOOLS):
-        # Seed each polygon deterministically by name so re-runs render the
-        # same boundaries.
-        poly = _irregular_polygon(
-            s["lat"], s["lon"], s["zone_radius_deg"],
-            seed=abs(hash(s["name"])) % (2**31),
-        )
+        real = _real_boundary_for(s["name"])
+        if real is not None:
+            poly = real
+            boundary_source = "district"
+        else:
+            poly = _irregular_polygon(
+                s["lat"], s["lon"], s["zone_radius_deg"],
+                seed=abs(hash(s["name"])) % (2**31),
+            )
+            boundary_source = "synthetic"
         rows.append({
             "school_id": f"SCH-{i+1:03d}",
             "school_name": s["name"],
@@ -229,6 +329,7 @@ def generate_schools(cfg: MockConfig | None = None) -> gpd.GeoDataFrame:
             "zip_code": s["zip_code"],
             "admission_type": s["admission_type"],
             "geometry": poly,
+            "boundary_source": boundary_source,
         })
     return gpd.GeoDataFrame(rows, geometry="geometry", crs="EPSG:4326")
 
