@@ -25,6 +25,7 @@ from streamlit_folium import st_folium
 
 import data_provider
 import geo_engine
+import mock_data
 
 # Optional dependency — fall back to st.dataframe if the user hasn't installed it.
 try:
@@ -81,25 +82,39 @@ def _load_schools(zip_codes: tuple[str, ...]):
         )
 
 
-@st.cache_data(show_spinner=False)
-def _load_listings(
-    zip_codes: tuple[str, ...],
-    max_price: float,
-    min_beds: int,
-    min_baths: int,
-):
+@st.cache_data(show_spinner="Fetching listings…")
+def _fetch_listings_for_zips(zip_codes: tuple[str, ...]) -> pd.DataFrame:
+    """Pull active listings for these ZIPs. Cache key is ZIPs only so
+    later filter changes (price, beds, baths) re-use the same fetch and
+    don't burn RentCast quota.
+    """
     _, listings_provider = _providers()
     try:
         return listings_provider.get_listings(
             zip_codes=list(zip_codes) if zip_codes else None,
-            max_price=max_price,
-            min_bedrooms=min_beds,
-            min_bathrooms=min_baths,
         )
     except Exception as exc:
         logger.exception("Listings provider failed")
         st.error(f"Could not load listings: {exc}")
         return pd.DataFrame()
+
+
+def _load_listings(
+    zip_codes: tuple[str, ...],
+    max_price: float,
+    min_beds: int,
+    min_baths: int,
+) -> pd.DataFrame:
+    """Fetch raw listings (cached) then apply price/beds/baths filters."""
+    raw = _fetch_listings_for_zips(zip_codes)
+    if raw.empty:
+        return raw
+    out = raw[
+        (raw["price"] <= float(max_price))
+        & (raw["bedrooms"] >= int(min_beds))
+        & (raw["bathrooms"] >= float(min_baths))
+    ]
+    return out.reset_index(drop=True)
 
 
 # ---------------------------------------------------------------------------
@@ -328,10 +343,30 @@ def main() -> None:
 
     filters = render_sidebar()
 
+    # In live mode, default to the boundary-elementary ZIPs from FL_SCHOOLS
+    # when the user hasn't entered any — otherwise RentCastProvider raises
+    # "needs at least one ZIP" and we get an empty result.
+    elem_levels = {"Elementary", "K-8"}
+    elementary_zips = sorted({
+        s["zip_code"] for s in mock_data.FL_SCHOOLS
+        if s["level"] in elem_levels and s["admission_type"] == "boundary"
+    })
+    listing_zips = filters["zip_codes"] or (
+        elementary_zips if data_provider.USE_LIVE_DATA else []
+    )
+
+    if data_provider.USE_LIVE_DATA:
+        st.info(
+            f"**Live mode** — querying RentCast for {len(listing_zips)} ZIP(s): "
+            f"`{', '.join(listing_zips)}`. Free tier is 50 calls/month; each "
+            f"unique ZIP set costs 1 call per ZIP and is cached for the session.",
+            icon="📡",
+        )
+
     # Cache keys are hashable, so convert lists to tuples before passing in.
     schools = _load_schools(tuple(filters["zip_codes"]))
     listings = _load_listings(
-        tuple(filters["zip_codes"]),
+        tuple(listing_zips),
         filters["max_price"],
         filters["min_beds"],
         filters["min_baths"],

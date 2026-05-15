@@ -1,16 +1,22 @@
 """Data provider layer — abstract interfaces + concrete implementations.
 
-The app code talks only to the abstract interfaces below. Two concrete
-implementations are wired in:
+The app code talks only to the abstract interfaces below. Concrete
+implementations:
 
-  * ``MockSchoolProvider`` / ``MockListingsProvider`` — pull from ``mock_data``
-    for fully offline development.
-  * ``GreatSchoolsProvider`` / ``RealtyMoleProvider`` — HTTP skeletons that
-    show how to talk to the real APIs once you have keys. They are not used
-    by default; flip ``USE_LIVE_DATA`` (or pass a custom provider) to enable.
+  * ``MockSchoolProvider`` — reads from ``mock_data``, which now serves
+    real FL DOE 2023-24 ratings + real Broward/Miami-Dade attendance
+    polygons. The "mock" name is a misnomer at this point; it's our
+    canonical school data layer.
+  * ``MockListingsProvider`` — synthetic FL listings (Broward + Miami-Dade)
+    for offline development.
+  * ``RentCastProvider`` — live RentCast (formerly Realty Mole) API for
+    actual for-sale listings. Requires ``RENTCAST_API_KEY``. Enabled by
+    setting ``USE_LIVE_DATA=true`` in the environment.
 
-Both pairs return the same column schema so the rest of the app does not
-need to branch on which is active.
+Live mode only swaps the **listings** provider — the school data stays on
+the mock provider because we already have real ratings + real boundaries
+baked in. Once a live boundary feed materializes for another state, swap
+in a real ``SchoolDataProvider`` for that geography.
 """
 
 from __future__ import annotations
@@ -18,6 +24,7 @@ from __future__ import annotations
 import logging
 import os
 from abc import ABC, abstractmethod
+from pathlib import Path
 from typing import Iterable, Optional
 
 import geopandas as gpd
@@ -28,7 +35,28 @@ import mock_data
 
 logger = logging.getLogger(__name__)
 
-# Flip to True (or set env var) once you have wired up real API credentials.
+
+def _load_dotenv() -> None:
+    """Read KEY=VALUE pairs from .env into os.environ. No-op if no file.
+
+    Done manually so we don't add python-dotenv as a dep just for one file.
+    """
+    env_path = Path(__file__).resolve().parent / ".env"
+    if not env_path.exists():
+        return
+    for raw in env_path.read_text().splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        key, value = key.strip(), value.strip().strip('"').strip("'")
+        # Don't overwrite a value already set in the actual environment.
+        os.environ.setdefault(key, value)
+
+
+_load_dotenv()
+
+# Flip to True (or set env var) to use the live RentCast listings API.
 USE_LIVE_DATA = os.environ.get("USE_LIVE_DATA", "false").lower() == "true"
 
 
@@ -226,35 +254,44 @@ class GreatSchoolsProvider(SchoolDataProvider):
         return gpd.GeoDataFrame(rows, geometry="geometry", crs="EPSG:4326")
 
 
-class RealtyMoleProvider(ListingsDataProvider):
-    """Skeleton for the Realty Mole Property API (RapidAPI).
+class RentCastProvider(ListingsDataProvider):
+    """Live for-sale listings from RentCast (formerly Realty Mole).
 
-    The free tier returns active sale listings keyed by ZIP or bounding box.
-    Fill in ``RAPIDAPI_KEY`` and adjust the response mapping to your plan.
+    https://api.rentcast.io/v1/listings/sale
+
+    Auth: ``X-Api-Key`` header. Free tier is 50 calls/month; each call
+    returns up to 500 listings for a single (zip OR city+state OR
+    lat/lon+radius) query. We query per-ZIP so we can blend results from
+    multiple target neighborhoods.
+
+    RentCast doesn't support a ``maxPrice`` server-side filter, so we
+    fetch and filter client-side. (Beds/baths CAN filter server-side via
+    ``bedrooms``/``bathrooms`` — those are exact-match though, so we
+    fetch broadly and filter client-side to honor "min" semantics.)
     """
 
-    BASE_URL = "https://realty-mole-property-api.p.rapidapi.com"
-    SALE_LISTINGS_PATH = "/saleListings"
+    BASE_URL = "https://api.rentcast.io/v1"
+    SALE_LISTINGS_PATH = "/listings/sale"
+    PER_ZIP_LIMIT = 100  # well under free-tier ceiling; one call covers a ZIP
 
     def __init__(self, api_key: Optional[str] = None, timeout: float = 15.0) -> None:
-        self.api_key = api_key or os.environ.get("RAPIDAPI_KEY")
+        self.api_key = api_key or os.environ.get("RENTCAST_API_KEY")
         self.timeout = timeout
 
     def _headers(self) -> dict:
         if not self.api_key:
             raise RuntimeError(
-                "RAPIDAPI_KEY is not set. Either export it or use the "
-                "MockListingsProvider instead."
+                "RENTCAST_API_KEY is not set. Either export it, drop it in "
+                "school-home-finder/.env, or use the MockListingsProvider."
             )
-        return {
-            "X-RapidAPI-Key": self.api_key,
-            "X-RapidAPI-Host": "realty-mole-property-api.p.rapidapi.com",
-        }
+        return {"X-Api-Key": self.api_key, "Accept": "application/json"}
 
-    def _fetch_zip(self, zip_code: str, max_price: Optional[float]) -> list[dict]:
-        params = {"zipCode": zip_code, "limit": 200}
-        if max_price is not None:
-            params["maxPrice"] = int(max_price)
+    def _fetch_zip(self, zip_code: str) -> list[dict]:
+        params = {
+            "zipCode": zip_code,
+            "limit": self.PER_ZIP_LIMIT,
+            "status": "Active",
+        }
         try:
             resp = requests.get(
                 f"{self.BASE_URL}{self.SALE_LISTINGS_PATH}",
@@ -264,11 +301,20 @@ class RealtyMoleProvider(ListingsDataProvider):
             )
             resp.raise_for_status()
         except requests.RequestException as exc:
-            logger.warning("Realty Mole fetch failed for %s: %s", zip_code, exc)
+            logger.warning("RentCast fetch failed for ZIP %s: %s", zip_code, exc)
             return []
         payload = resp.json()
-        # The API sometimes returns a bare list, sometimes a dict — handle both.
+        # RentCast returns a bare list for /listings/sale.
         return payload if isinstance(payload, list) else payload.get("listings", [])
+
+    @staticmethod
+    def _redfin_url(item: dict) -> str:
+        """Build a Redfin search URL from the listing's address as a fallback
+        link when RentCast doesn't return one."""
+        addr = item.get("formattedAddress", "")
+        if not addr:
+            return ""
+        return f"https://www.redfin.com/stingray/do/location-autocomplete?location={addr.replace(' ', '%20')}&v=2"
 
     def get_listings(
         self,
@@ -278,33 +324,42 @@ class RealtyMoleProvider(ListingsDataProvider):
         min_bathrooms: int = 0,
     ) -> pd.DataFrame:
         if not zip_codes:
-            raise ValueError("RealtyMoleProvider requires at least one ZIP code.")
+            raise ValueError(
+                "RentCastProvider requires at least one ZIP code. The free tier "
+                "is metered per call, so we don't fetch the whole metro by default."
+            )
 
         rows = []
         for zip_code in zip_codes:
-            for raw in self._fetch_zip(str(zip_code).strip(), max_price):
+            for raw in self._fetch_zip(str(zip_code).strip()):
                 lat = raw.get("latitude")
                 lon = raw.get("longitude")
                 if lat is None or lon is None:
                     continue
-                beds = int(raw.get("bedrooms") or 0)
-                baths = int(raw.get("bathrooms") or 0)
-                if beds < int(min_bedrooms) or baths < int(min_bathrooms):
+                beds = float(raw.get("bedrooms") or 0)
+                baths = float(raw.get("bathrooms") or 0)
+                price = float(raw.get("price") or 0)
+                if beds < float(min_bedrooms) or baths < float(min_bathrooms):
+                    continue
+                if max_price is not None and price > float(max_price):
                     continue
                 rows.append({
                     "listing_id": raw.get("id") or raw.get("formattedAddress"),
-                    "address": raw.get("formattedAddress", ""),
-                    "city": raw.get("city", ""),
-                    "state": raw.get("state", ""),
-                    "zip_code": str(raw.get("zipCode", "")),
-                    "price": float(raw.get("price") or 0),
+                    "address": raw.get("formattedAddress")
+                              or raw.get("addressLine1") or "",
+                    "city": raw.get("city") or "",
+                    "state": raw.get("state") or "",
+                    "zip_code": str(raw.get("zipCode") or ""),
+                    "price": price,
                     "bedrooms": beds,
                     "bathrooms": baths,
                     "sqft": int(raw.get("squareFootage") or 0),
                     "year_built": int(raw.get("yearBuilt") or 0),
                     "latitude": float(lat),
                     "longitude": float(lon),
-                    "listing_url": raw.get("listingUrl", ""),
+                    # RentCast doesn't expose a listing URL on the free tier;
+                    # link to Redfin's address-lookup so TJ can click through.
+                    "listing_url": self._redfin_url(raw),
                 })
         return pd.DataFrame(rows)
 
@@ -318,10 +373,11 @@ def get_providers(
 ) -> tuple[SchoolDataProvider, ListingsDataProvider]:
     """Return the (school, listings) provider pair to use.
 
-    Defaults to mocks. Set ``USE_LIVE_DATA=true`` in the environment, or pass
-    ``use_live=True`` explicitly, to switch to the live HTTP skeletons.
+    Schools always come from ``MockSchoolProvider`` — that's where FL DOE
+    ratings and district GIS boundaries are baked in. ``USE_LIVE_DATA=true``
+    only swaps listings to ``RentCastProvider``.
     """
     live = USE_LIVE_DATA if use_live is None else use_live
     if live:
-        return GreatSchoolsProvider(), RealtyMoleProvider()
+        return MockSchoolProvider(), RentCastProvider()
     return MockSchoolProvider(), MockListingsProvider()
