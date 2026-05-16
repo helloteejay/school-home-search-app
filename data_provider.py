@@ -260,21 +260,26 @@ class RentCastProvider(ListingsDataProvider):
     https://api.rentcast.io/v1/listings/sale
 
     Auth: ``X-Api-Key`` header. Free tier is 50 calls/month; each call
-    returns up to 500 listings for a single (zip OR city+state OR
-    lat/lon+radius) query. We query per-ZIP so we can blend results from
-    multiple target neighborhoods.
+    returns up to 500 listings.
 
-    RentCast doesn't support a ``maxPrice`` server-side filter, so we
-    fetch and filter client-side. (Beds/baths CAN filter server-side via
-    ``bedrooms``/``bathrooms`` — those are exact-match though, so we
-    fetch broadly and filter client-side to honor "min" semantics.)
+    Two query modes:
+      - ZIP mode (one call per ZIP, ~100-500 listings each)
+      - Radius mode (one call covers a lat/lon disk, up to 500 listings)
+
+    Radius mode is preferred — far cheaper on quota when you want broad
+    coverage. We paginate via ``offset`` if a single radius call hits the
+    500-listing cap.
+
+    RentCast doesn't support ``maxPrice`` server-side; we fetch broadly
+    and filter client-side. Same for "min beds/baths" semantics.
     """
 
     BASE_URL = "https://api.rentcast.io/v1"
     SALE_LISTINGS_PATH = "/listings/sale"
-    PER_ZIP_LIMIT = 100  # well under free-tier ceiling; one call covers a ZIP
+    PAGE_LIMIT = 500  # RentCast hard cap per call
+    MAX_PAGES = 5     # safety guard so a wide query can't burn all quota
 
-    def __init__(self, api_key: Optional[str] = None, timeout: float = 15.0) -> None:
+    def __init__(self, api_key: Optional[str] = None, timeout: float = 20.0) -> None:
         self.api_key = api_key or os.environ.get("RENTCAST_API_KEY")
         self.timeout = timeout
 
@@ -286,26 +291,40 @@ class RentCastProvider(ListingsDataProvider):
             )
         return {"X-Api-Key": self.api_key, "Accept": "application/json"}
 
+    def _paged_fetch(self, params: dict) -> list[dict]:
+        """Pull listings page by page until we run out or hit MAX_PAGES."""
+        items: list[dict] = []
+        params = dict(params, limit=self.PAGE_LIMIT, status="Active")
+        for page in range(self.MAX_PAGES):
+            params["offset"] = page * self.PAGE_LIMIT
+            try:
+                resp = requests.get(
+                    f"{self.BASE_URL}{self.SALE_LISTINGS_PATH}",
+                    headers=self._headers(),
+                    params=params,
+                    timeout=self.timeout,
+                )
+                resp.raise_for_status()
+            except requests.RequestException as exc:
+                logger.warning("RentCast fetch failed (page %s): %s", page, exc)
+                break
+            payload = resp.json()
+            batch = payload if isinstance(payload, list) else payload.get("listings", [])
+            if not batch:
+                break
+            items.extend(batch)
+            if len(batch) < self.PAGE_LIMIT:
+                break  # less than a full page means we're done
+        return items
+
     def _fetch_zip(self, zip_code: str) -> list[dict]:
-        params = {
-            "zipCode": zip_code,
-            "limit": self.PER_ZIP_LIMIT,
-            "status": "Active",
-        }
-        try:
-            resp = requests.get(
-                f"{self.BASE_URL}{self.SALE_LISTINGS_PATH}",
-                headers=self._headers(),
-                params=params,
-                timeout=self.timeout,
-            )
-            resp.raise_for_status()
-        except requests.RequestException as exc:
-            logger.warning("RentCast fetch failed for ZIP %s: %s", zip_code, exc)
-            return []
-        payload = resp.json()
-        # RentCast returns a bare list for /listings/sale.
-        return payload if isinstance(payload, list) else payload.get("listings", [])
+        return self._paged_fetch({"zipCode": zip_code})
+
+    def fetch_radius(self, lat: float, lon: float, radius_miles: float) -> list[dict]:
+        """Public hook used by app.py to do a single broad radius query."""
+        return self._paged_fetch(
+            {"latitude": lat, "longitude": lon, "radius": radius_miles}
+        )
 
     @staticmethod
     def _redfin_url(item: dict) -> str:
@@ -316,6 +335,30 @@ class RentCastProvider(ListingsDataProvider):
             return ""
         return f"https://www.redfin.com/stingray/do/location-autocomplete?location={addr.replace(' ', '%20')}&v=2"
 
+    @staticmethod
+    def _normalize(raw: dict) -> Optional[dict]:
+        """Map one raw RentCast item to our canonical listing schema.
+        Returns None if the item lacks coordinates (can't be placed on the map)."""
+        lat = raw.get("latitude")
+        lon = raw.get("longitude")
+        if lat is None or lon is None:
+            return None
+        return {
+            "listing_id": raw.get("id") or raw.get("formattedAddress"),
+            "address": raw.get("formattedAddress") or raw.get("addressLine1") or "",
+            "city": raw.get("city") or "",
+            "state": raw.get("state") or "",
+            "zip_code": str(raw.get("zipCode") or ""),
+            "price": float(raw.get("price") or 0),
+            "bedrooms": float(raw.get("bedrooms") or 0),
+            "bathrooms": float(raw.get("bathrooms") or 0),
+            "sqft": int(raw.get("squareFootage") or 0),
+            "year_built": int(raw.get("yearBuilt") or 0),
+            "latitude": float(lat),
+            "longitude": float(lon),
+            "listing_url": RentCastProvider._redfin_url(raw),
+        }
+
     def get_listings(
         self,
         zip_codes: Optional[Iterable[str]] = None,
@@ -325,42 +368,38 @@ class RentCastProvider(ListingsDataProvider):
     ) -> pd.DataFrame:
         if not zip_codes:
             raise ValueError(
-                "RentCastProvider requires at least one ZIP code. The free tier "
-                "is metered per call, so we don't fetch the whole metro by default."
+                "RentCastProvider.get_listings needs at least one ZIP. For broad "
+                "coverage use get_listings_in_radius instead."
             )
 
         rows = []
         for zip_code in zip_codes:
             for raw in self._fetch_zip(str(zip_code).strip()):
-                lat = raw.get("latitude")
-                lon = raw.get("longitude")
-                if lat is None or lon is None:
+                row = self._normalize(raw)
+                if row is None:
                     continue
-                beds = float(raw.get("bedrooms") or 0)
-                baths = float(raw.get("bathrooms") or 0)
-                price = float(raw.get("price") or 0)
-                if beds < float(min_bedrooms) or baths < float(min_bathrooms):
+                if row["bedrooms"] < float(min_bedrooms) or row["bathrooms"] < float(min_bathrooms):
                     continue
-                if max_price is not None and price > float(max_price):
+                if max_price is not None and row["price"] > float(max_price):
                     continue
-                rows.append({
-                    "listing_id": raw.get("id") or raw.get("formattedAddress"),
-                    "address": raw.get("formattedAddress")
-                              or raw.get("addressLine1") or "",
-                    "city": raw.get("city") or "",
-                    "state": raw.get("state") or "",
-                    "zip_code": str(raw.get("zipCode") or ""),
-                    "price": price,
-                    "bedrooms": beds,
-                    "bathrooms": baths,
-                    "sqft": int(raw.get("squareFootage") or 0),
-                    "year_built": int(raw.get("yearBuilt") or 0),
-                    "latitude": float(lat),
-                    "longitude": float(lon),
-                    # RentCast doesn't expose a listing URL on the free tier;
-                    # link to Redfin's address-lookup so TJ can click through.
-                    "listing_url": self._redfin_url(raw),
-                })
+                rows.append(row)
+        return pd.DataFrame(rows)
+
+    def get_listings_in_radius(
+        self,
+        lat: float,
+        lon: float,
+        radius_miles: float,
+    ) -> pd.DataFrame:
+        """One broad lat/lon/radius query. Use this when you want coverage
+        across many ZIPs without burning a call per ZIP. Filters happen
+        client-side on the returned DataFrame.
+        """
+        rows = []
+        for raw in self.fetch_radius(lat, lon, radius_miles):
+            row = self._normalize(raw)
+            if row is not None:
+                rows.append(row)
         return pd.DataFrame(rows)
 
 

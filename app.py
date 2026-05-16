@@ -82,12 +82,31 @@ def _load_schools(zip_codes: tuple[str, ...]):
         )
 
 
+@st.cache_data(show_spinner=False)
+def _radius_query_for_schools() -> tuple[float, float, float]:
+    """Compute the (lat, lon, radius_miles) circle that encloses every
+    school in FL_SCHOOLS. Used to scope a single broad RentCast query
+    instead of one-per-ZIP. Result is stable across filter changes so the
+    radius fetch caches across the whole session.
+    """
+    lats = [s["lat"] for s in mock_data.FL_SCHOOLS]
+    lons = [s["lon"] for s in mock_data.FL_SCHOOLS]
+    lat_min, lat_max = min(lats), max(lats)
+    lon_min, lon_max = min(lons), max(lons)
+    center_lat = (lat_min + lat_max) / 2
+    center_lon = (lon_min + lon_max) / 2
+    # Half-diagonal in miles, padded 15% to catch homes on the edge of a zone.
+    # 1° latitude ≈ 69 miles; 1° longitude at ~26° N ≈ 62 miles.
+    half_diag_miles = (
+        ((lat_max - lat_min) * 69 / 2) ** 2
+        + ((lon_max - lon_min) * 62 / 2) ** 2
+    ) ** 0.5
+    return center_lat, center_lon, half_diag_miles * 1.15
+
+
 @st.cache_data(show_spinner="Fetching listings…")
 def _fetch_listings_for_zips(zip_codes: tuple[str, ...]) -> pd.DataFrame:
-    """Pull active listings for these ZIPs. Cache key is ZIPs only so
-    later filter changes (price, beds, baths) re-use the same fetch and
-    don't burn RentCast quota.
-    """
+    """ZIP-mode fetch (mock provider, or live with explicit ZIP filter)."""
     _, listings_provider = _providers()
     try:
         return listings_provider.get_listings(
@@ -99,14 +118,32 @@ def _fetch_listings_for_zips(zip_codes: tuple[str, ...]) -> pd.DataFrame:
         return pd.DataFrame()
 
 
-def _load_listings(
-    zip_codes: tuple[str, ...],
-    max_price: float,
-    min_beds: int,
-    min_baths: int,
+@st.cache_data(show_spinner="Fetching listings…")
+def _fetch_listings_in_radius(lat: float, lon: float, radius_miles: float) -> pd.DataFrame:
+    """Live radius-mode fetch — one broad query covering many neighborhoods.
+    Cheap on quota (~1-3 calls per session) and cached on the geometry so
+    filter changes don't re-fetch.
+    """
+    _, listings_provider = _providers()
+    if not hasattr(listings_provider, "get_listings_in_radius"):
+        # Mock provider doesn't support radius — fall back to "all listings".
+        try:
+            return listings_provider.get_listings(zip_codes=None)
+        except Exception as exc:
+            logger.exception("Listings provider failed")
+            st.error(f"Could not load listings: {exc}")
+            return pd.DataFrame()
+    try:
+        return listings_provider.get_listings_in_radius(lat, lon, radius_miles)
+    except Exception as exc:
+        logger.exception("Listings provider failed")
+        st.error(f"Could not load listings: {exc}")
+        return pd.DataFrame()
+
+
+def _apply_listing_filters(
+    raw: pd.DataFrame, max_price: float, min_beds: int, min_baths: int,
 ) -> pd.DataFrame:
-    """Fetch raw listings (cached) then apply price/beds/baths filters."""
-    raw = _fetch_listings_for_zips(zip_codes)
     if raw.empty:
         return raw
     out = raw[
@@ -343,33 +380,29 @@ def main() -> None:
 
     filters = render_sidebar()
 
-    # In live mode, default to the boundary-elementary ZIPs from FL_SCHOOLS
-    # when the user hasn't entered any — otherwise RentCastProvider raises
-    # "needs at least one ZIP" and we get an empty result.
-    elem_levels = {"Elementary", "K-8"}
-    elementary_zips = sorted({
-        s["zip_code"] for s in mock_data.FL_SCHOOLS
-        if s["level"] in elem_levels and s["admission_type"] == "boundary"
-    })
-    listing_zips = filters["zip_codes"] or (
-        elementary_zips if data_provider.USE_LIVE_DATA else []
-    )
-
-    if data_provider.USE_LIVE_DATA:
-        st.info(
-            f"**Live mode** — querying RentCast for {len(listing_zips)} ZIP(s): "
-            f"`{', '.join(listing_zips)}`. Free tier is 50 calls/month; each "
-            f"unique ZIP set costs 1 call per ZIP and is cached for the session.",
-            icon="📡",
-        )
-
     # Cache keys are hashable, so convert lists to tuples before passing in.
     schools = _load_schools(tuple(filters["zip_codes"]))
-    listings = _load_listings(
-        tuple(listing_zips),
-        filters["max_price"],
-        filters["min_beds"],
-        filters["min_baths"],
+
+    if data_provider.USE_LIVE_DATA:
+        # Live mode — one broad radius query covering all FL_SCHOOLS.
+        # Cheaper than per-ZIP (1-3 RentCast calls per session vs. dozens).
+        center_lat, center_lon, radius_miles = _radius_query_for_schools()
+        st.info(
+            f"**Live mode** — one RentCast radius query: "
+            f"({center_lat:.3f}, {center_lon:.3f}), {radius_miles:.0f} mi. "
+            f"Cached for the session; filter changes don't re-fetch. "
+            f"Free tier is 50 calls/month; each radius page is 1 call.",
+            icon="📡",
+        )
+        raw_listings = _fetch_listings_in_radius(center_lat, center_lon, radius_miles)
+    else:
+        raw_listings = _fetch_listings_for_zips(tuple(filters["zip_codes"]))
+
+    listings = _apply_listing_filters(
+        raw_listings,
+        max_price=filters["max_price"],
+        min_beds=filters["min_beds"],
+        min_baths=filters["min_baths"],
     )
 
     qualifying = geo_engine.filter_listings_in_top_elementary_zones(

@@ -32,6 +32,7 @@ API keys required.
 | `data/boundaries/*.geojson` | Real elementary attendance polygons from Broward + Miami-Dade GIS feeds |
 | `scripts/fetch_school_grades.py` | Re-fetch the FL DOE file + print drift vs. current `FL_SCHOOLS` |
 | `scripts/fetch_school_boundaries.py` | Re-fetch the district GIS GeoJSONs into `data/boundaries/` |
+| `scripts/build_fl_schools.py` | Join FL DOE × district GIS → `data/schools_generated.py` (142 A-rated elementaries) |
 
 ## Boundary source
 
