@@ -54,7 +54,27 @@ def _load_dotenv() -> None:
         os.environ.setdefault(key, value)
 
 
+def _load_streamlit_secrets() -> None:
+    """If running under Streamlit Cloud, pull secrets into os.environ.
+
+    Streamlit Cloud exposes deploy-time secrets via ``st.secrets`` (a TOML
+    file managed via the dashboard). We surface them as env vars so the
+    rest of the module — which reads ``os.environ.get(...)`` — works
+    identically whether the key came from .env locally or st.secrets on
+    the cloud.
+    """
+    try:
+        import streamlit as st  # type: ignore
+        # st.secrets is a Mapping; iterating gives keys.
+        for key in st.secrets:
+            os.environ.setdefault(key, str(st.secrets[key]))
+    except Exception:
+        # Not running under streamlit, no secrets configured, etc. — fine.
+        pass
+
+
 _load_dotenv()
+_load_streamlit_secrets()
 
 # Flip to True (or set env var) to use the live RentCast listings API.
 USE_LIVE_DATA = os.environ.get("USE_LIVE_DATA", "false").lower() == "true"
