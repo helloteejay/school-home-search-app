@@ -1,0 +1,13 @@
+# Secrets — RentCast API key lives here. CLAUDE.md assumed this was
+# ignored; it never was (host machine likely had a global excludes file).
+.env
+.streamlit/secrets.toml
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS noise
+.DS_Store
