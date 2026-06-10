@@ -224,8 +224,23 @@ def _irregular_polygon(lat: float, lon: float, radius_deg: float, seed: int) -> 
 # ---------------------------------------------------------------------------
 
 _BOUNDARY_FILES = {
-    "broward":   "data/boundaries/broward_elementary.geojson",
-    "miamidade": "data/boundaries/miamidade_elementary.geojson",
+    "broward":      "data/boundaries/broward_elementary.geojson",
+    "miamidade":    "data/boundaries/miamidade_elementary.geojson",
+    "hillsborough": "data/boundaries/hillsborough_elementary.geojson",
+}
+
+# Per-district fallbacks for listing generation when a ZIP isn't in the
+# hand-maintained tables above. Keeps mock Tampa listings from being
+# labeled "Miami" with Miami price bands.
+DISTRICT_CITY_FALLBACK = {
+    "broward":      ("Fort Lauderdale area", "FL"),
+    "miamidade":    ("Miami", "FL"),
+    "hillsborough": ("Tampa area", "FL"),
+}
+DISTRICT_PRICE_FALLBACK = {
+    "broward":      (400_000, 1_200_000),
+    "miamidade":    (400_000, 1_000_000),
+    "hillsborough": (300_000, 900_000),   # Hillsborough trades well below SoFlo
 }
 
 # Maps each FL_SCHOOLS entry to the exact name in the district GeoJSON.
@@ -357,6 +372,10 @@ def generate_schools(cfg: MockConfig | None = None) -> gpd.GeoDataFrame:
             "rating_source": s.get("rating_source"),
             "zip_code": s["zip_code"],
             "admission_type": s["admission_type"],
+            # Region key ("broward" / "miamidade" / "hillsborough"). Hand-coded
+            # baseline entries predate the field — default to "" (treated as
+            # South Florida by the app's region filter).
+            "district": s.get("district", ""),
             "geometry": poly,
             "boundary_source": boundary_source,
         })
@@ -386,8 +405,13 @@ def generate_listings(
 
     for school in schools:
         zip_code = school.zip_code
-        city, state = FL_CITIES_BY_ZIP.get(zip_code, ("Miami", "FL"))
-        low, high = ZIP_PRICE_BANDS.get(zip_code, (400_000, 1_000_000))
+        district = getattr(school, "district", "") or ""
+        city, state = FL_CITIES_BY_ZIP.get(
+            zip_code, DISTRICT_CITY_FALLBACK.get(district, ("Miami", "FL"))
+        )
+        low, high = ZIP_PRICE_BANDS.get(
+            zip_code, DISTRICT_PRICE_FALLBACK.get(district, (400_000, 1_000_000))
+        )
         minx, miny, maxx, maxy = school.geometry.bounds
         for _ in range(per_school):
             lon = rng.uniform(minx, maxx)

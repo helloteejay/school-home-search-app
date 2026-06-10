@@ -26,6 +26,7 @@ from streamlit_folium import st_folium
 import data_provider
 import geo_engine
 import mock_data
+import rent_proxy
 
 # Optional dependency — fall back to st.dataframe if the user hasn't installed it.
 try:
@@ -82,26 +83,53 @@ def _load_schools(zip_codes: tuple[str, ...]):
         )
 
 
+# Region -> district keys in schools_generated.py. "" catches the hand-coded
+# baseline entries that predate the district field (all South Florida).
+REGIONS: dict[str, tuple[str, ...] | None] = {
+    "South Florida (Broward + Miami-Dade)": ("broward", "miamidade", ""),
+    "Tampa Bay (Hillsborough)": ("hillsborough",),
+    "All regions": None,
+}
+
+# Used to split "All regions" into one RentCast radius circle per metro —
+# a single circle enclosing both Tampa and Miami would mostly cover the
+# Everglades and waste the 500-listing page cap on out-of-zone homes.
+_REGION_GROUPS: tuple[tuple[str, ...], ...] = (
+    ("broward", "miamidade", ""),
+    ("hillsborough",),
+)
+
+
 @st.cache_data(show_spinner=False)
-def _radius_query_for_schools() -> tuple[float, float, float]:
-    """Compute the (lat, lon, radius_miles) circle that encloses every
-    school in FL_SCHOOLS. Used to scope a single broad RentCast query
-    instead of one-per-ZIP. Result is stable across filter changes so the
-    radius fetch caches across the whole session.
+def _radius_queries_for_schools(
+    districts: tuple[str, ...] | None,
+) -> list[tuple[float, float, float]]:
+    """Compute one (lat, lon, radius_miles) circle per metro group that
+    encloses that group's schools. Scopes the broad RentCast queries.
+    ``districts=None`` (All regions) returns a circle per region group.
     """
-    lats = [s["lat"] for s in mock_data.FL_SCHOOLS]
-    lons = [s["lon"] for s in mock_data.FL_SCHOOLS]
-    lat_min, lat_max = min(lats), max(lats)
-    lon_min, lon_max = min(lons), max(lons)
-    center_lat = (lat_min + lat_max) / 2
-    center_lon = (lon_min + lon_max) / 2
-    # Half-diagonal in miles, padded 15% to catch homes on the edge of a zone.
-    # 1° latitude ≈ 69 miles; 1° longitude at ~26° N ≈ 62 miles.
-    half_diag_miles = (
-        ((lat_max - lat_min) * 69 / 2) ** 2
-        + ((lon_max - lon_min) * 62 / 2) ** 2
-    ) ** 0.5
-    return center_lat, center_lon, half_diag_miles * 1.15
+    groups = [districts] if districts is not None else list(_REGION_GROUPS)
+    circles: list[tuple[float, float, float]] = []
+    for group in groups:
+        schools = [
+            s for s in mock_data.FL_SCHOOLS if s.get("district", "") in group
+        ]
+        if not schools:
+            continue
+        lats = [s["lat"] for s in schools]
+        lons = [s["lon"] for s in schools]
+        lat_min, lat_max = min(lats), max(lats)
+        lon_min, lon_max = min(lons), max(lons)
+        center_lat = (lat_min + lat_max) / 2
+        center_lon = (lon_min + lon_max) / 2
+        # Half-diagonal in miles, padded 15% to catch homes on a zone edge.
+        # 1° latitude ≈ 69 miles; 1° longitude at ~26-28° N ≈ 62 miles.
+        half_diag_miles = (
+            ((lat_max - lat_min) * 69 / 2) ** 2
+            + ((lon_max - lon_min) * 62 / 2) ** 2
+        ) ** 0.5
+        circles.append((center_lat, center_lon, half_diag_miles * 1.15))
+    return circles
 
 
 @st.cache_data(show_spinner="Fetching listings…")
@@ -163,7 +191,17 @@ def render_sidebar() -> dict:
     st.sidebar.header("Search filters")
 
     st.sidebar.markdown("**Location**")
-    city = st.sidebar.text_input("City, State", value="Broward + Miami-Dade, FL")
+    region = st.sidebar.selectbox(
+        "Region",
+        list(REGIONS),
+        index=0,
+        help=(
+            "South Florida = Broward + Miami-Dade. Tampa Bay = Hillsborough "
+            "(FishHawk, Westchase, South Tampa, etc.). Each region's zones "
+            "come from that district's own GIS boundary feed."
+        ),
+    )
+    city = st.sidebar.text_input("City, State", value=region)
     zip_raw = st.sidebar.text_input(
         "ZIP codes (comma-separated, optional)",
         value="",
@@ -198,6 +236,21 @@ def render_sidebar() -> dict:
     )
 
     st.sidebar.markdown("---")
+    st.sidebar.markdown("**Investment**")
+    investment_view = st.sidebar.toggle(
+        "Investment view (rent proxy + yield)",
+        value=False,
+        help=(
+            "Adds an estimated monthly rent (HUD FY2026 Small Area FMR for "
+            "the listing's ZIP + bedrooms) and gross yield (rent × 12 ÷ "
+            "price), and sorts results by yield. SAFMR is a 40th-percentile "
+            "gross-rent standard: good for COMPARING zones, biased low in "
+            "luxury SFH ZIPs — underwrite finalists with a property-level "
+            "estimate before acting."
+        ),
+    )
+
+    st.sidebar.markdown("---")
     st.sidebar.markdown("**Home**")
     max_price = st.sidebar.number_input(
         "Max price ($)",
@@ -211,9 +264,11 @@ def render_sidebar() -> dict:
 
     return {
         "city": city,
+        "region": region,
         "zip_codes": zip_codes,
         "min_rating": int(min_rating),
         "include_magnet": bool(include_magnet),
+        "investment_view": bool(investment_view),
         "max_price": float(max_price),
         "min_beds": int(min_beds),
         "min_baths": int(min_baths),
@@ -289,14 +344,23 @@ DISPLAY_COLUMNS = [
     "assigned_school", "school_rating", "school_level", "zip_code", "listing_url",
 ]
 
+# Investment view: rent + yield slot in right after price; school_level is
+# dropped to make room (it's always Elementary/K-8 in this table anyway).
+INVESTMENT_COLUMNS = [
+    "address", "price", "est_monthly_rent", "gross_yield_pct",
+    "bedrooms", "bathrooms", "sqft", "year_built",
+    "assigned_school", "school_rating", "zip_code", "listing_url",
+]
 
-def render_table(df: pd.DataFrame) -> None:
+
+def render_table(df: pd.DataFrame, investment: bool = False) -> None:
     """Render the result table with AgGrid if available, else st.dataframe."""
     if df.empty:
         st.info("No homes match your filters. Try lowering the school rating or raising the price.")
         return
 
-    view = df[DISPLAY_COLUMNS].copy()
+    cols = INVESTMENT_COLUMNS if investment else DISPLAY_COLUMNS
+    view = df[[c for c in cols if c in df.columns]].copy()
 
     if HAS_AGGRID:
         # JsCode wrappers are required for streamlit-aggrid >=1.0 — a bare
@@ -333,13 +397,35 @@ def render_table(df: pd.DataFrame) -> None:
             "price", header_name="Price", type=["numericColumn"],
             valueFormatter=price_formatter, flex=1.4, minWidth=100,
         )
+        if investment:
+            rent_formatter = JsCode(
+                "function(params) { "
+                "return params.value != null ? '$' + Number(params.value).toLocaleString() : '—'; "
+                "}"
+            )
+            yield_formatter = JsCode(
+                "function(params) { "
+                "return params.value != null ? Number(params.value).toFixed(1) + '%' : '—'; "
+                "}"
+            )
+            gb.configure_column(
+                "est_monthly_rent", header_name="Est. Rent/mo*",
+                type=["numericColumn"], valueFormatter=rent_formatter,
+                flex=1.1, minWidth=95,
+            )
+            gb.configure_column(
+                "gross_yield_pct", header_name="Gross Yield*",
+                type=["numericColumn"], valueFormatter=yield_formatter,
+                flex=1.0, minWidth=90, sort="desc",
+            )
         gb.configure_column("bedrooms", header_name="Beds", flex=0.6, minWidth=60)
         gb.configure_column("bathrooms", header_name="Baths", flex=0.6, minWidth=60)
         gb.configure_column("sqft", header_name="Sqft", type=["numericColumn"], flex=0.8, minWidth=70)
         gb.configure_column("year_built", header_name="Year", flex=0.7, minWidth=60)
         gb.configure_column("assigned_school", header_name="Elementary", flex=2.4, minWidth=140)
         gb.configure_column("school_rating", header_name="Elem Rating", flex=0.9, minWidth=80)
-        gb.configure_column("school_level", header_name="Type", flex=0.8, minWidth=70)
+        if not investment:
+            gb.configure_column("school_level", header_name="Type", flex=0.8, minWidth=70)
         gb.configure_column("zip_code", header_name="ZIP", flex=0.7, minWidth=60)
         gb.configure_column(
             "listing_url", header_name="Listing",
@@ -353,14 +439,22 @@ def render_table(df: pd.DataFrame) -> None:
             height=420,
         )
     else:
+        column_config = {
+            "price": st.column_config.NumberColumn("Price", format="$%d"),
+            "listing_url": st.column_config.LinkColumn("Listing"),
+        }
+        if investment:
+            column_config["est_monthly_rent"] = st.column_config.NumberColumn(
+                "Est. Rent/mo*", format="$%d"
+            )
+            column_config["gross_yield_pct"] = st.column_config.NumberColumn(
+                "Gross Yield*", format="%.1f%%"
+            )
         st.dataframe(
             view,
             use_container_width=True,
             hide_index=True,
-            column_config={
-                "price": st.column_config.NumberColumn("Price", format="$%d"),
-                "listing_url": st.column_config.LinkColumn("Listing"),
-            },
+            column_config=column_config,
         )
 
 
@@ -372,9 +466,11 @@ def main() -> None:
     st.title("Find homes inside top elementary school zones")
     st.caption(
         "Active listings filtered to homes that sit inside a top-rated "
-        "elementary attendance zone. MVP covers Broward + Miami-Dade "
-        "(Weston, Parkland, Cooper City, Pinecrest, Coral Gables, Aventura, "
-        "Doral, Key Biscayne). Mock data by default — set "
+        "elementary attendance zone. Covers Broward + Miami-Dade (Weston, "
+        "Parkland, Pinecrest, Coral Gables, Aventura…) and Hillsborough "
+        "(FishHawk, Westchase, South Tampa…). Ratings: FL DOE 2023-24. "
+        "Boundaries: each district's own GIS feed (HCPS zones are the "
+        "current 2025-26 locator layer). Mock data by default — set "
         "`USE_LIVE_DATA=true` to hit live APIs."
     )
 
@@ -383,18 +479,35 @@ def main() -> None:
     # Cache keys are hashable, so convert lists to tuples before passing in.
     schools = _load_schools(tuple(filters["zip_codes"]))
 
+    # Region filter — generated school dicts carry a district key; the
+    # hand-coded baseline's "" defaults into the South Florida group.
+    districts = REGIONS.get(filters["region"])
+    if districts is not None and "district" in schools.columns:
+        schools = schools[schools["district"].isin(districts)].reset_index(drop=True)
+
     if data_provider.USE_LIVE_DATA:
-        # Live mode — one broad radius query covering all FL_SCHOOLS.
+        # Live mode — one broad radius query per metro in scope.
         # Cheaper than per-ZIP (1-3 RentCast calls per session vs. dozens).
-        center_lat, center_lon, radius_miles = _radius_query_for_schools()
+        circles = _radius_queries_for_schools(districts)
         st.info(
-            f"**Live mode** — one RentCast radius query: "
-            f"({center_lat:.3f}, {center_lon:.3f}), {radius_miles:.0f} mi. "
-            f"Cached for the session; filter changes don't re-fetch. "
-            f"Free tier is 50 calls/month; each radius page is 1 call.",
+            f"**Live mode** — {len(circles)} RentCast radius "
+            f"quer{'y' if len(circles) == 1 else 'ies'}: "
+            + "; ".join(
+                f"({lat:.3f}, {lon:.3f}) r={r:.0f} mi" for lat, lon, r in circles
+            )
+            + ". Cached for the session; filter changes don't re-fetch. "
+            "Free tier is 50 calls/month; each radius page is 1 call.",
             icon="📡",
         )
-        raw_listings = _fetch_listings_in_radius(center_lat, center_lon, radius_miles)
+        frames = [
+            _fetch_listings_in_radius(lat, lon, radius) for lat, lon, radius in circles
+        ]
+        frames = [f for f in frames if not f.empty]
+        if frames:
+            raw_listings = pd.concat(frames, ignore_index=True)
+            raw_listings = raw_listings.drop_duplicates(subset="listing_id")
+        else:
+            raw_listings = pd.DataFrame()
     else:
         raw_listings = _fetch_listings_for_zips(tuple(filters["zip_codes"]))
 
@@ -412,6 +525,12 @@ def main() -> None:
         include_magnet=filters["include_magnet"],
     )
 
+    if filters["investment_view"] and not qualifying.empty:
+        qualifying = rent_proxy.annotate_listings(qualifying)
+        qualifying = qualifying.sort_values(
+            "gross_yield_pct", ascending=False, na_position="last"
+        ).reset_index(drop=True)
+
     # The map only shows elementary zones that match the rating + magnet
     # filter so the visual stays aligned with what the table is built from.
     elem_levels = {"Elementary", "K-8"}
@@ -421,7 +540,10 @@ def main() -> None:
     qualifying_schools = qualifying_schools[qualifying_schools["rating"] >= filters["min_rating"]]
 
     # Top metrics
-    c1, c2, c3, c4 = st.columns(4)
+    if filters["investment_view"]:
+        c1, c2, c3, c4, c5 = st.columns(5)
+    else:
+        c1, c2, c3, c4 = st.columns(4)
     c1.metric("Elementary zones", len(qualifying_schools))
     c2.metric("Listings considered", len(listings))
     c3.metric("Homes in top zones", len(qualifying))
@@ -429,13 +551,32 @@ def main() -> None:
         c4.metric("Median price", f"${int(qualifying['price'].median()):,}")
     else:
         c4.metric("Median price", "—")
+    if filters["investment_view"]:
+        yields = (
+            qualifying["gross_yield_pct"].dropna()
+            if not qualifying.empty and "gross_yield_pct" in qualifying.columns
+            else pd.Series(dtype=float)
+        )
+        c5.metric(
+            "Median gross yield*",
+            f"{yields.median():.1f}%" if not yields.empty else "—",
+            help=rent_proxy.RENT_SOURCE,
+        )
 
     st.subheader("Map")
     fmap = build_map(qualifying_schools, qualifying)
     st_folium(fmap, width=None, height=560, returned_objects=[])
 
     st.subheader("Qualifying homes")
-    render_table(qualifying)
+    render_table(qualifying, investment=filters["investment_view"])
+    if filters["investment_view"]:
+        st.caption(
+            f"\\* Rent proxy: {rent_proxy.RENT_SOURCE}. Zone-comparison "
+            "tool, not underwriting — 40th-percentile gross rent pooled "
+            "across unit types runs below market for luxury single-family "
+            "ZIPs and can run above asking rents in some metros. Verify "
+            "finalists with a property-level rent estimate."
+        )
 
     with st.expander("Debug / raw data"):
         st.write("**Schools matching filters**")
