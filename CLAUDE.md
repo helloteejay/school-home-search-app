@@ -10,11 +10,20 @@ top-rated elementary school**. The unique value vs. Zillow/Redfin is the
 *inverse* filter — Zillow shows you a home and the school it's zoned for;
 this app shows you the homes whose zoning meets a school-quality threshold.
 
-- **User**: TJ Allison <hello@tjallison.com>. Family relocating from NYC to FL.
-- **Scope today**: Broward + Miami-Dade counties, FL. ~142 A-rated boundary
-  elementary schools across both counties.
-- **Scope wanted**: US-wide, with the ability to target specific metros. See
-  "Expansion" below — this is the active stretch goal.
+- **User**: TJ Allison <hello@tjallison.com>. NOTE (June 2026): the family is
+  NOT relocating to FL anymore — the app's purpose shifted from house hunt to
+  **rental-investment screening** (cash flow + appreciation in good school
+  zones). Same inverse filter, different buyer.
+- **Scope today**: Broward + Miami-Dade + Hillsborough counties, FL. 180
+  A-rated boundary elementary schools (91 M-D, 51 Broward, 38 Hillsborough,
+  incl. the FishHawk cluster: Bevis / FishHawk Creek / Stowers). Sidebar
+  Region selector splits South Florida vs Tampa Bay; live mode runs one
+  RentCast radius query per metro in scope. Investment toggle adds a HUD
+  SAFMR rent proxy + gross-yield ranking.
+- **Scope wanted**: more metros, chosen by the investment screen (not
+  US-wide for its own sake). GreatSchools API was evaluated June 2026 and
+  rejected: public tiers carry no 1-10 ratings, no boundaries, no bulk
+  download (Enterprise-only) — state DOE + district GIS stays the pattern.
 
 ## Stack
 
@@ -45,16 +54,22 @@ Four files do all the work. Read them in this order:
 | `mock_data.py` | `FL_SCHOOLS` list of dicts + polygon loader. Reads `data/schools_generated.py` (142 schools) when present, falls back to a 27-entry hand-coded baseline otherwise. `_real_boundary_for()` looks up actual GIS polygons; falls back to synthetic hexagons when no boundary exists (only magnets and a couple of orphan schools). |
 | `geo_engine.py` | `filter_listings_in_top_elementary_zones()` is the main filter. Spatial-joins listings against elementary polygons via `gpd.sjoin(predicate="within")`, excludes magnets unless `include_magnet=True`. Also has `schools_bbox`, `zoom_for_bbox`, and `rating_to_color` helpers. |
 | `data_provider.py` | Abstract `SchoolDataProvider` and `ListingsDataProvider` interfaces + concrete `MockSchoolProvider`, `MockListingsProvider`, `GreatSchoolsProvider` (skeleton), `RentCastProvider`. `get_providers()` dispatches off `USE_LIVE_DATA`. **Schools always come from the mock provider** — that's where FL DOE ratings + district GIS polygons live; "mock" is a misnomer. Only listings ever toggle between mock and live. |
-| `app.py` | Streamlit UI. Sidebar filters → cached fetch → spatial join → Folium map + AgGrid table. Live mode uses one broad radius RentCast query (`_fetch_listings_in_radius`); ZIP mode is fallback. |
+| `app.py` | Streamlit UI. Sidebar filters (incl. Region + Investment toggle) → cached fetch → spatial join → Folium map + AgGrid table. Live mode runs one broad radius RentCast query per metro group (`_radius_queries_for_schools`); ZIP mode is fallback. |
+| `rent_proxy.py` | HUD FY2026 SAFMR lookup (`data/safmr_fl_2026.csv`, FL ZIPs, bedroom-resolved) + `annotate_listings()` → `est_monthly_rent`, `gross_yield_pct`, `rent_source`. Zone-comparison proxy, NOT underwriting — see module docstring for the bias caveats. |
 
 ## Data lineage (provenance matters — don't skip this)
 
 | Layer | Source | Refresh script |
 |---|---|---|
 | School ratings | FL DOE 2023-24 School Grades XLSX (vendored at `data/SchoolGrades24.xlsx`). Letter → 10/8/6/4/2 mapping + raw `rating_pct`. | `scripts/fetch_school_grades.py` |
-| Attendance polygons | Broward `AllSchoolBoundaries` + Miami-Dade `ElementaryAttendanceBoundary` ArcGIS REST. Cached at `data/boundaries/*.geojson`. | `scripts/fetch_school_boundaries.py` |
-| Generated school list | The join of the above two. | `scripts/build_fl_schools.py` |
+| Attendance polygons | Broward `AllSchoolBoundaries` + Miami-Dade `ElementaryAttendanceBoundary` ArcGIS REST. Hillsborough: `gis.drmp.com` hosted layer "HCPS School Zones 2025-26" (DRMP = HCPS's GIS vendor; backs the district's official locator app). HCPS's own ArcGIS orgs only publish stale 2020-21 layers that predate the June 2023 districtwide rezoning — don't use them. Cached at `data/boundaries/*.geojson`, properties normalized to `NAME`/`ZIPCODE` at fetch time. | `scripts/fetch_school_boundaries.py` |
+| Generated school list | The join of the above two via the `DISTRICTS` registry (adding a metro = one registry line + one endpoint). | `scripts/build_fl_schools.py` |
+| Rent proxy | HUD FY2026 Small Area FMRs, FL ZIPs, vendored at `data/safmr_fl_2026.csv`. huduser.gov serves an empty body without a browser User-Agent — the fetch script sets one. | `scripts/fetch_safmr.py` |
 | Listings | RentCast `/v1/listings/sale` with lat/lon+radius. | Live runtime; cached in Streamlit session. |
+
+Known vintage mismatch: ratings are FL DOE 2023-24 while HCPS zones are
+2025-26 (current locator layer). The join is by school name, not geography,
+so a rezoned school keeps its grade; refresh ratings when DOE publishes.
 
 Every school carries a `boundary_source` field (`"district"` or `"synthetic"`)
 and a `rating_source` field (`"FL DOE 2023-24 School Grades"`). The map
@@ -67,26 +82,29 @@ traceability** — it's why the audit signed off.
 - ✅ Real ratings (FL DOE) — not made up
 - ✅ Real attendance polygons (Broward + Miami-Dade GIS)
 - ✅ Magnet/lab schools excluded by default via `admission_type` field
-- ✅ Live RentCast listings with quota-efficient radius queries
-- ✅ 142 elementary zones, ~250 qualifying homes at default filters
+- ✅ Live RentCast listings with quota-efficient radius queries (now per-metro)
+- ✅ 180 elementary zones across 3 counties (Hillsborough added June 2026 —
+  validated the "new metro in a few hours" claim: one endpoint + one registry line)
+- ✅ Region selector (South Florida / Tampa Bay / All)
+- ✅ Investment view: HUD SAFMR rent proxy + gross-yield ranking (`rent_proxy.py`)
+- ✅ `.gitignore` (didn't exist before June 2026 — `.env` was one `git add .`
+  away from leaking the RentCast key)
 - ✅ Pushed to GitHub; deployed on Streamlit Cloud
 
-## What's NOT done (current ask)
+## What's NOT done (next candidates, in rough priority order)
 
-**Expand beyond Broward + Miami-Dade.** TJ wants to point this at the
-entire US, with the ability to target specific metros. The constraint:
-**no free national attendance-boundary dataset exists.** Three real paths:
-
-| Path | Trade-off |
-|---|---|
-| **A. Per-metro curation** | Free + high accuracy. ~2-3 hrs per new metro (find district GIS + state rating file + write a small loader, same pattern as `scripts/build_fl_schools.py`). |
-| **B. GreatSchools API** | ~$50/mo, US-wide ratings, but "nearest school" instead of "in attendance zone" — meaningfully less accurate. TJ has said he doesn't want to pay. |
-| **C. ATTOM / SchoolDigger enterprise** | $500+/mo. TJ has rejected. |
-
-**Recommended approach:** Path A, one metro at a time. The `SchoolDataProvider`
-abstraction supports it — a new metro is a new `*_SCHOOLS` data file +
-boundary GeoJSONs + a small loader in `mock_data.py`. Ask TJ which metros
-are on his shortlist before building anything broad.
+1. **Ratings refresh** — FL DOE has published newer School Grades since the
+   vendored 2023-24 file; `scripts/fetch_school_grades.py` + rerun the build.
+   Cheap, improves every metro at once, and closes the HCPS vintage gap.
+2. **Property-level rent for finalists** — RentCast `/v1/avm/rent` on
+   shortlisted listings only (1 quota call each). The SAFMR proxy ranks
+   zones; this prices houses. Natural `RentCastProvider` extension.
+3. **More metros, screen-driven** — per-metro curation remains the pattern
+   (state DOE ratings + district GIS polygons + one `DISTRICTS` registry
+   line). National datasets stay dead ends: NCES SABS discontinued 2015-16;
+   GreatSchools public API has no ratings numbers, no boundaries, no bulk
+   (verified June 2026). Ask TJ which metro the investment screen surfaces
+   next before building.
 
 ## TJ's preferences (load-bearing)
 

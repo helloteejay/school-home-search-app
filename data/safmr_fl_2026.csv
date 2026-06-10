@@ -1,0 +1,1392 @@
+zip,area_name,rent_0br,rent_1br,rent_2br,rent_3br,rent_4br
+32003,"Jacksonville, FL HUD Metro FMR Area",1890,1920,2310,2850,3570
+32004,"Jacksonville, FL HUD Metro FMR Area",1660,1690,2030,2500,3140
+32006,"Jacksonville, FL HUD Metro FMR Area",1410,1430,1720,2120,2660
+32007,"Putnam County, FL",880,880,1160,1460,1540
+32008,"Gainesville, FL HUD Metro FMR Area",1060,1180,1430,1820,1890
+32009,"Jacksonville, FL HUD Metro FMR Area",950,1000,1190,1490,1890
+32011,"Jacksonville, FL HUD Metro FMR Area",960,980,1180,1450,1820
+32013,"Lafayette County, FL",1140,1170,1310,1570,1730
+32024,"Columbia County, FL",1140,1190,1500,1810,1990
+32025,"Columbia County, FL",1020,1070,1360,1630,1800
+32026,"Bradford County, FL",1020,1040,1240,1570,1890
+32033,"Jacksonville, FL HUD Metro FMR Area",1670,1710,2050,2530,3170
+32034,"Jacksonville, FL HUD Metro FMR Area",1230,1250,1500,1850,2320
+32035,"Jacksonville, FL HUD Metro FMR Area",1230,1260,1510,1860,2330
+32038,"Columbia County, FL",950,1000,1270,1520,1680
+32040,"Baker County, FL HUD Metro FMR Area",920,940,1130,1550,1820
+32041,"Jacksonville, FL HUD Metro FMR Area",1230,1260,1510,1860,2330
+32042,"Bradford County, FL",980,1020,1120,1430,1880
+32043,"Jacksonville, FL HUD Metro FMR Area",1330,1360,1630,2010,2520
+32044,"Gainesville, FL HUD Metro FMR Area",1270,1330,1460,1870,2430
+32046,"Jacksonville, FL HUD Metro FMR Area",880,930,1100,1380,1740
+32050,"Jacksonville, FL HUD Metro FMR Area",1410,1430,1720,2120,2660
+32052,"Hamilton County, FL",870,890,1000,1320,1320
+32053,"Hamilton County, FL",880,900,1010,1330,1340
+32054,"Bradford County, FL",800,810,1060,1330,1420
+32055,"Columbia County, FL",930,970,1240,1490,1640
+32056,"Columbia County, FL",990,1040,1320,1580,1750
+32058,"Jacksonville, FL HUD Metro FMR Area",1070,1120,1230,1570,2060
+32059,"Madison County, FL",860,950,1070,1380,1520
+32060,"Suwannee County, FL",910,950,1040,1390,1470
+32061,"Columbia County, FL",930,970,1240,1510,1650
+32062,"Suwannee County, FL",950,990,1100,1460,1550
+32063,"Baker County, FL HUD Metro FMR Area",1040,1060,1270,1740,1970
+32064,"Suwannee County, FL",1010,1060,1160,1550,1640
+32065,"Jacksonville, FL HUD Metro FMR Area",1580,1610,1930,2380,2980
+32066,"Lafayette County, FL",1140,1170,1310,1570,1730
+32067,"Jacksonville, FL HUD Metro FMR Area",1410,1430,1720,2120,2660
+32068,"Jacksonville, FL HUD Metro FMR Area",1360,1390,1670,2060,2580
+32071,"Suwannee County, FL",1030,1070,1240,1540,1670
+32072,"Baker County, FL HUD Metro FMR Area",850,870,1070,1400,1710
+32073,"Jacksonville, FL HUD Metro FMR Area",1340,1370,1640,2020,2530
+32079,"Jacksonville, FL HUD Metro FMR Area",1630,1690,2010,2520,3180
+32080,"Palm Coast, FL HUD Metro FMR Area",1550,1580,1900,2340,2940
+32081,"Jacksonville, FL HUD Metro FMR Area",1870,1970,2340,2930,3710
+32082,"Jacksonville, FL HUD Metro FMR Area",1810,1840,2210,2720,3410
+32083,"Bradford County, FL",1070,1090,1350,1710,1940
+32084,"Jacksonville, FL HUD Metro FMR Area",1350,1370,1650,2030,2550
+32085,"Jacksonville, FL HUD Metro FMR Area",1660,1690,2030,2500,3140
+32086,"Palm Coast, FL HUD Metro FMR Area",1470,1500,1800,2220,2780
+32087,"Baker County, FL HUD Metro FMR Area",820,860,1020,1380,1710
+32091,"Jacksonville, FL HUD Metro FMR Area",940,980,1080,1380,1810
+32092,"Jacksonville, FL HUD Metro FMR Area",2020,2060,2470,3040,3820
+32094,"Columbia County, FL",980,1020,1120,1500,1590
+32095,"Jacksonville, FL HUD Metro FMR Area",1380,1410,1690,2080,2610
+32096,"Columbia County, FL",790,820,970,1230,1290
+32097,"Jacksonville, FL HUD Metro FMR Area",1630,1670,2000,2460,3090
+32102,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1270,1340,1520,1920,2320
+32105,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1200,1380,1700,2240,2430
+32110,"Palm Coast, FL HUD Metro FMR Area",1200,1200,1530,2090,2440
+32111,"Ocala, FL MSA",1120,1170,1370,1770,1900
+32112,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1070,1270,1550,2040,2190
+32113,"Ocala, FL MSA",920,990,1200,1530,1650
+32114,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1180,1360,1670,2200,2390
+32115,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1200,1380,1700,2240,2430
+32117,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1230,1410,1730,2280,2470
+32118,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1130,1300,1600,2110,2290
+32119,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1250,1430,1760,2320,2510
+32120,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1200,1380,1700,2240,2430
+32121,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1200,1380,1700,2240,2430
+32122,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1200,1380,1700,2240,2430
+32124,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1670,1920,2360,3110,3370
+32125,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1200,1380,1700,2240,2430
+32126,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1200,1380,1700,2240,2430
+32127,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1220,1400,1720,2270,2460
+32128,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1450,1680,2050,2700,2910
+32129,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1310,1510,1850,2440,2640
+32130,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1220,1400,1720,2270,2460
+32131,"Jacksonville, FL HUD Metro FMR Area",1220,1330,1570,1980,2520
+32132,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1070,1270,1550,2040,2190
+32133,"Ocala, FL MSA",1030,1080,1260,1630,1760
+32134,"Ocala, FL MSA",1270,1340,1520,1920,2320
+32135,"Palm Coast, FL HUD Metro FMR Area",1280,1440,1810,2470,2800
+32136,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1200,1270,1560,2130,2440
+32137,"Palm Coast, FL HUD Metro FMR Area",1360,1520,1920,2620,2970
+32139,"Putnam County, FL",800,810,1040,1320,1390
+32140,"Jacksonville, FL HUD Metro FMR Area",1060,1150,1380,1730,2190
+32141,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1250,1430,1760,2320,2510
+32143,"Palm Coast, FL HUD Metro FMR Area",1280,1440,1810,2470,2800
+32145,"Palm Coast, FL HUD Metro FMR Area",1050,1070,1280,1580,1980
+32147,"Putnam County, FL",860,860,1130,1420,1500
+32148,"Putnam County, FL",740,740,970,1220,1290
+32157,"Putnam County, FL",970,980,1280,1610,1690
+32158,"Orlando-Kissimmee-Sanford, FL MSA",1440,1510,1720,2160,2550
+32159,"Orlando-Kissimmee-Sanford, FL MSA",1300,1370,1570,1960,2320
+32160,"Jacksonville, FL HUD Metro FMR Area",1410,1430,1720,2120,2660
+32162,"Ocala, FL MSA",1570,1660,1930,2420,2800
+32163,"Orlando-Kissimmee-Sanford, FL MSA",1660,1760,2040,2550,2980
+32164,"Palm Coast, FL HUD Metro FMR Area",1300,1460,1840,2510,2850
+32168,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1400,1610,1980,2610,2830
+32169,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1540,1780,2180,2870,3110
+32170,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1200,1380,1700,2240,2430
+32173,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1200,1380,1700,2240,2430
+32174,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1200,1310,1610,2120,2440
+32175,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1200,1380,1700,2240,2430
+32176,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1270,1460,1790,2360,2560
+32177,"Putnam County, FL",910,910,1200,1510,1590
+32178,"Putnam County, FL",880,880,1160,1460,1540
+32179,"Ocala, FL MSA",1030,1080,1260,1630,1750
+32180,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1200,1270,1550,2090,2440
+32181,"Putnam County, FL",820,820,1080,1360,1430
+32182,"Ocala, FL MSA",920,990,1200,1530,1650
+32183,"Ocala, FL MSA",1120,1170,1370,1770,1900
+32187,"Putnam County, FL",850,880,1140,1480,1590
+32189,"Putnam County, FL",760,760,1000,1260,1320
+32190,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1070,1270,1550,2040,2190
+32192,"Ocala, FL MSA",1120,1170,1370,1770,1900
+32193,"Putnam County, FL",920,930,1220,1530,1620
+32195,"Ocala, FL MSA",1270,1340,1520,1920,2320
+32202,"Jacksonville, FL HUD Metro FMR Area",1130,1150,1380,1700,2130
+32203,"Jacksonville, FL HUD Metro FMR Area",1330,1360,1630,2010,2520
+32204,"Jacksonville, FL HUD Metro FMR Area",1150,1170,1410,1740,2180
+32205,"Jacksonville, FL HUD Metro FMR Area",1230,1260,1510,1860,2330
+32206,"Jacksonville, FL HUD Metro FMR Area",940,960,1150,1420,1780
+32207,"Jacksonville, FL HUD Metro FMR Area",1230,1250,1500,1850,2320
+32208,"Jacksonville, FL HUD Metro FMR Area",1180,1210,1450,1790,2240
+32209,"Jacksonville, FL HUD Metro FMR Area",980,1000,1200,1480,1850
+32210,"Jacksonville, FL HUD Metro FMR Area",1150,1170,1410,1740,2180
+32211,"Jacksonville, FL HUD Metro FMR Area",1110,1130,1360,1680,2100
+32212,"Jacksonville, FL HUD Metro FMR Area",1940,1980,2380,2930,3680
+32214,"Jacksonville, FL HUD Metro FMR Area",1330,1360,1630,2010,2520
+32216,"Jacksonville, FL HUD Metro FMR Area",1250,1270,1530,1890,2360
+32217,"Jacksonville, FL HUD Metro FMR Area",1130,1150,1380,1700,2130
+32218,"Jacksonville, FL HUD Metro FMR Area",1360,1390,1670,2060,2580
+32219,"Jacksonville, FL HUD Metro FMR Area",1150,1170,1410,1740,2180
+32220,"Jacksonville, FL HUD Metro FMR Area",1220,1240,1490,1840,2300
+32221,"Jacksonville, FL HUD Metro FMR Area",1570,1600,1920,2370,2970
+32222,"Jacksonville, FL HUD Metro FMR Area",1630,1670,2000,2460,3090
+32223,"Jacksonville, FL HUD Metro FMR Area",1470,1500,1800,2220,2780
+32224,"Jacksonville, FL HUD Metro FMR Area",1580,1610,1930,2380,2980
+32225,"Jacksonville, FL HUD Metro FMR Area",1580,1610,1930,2380,2980
+32226,"Jacksonville, FL HUD Metro FMR Area",2030,2070,2490,3070,3850
+32227,"Jacksonville, FL HUD Metro FMR Area",1850,1910,2270,2840,3600
+32228,"Jacksonville, FL HUD Metro FMR Area",1850,1910,2270,2840,3600
+32229,"Jacksonville, FL HUD Metro FMR Area",1330,1360,1630,2010,2520
+32233,"Jacksonville, FL HUD Metro FMR Area",1420,1450,1740,2140,2690
+32234,"Jacksonville, FL HUD Metro FMR Area",920,940,1130,1390,1740
+32235,"Jacksonville, FL HUD Metro FMR Area",1330,1360,1630,2010,2520
+32236,"Jacksonville, FL HUD Metro FMR Area",1330,1360,1630,2010,2520
+32238,"Jacksonville, FL HUD Metro FMR Area",1330,1360,1630,2010,2520
+32239,"Jacksonville, FL HUD Metro FMR Area",1330,1360,1630,2010,2520
+32240,"Jacksonville, FL HUD Metro FMR Area",1330,1360,1630,2010,2520
+32241,"Jacksonville, FL HUD Metro FMR Area",1330,1360,1630,2010,2520
+32244,"Jacksonville, FL HUD Metro FMR Area",1400,1420,1710,2110,2640
+32245,"Jacksonville, FL HUD Metro FMR Area",1330,1360,1630,2010,2520
+32246,"Jacksonville, FL HUD Metro FMR Area",1670,1710,2050,2530,3170
+32247,"Jacksonville, FL HUD Metro FMR Area",1330,1360,1630,2010,2520
+32250,"Jacksonville, FL HUD Metro FMR Area",1810,1840,2210,2720,3410
+32254,"Jacksonville, FL HUD Metro FMR Area",1060,1080,1300,1600,2010
+32255,"Jacksonville, FL HUD Metro FMR Area",1330,1360,1630,2010,2520
+32256,"Jacksonville, FL HUD Metro FMR Area",1630,1670,2000,2460,3090
+32257,"Jacksonville, FL HUD Metro FMR Area",1320,1350,1620,2000,2500
+32258,"Jacksonville, FL HUD Metro FMR Area",1830,1870,2240,2760,3460
+32259,"Jacksonville, FL HUD Metro FMR Area",2030,2070,2490,3070,3850
+32260,"Jacksonville, FL HUD Metro FMR Area",1660,1690,2030,2500,3140
+32266,"Jacksonville, FL HUD Metro FMR Area",1480,1510,1810,2230,2800
+32277,"Jacksonville, FL HUD Metro FMR Area",1230,1250,1500,1850,2320
+32301,"Tallahassee, FL HUD Metro FMR Area",1160,1270,1430,1770,1890
+32302,"Tallahassee, FL HUD Metro FMR Area",1120,1230,1380,1710,1830
+32303,"Tallahassee, FL HUD Metro FMR Area",1190,1300,1460,1810,1930
+32304,"Tallahassee, FL HUD Metro FMR Area",1100,1210,1360,1680,1800
+32305,"Tallahassee, FL HUD Metro FMR Area",960,1070,1190,1500,1650
+32306,"Tallahassee, FL HUD Metro FMR Area",1110,1220,1370,1700,1820
+32307,"Tallahassee, FL HUD Metro FMR Area",1080,1190,1330,1650,1760
+32308,"Tallahassee, FL HUD Metro FMR Area",1170,1280,1440,1780,1910
+32309,"Tallahassee, FL HUD Metro FMR Area",1220,1340,1500,1860,1990
+32310,"Tallahassee, FL HUD Metro FMR Area",960,1070,1190,1500,1650
+32311,"Tallahassee, FL HUD Metro FMR Area",1360,1490,1670,2070,2210
+32312,"Tallahassee, FL HUD Metro FMR Area",1380,1510,1700,2100,2250
+32313,"Tallahassee, FL HUD Metro FMR Area",1120,1230,1380,1710,1830
+32314,"Tallahassee, FL HUD Metro FMR Area",1120,1230,1380,1710,1830
+32315,"Tallahassee, FL HUD Metro FMR Area",1120,1230,1380,1710,1830
+32316,"Tallahassee, FL HUD Metro FMR Area",1120,1230,1380,1710,1830
+32317,"Tallahassee, FL HUD Metro FMR Area",1320,1450,1630,2020,2160
+32318,"Tallahassee, FL HUD Metro FMR Area",1120,1230,1380,1710,1830
+32320,"Franklin County, FL",1220,1250,1400,1850,1850
+32321,"Franklin County, FL",950,970,1090,1500,1830
+32322,"Franklin County, FL",1080,1110,1240,1640,1640
+32323,"Franklin County, FL",1080,1110,1240,1640,1640
+32324,"Tallahassee, FL HUD Metro FMR Area",960,1070,1190,1500,1650
+32326,"Wakulla County, FL HUD Metro FMR Area",980,1070,1200,1560,1590
+32327,"Tallahassee, FL HUD Metro FMR Area",960,1070,1190,1520,1650
+32328,"Franklin County, FL",900,920,1030,1360,1420
+32330,"Tallahassee, FL HUD Metro FMR Area",960,1070,1190,1500,1650
+32331,"Tallahassee, FL HUD Metro FMR Area",960,1070,1190,1500,1650
+32332,"Tallahassee, FL HUD Metro FMR Area",960,1070,1190,1500,1650
+32333,"Tallahassee, FL HUD Metro FMR Area",960,1070,1190,1500,1650
+32334,"Liberty County, FL",890,910,1020,1400,1710
+32336,"Tallahassee, FL HUD Metro FMR Area",990,1080,1210,1520,1650
+32337,"Tallahassee, FL HUD Metro FMR Area",960,1070,1190,1500,1650
+32340,"Madison County, FL",880,970,1090,1400,1550
+32343,"Tallahassee, FL HUD Metro FMR Area",980,1080,1210,1500,1650
+32344,"Tallahassee, FL HUD Metro FMR Area",960,1070,1190,1500,1650
+32345,"Tallahassee, FL HUD Metro FMR Area",960,1070,1190,1500,1650
+32346,"Wakulla County, FL HUD Metro FMR Area",1240,1350,1510,1990,2090
+32347,"Taylor County, FL",850,870,970,1280,1390
+32348,"Taylor County, FL",950,970,1090,1440,1510
+32350,"Madison County, FL",870,930,1070,1380,1520
+32351,"Tallahassee, FL HUD Metro FMR Area",960,1070,1190,1500,1650
+32352,"Tallahassee, FL HUD Metro FMR Area",1010,1110,1250,1550,1660
+32355,"Wakulla County, FL HUD Metro FMR Area",910,1000,1120,1460,1480
+32356,"Taylor County, FL",950,970,1090,1440,1510
+32357,"Taylor County, FL",890,910,1020,1350,1390
+32358,"Wakulla County, FL HUD Metro FMR Area",960,990,1110,1490,1660
+32359,"Dixie County, FL",930,950,1100,1460,1460
+32360,"Liberty County, FL",890,910,1020,1400,1710
+32361,"Tallahassee, FL HUD Metro FMR Area",960,1070,1190,1500,1650
+32362,"Tallahassee, FL HUD Metro FMR Area",1120,1230,1380,1710,1830
+32399,"Tallahassee, FL HUD Metro FMR Area",1120,1230,1380,1710,1830
+32401,"Panama City, FL HUD Metro FMR Area",1240,1240,1450,1930,2440
+32402,"Panama City, FL HUD Metro FMR Area",1420,1480,1680,2170,2690
+32403,"Panama City, FL HUD Metro FMR Area",1940,2020,2290,2950,3660
+32404,"Panama City, FL HUD Metro FMR Area",1360,1410,1600,2060,2560
+32405,"Panama City, FL HUD Metro FMR Area",1440,1500,1700,2190,2720
+32406,"Panama City, FL HUD Metro FMR Area",1420,1480,1680,2170,2690
+32407,"Panama City, FL HUD Metro FMR Area",1900,1970,2240,2890,3580
+32408,"Panama City, FL HUD Metro FMR Area",1390,1440,1640,2110,2620
+32409,"Panama City, FL HUD Metro FMR Area",1240,1240,1450,1930,2440
+32410,"Panama City, FL HUD Metro FMR Area",1760,1820,2070,2670,3310
+32411,"Panama City, FL HUD Metro FMR Area",1420,1480,1680,2170,2690
+32413,"Walton County, FL HUD Metro FMR Area",1560,1620,1840,2370,2940
+32417,"Panama City, FL HUD Metro FMR Area",1420,1480,1680,2170,2690
+32420,"Washington County, FL HUD Metro FMR Area",730,760,970,1280,1420
+32421,"Calhoun County, FL",910,960,1050,1380,1390
+32422,"Walton County, FL HUD Metro FMR Area",1050,1240,1360,1890,2280
+32423,"Jackson County, FL",870,970,1260,1620,1680
+32424,"Calhoun County, FL",850,890,970,1280,1290
+32425,"Washington County, FL HUD Metro FMR Area",950,990,1090,1430,1460
+32426,"Jackson County, FL",770,830,1070,1410,1450
+32427,"Washington County, FL HUD Metro FMR Area",890,950,1040,1290,1640
+32428,"Panama City, FL HUD Metro FMR Area",1240,1240,1450,1930,2440
+32430,"Calhoun County, FL",1000,1050,1160,1520,1670
+32431,"Washington County, FL HUD Metro FMR Area",820,910,1160,1520,1570
+32432,"Jackson County, FL",740,820,1070,1410,1420
+32433,"Crestview-Fort Walton Beach-Destin, FL HUD Metro FMR Area",1100,1260,1420,1970,2380
+32435,"Walton County, FL HUD Metro FMR Area",860,990,1090,1530,1830
+32437,"Panama City, FL HUD Metro FMR Area",1240,1240,1450,1930,2440
+32438,"Panama City, FL HUD Metro FMR Area",1240,1240,1450,1930,2440
+32439,"Walton County, FL HUD Metro FMR Area",1030,1210,1330,1850,2230
+32440,"Holmes County, FL",760,830,1050,1380,1390
+32442,"Calhoun County, FL",730,760,980,1290,1300
+32443,"Jackson County, FL",740,820,1080,1420,1430
+32444,"Panama City, FL HUD Metro FMR Area",1550,1610,1830,2360,2930
+32445,"Jackson County, FL",670,740,970,1280,1290
+32446,"Jackson County, FL",790,880,1150,1510,1520
+32447,"Jackson County, FL",740,820,1070,1410,1420
+32448,"Calhoun County, FL",730,810,1060,1390,1400
+32449,"Calhoun County, FL",890,930,1030,1340,1400
+32455,"Walton County, FL HUD Metro FMR Area",860,990,1090,1530,1830
+32456,"Panama City, FL HUD Metro FMR Area",1460,1470,1910,2300,2560
+32459,"Walton County, FL HUD Metro FMR Area",1410,1660,1820,2530,3050
+32460,"Jackson County, FL",740,820,1070,1410,1420
+32461,"Walton County, FL HUD Metro FMR Area",1590,1870,2050,2850,3440
+32462,"Walton County, FL HUD Metro FMR Area",1240,1240,1450,1930,2440
+32463,"Washington County, FL HUD Metro FMR Area",830,890,970,1200,1530
+32464,"Walton County, FL HUD Metro FMR Area",860,990,1090,1530,1830
+32465,"Panama City, FL HUD Metro FMR Area",1240,1240,1450,1930,2440
+32466,"Panama City, FL HUD Metro FMR Area",1240,1250,1450,1930,2440
+32501,"Pensacola-Ferry Pass-Brent, FL MSA",1100,1230,1450,1940,2380
+32502,"Pensacola-Ferry Pass-Brent, FL MSA",1100,1230,1450,1940,2380
+32503,"Pensacola-Ferry Pass-Brent, FL MSA",1160,1310,1530,2030,2470
+32504,"Pensacola-Ferry Pass-Brent, FL MSA",1110,1250,1460,1960,2410
+32505,"Pensacola-Ferry Pass-Brent, FL MSA",1100,1230,1450,1940,2380
+32506,"Pensacola-Ferry Pass-Brent, FL MSA",1140,1290,1510,2000,2440
+32507,"Pensacola-Ferry Pass-Brent, FL MSA",1260,1430,1670,2220,2700
+32508,"Pensacola-Ferry Pass-Brent, FL MSA",1510,1710,2000,2650,3230
+32509,"Pensacola-Ferry Pass-Brent, FL MSA",1160,1300,1520,2030,2500
+32511,"Pensacola-Ferry Pass-Brent, FL MSA",1190,1350,1580,2100,2560
+32512,"Pensacola-Ferry Pass-Brent, FL MSA",1100,1230,1450,1940,2380
+32513,"Pensacola-Ferry Pass-Brent, FL MSA",1100,1230,1450,1940,2380
+32514,"Pensacola-Ferry Pass-Brent, FL MSA",1250,1420,1660,2200,2680
+32516,"Pensacola-Ferry Pass-Brent, FL MSA",1100,1230,1450,1940,2380
+32522,"Pensacola-Ferry Pass-Brent, FL MSA",1100,1230,1450,1940,2380
+32523,"Pensacola-Ferry Pass-Brent, FL MSA",1100,1230,1450,1940,2380
+32524,"Pensacola-Ferry Pass-Brent, FL MSA",1100,1230,1450,1940,2380
+32526,"Pensacola-Ferry Pass-Brent, FL MSA",1160,1300,1520,2030,2500
+32530,"Pensacola-Ferry Pass-Brent, FL MSA",1130,1270,1490,1980,2400
+32531,"Crestview-Fort Walton Beach-Destin, FL HUD Metro FMR Area",1100,1260,1450,1970,2380
+32533,"Pensacola-Ferry Pass-Brent, FL MSA",1100,1230,1450,1940,2380
+32534,"Pensacola-Ferry Pass-Brent, FL MSA",1140,1290,1510,2000,2440
+32535,"Pensacola-Ferry Pass-Brent, FL MSA",1100,1230,1450,1940,2380
+32536,"Crestview-Fort Walton Beach-Destin, FL HUD Metro FMR Area",1270,1480,1670,2290,2790
+32539,"Crestview-Fort Walton Beach-Destin, FL HUD Metro FMR Area",1210,1400,1580,2170,2640
+32540,"Crestview-Fort Walton Beach-Destin, FL HUD Metro FMR Area",1370,1590,1790,2460,2990
+32541,"Crestview-Fort Walton Beach-Destin, FL HUD Metro FMR Area",1820,2110,2380,3260,3970
+32542,"Crestview-Fort Walton Beach-Destin, FL HUD Metro FMR Area",1850,2140,2420,3320,4040
+32544,"Crestview-Fort Walton Beach-Destin, FL HUD Metro FMR Area",1810,2100,2370,3250,3960
+32547,"Crestview-Fort Walton Beach-Destin, FL HUD Metro FMR Area",1290,1500,1690,2320,2820
+32548,"Crestview-Fort Walton Beach-Destin, FL HUD Metro FMR Area",1360,1580,1780,2440,2970
+32549,"Crestview-Fort Walton Beach-Destin, FL HUD Metro FMR Area",1370,1590,1790,2460,2990
+32550,"Walton County, FL HUD Metro FMR Area",1530,1800,1970,2740,3300
+32560,"Pensacola-Ferry Pass-Brent, FL MSA",1100,1230,1450,1940,2380
+32561,"Pensacola-Ferry Pass-Brent, FL MSA",1500,1670,1970,2630,3240
+32562,"Pensacola-Ferry Pass-Brent, FL MSA",1270,1440,1680,2230,2710
+32563,"Pensacola-Ferry Pass-Brent, FL MSA",1440,1630,1910,2530,3080
+32564,"Crestview-Fort Walton Beach-Destin, FL HUD Metro FMR Area",1180,1340,1550,2090,2540
+32565,"Pensacola-Ferry Pass-Brent, FL MSA",1100,1230,1450,1940,2380
+32566,"Pensacola-Ferry Pass-Brent, FL MSA",1540,1740,2040,2710,3290
+32567,"Crestview-Fort Walton Beach-Destin, FL HUD Metro FMR Area",1100,1260,1420,1970,2380
+32568,"Pensacola-Ferry Pass-Brent, FL MSA",1100,1230,1450,1940,2380
+32569,"Crestview-Fort Walton Beach-Destin, FL HUD Metro FMR Area",1300,1510,1710,2350,2850
+32570,"Pensacola-Ferry Pass-Brent, FL MSA",1140,1290,1510,2000,2440
+32571,"Pensacola-Ferry Pass-Brent, FL MSA",1100,1230,1450,1940,2380
+32572,"Pensacola-Ferry Pass-Brent, FL MSA",1270,1440,1680,2230,2710
+32577,"Pensacola-Ferry Pass-Brent, FL MSA",1100,1230,1450,1940,2380
+32578,"Crestview-Fort Walton Beach-Destin, FL HUD Metro FMR Area",1620,1880,2120,2910,3540
+32579,"Crestview-Fort Walton Beach-Destin, FL HUD Metro FMR Area",1500,1740,1970,2700,3290
+32580,"Crestview-Fort Walton Beach-Destin, FL HUD Metro FMR Area",1240,1440,1630,2240,2720
+32583,"Pensacola-Ferry Pass-Brent, FL MSA",1130,1270,1490,1980,2400
+32588,"Crestview-Fort Walton Beach-Destin, FL HUD Metro FMR Area",1370,1590,1790,2460,2990
+32591,"Pensacola-Ferry Pass-Brent, FL MSA",1100,1230,1450,1940,2380
+32601,"Gainesville, FL HUD Metro FMR Area",1100,1190,1430,1820,1890
+32603,"Gainesville, FL HUD Metro FMR Area",1060,1180,1430,1820,1890
+32604,"Gainesville, FL HUD Metro FMR Area",1160,1250,1500,1880,1990
+32605,"Gainesville, FL HUD Metro FMR Area",1350,1460,1750,2190,2320
+32606,"Gainesville, FL HUD Metro FMR Area",1460,1580,1890,2360,2500
+32607,"Gainesville, FL HUD Metro FMR Area",1210,1300,1560,1950,2070
+32608,"Gainesville, FL HUD Metro FMR Area",1290,1390,1670,2090,2210
+32609,"Gainesville, FL HUD Metro FMR Area",1080,1180,1430,1820,1890
+32610,"Gainesville, FL HUD Metro FMR Area",1170,1260,1510,1890,2000
+32611,"Gainesville, FL HUD Metro FMR Area",1160,1250,1500,1880,1990
+32612,"Gainesville, FL HUD Metro FMR Area",1150,1230,1480,1850,1960
+32614,"Gainesville, FL HUD Metro FMR Area",1160,1250,1500,1880,1990
+32615,"Gainesville, FL HUD Metro FMR Area",1100,1190,1430,1820,1890
+32616,"Gainesville, FL HUD Metro FMR Area",1100,1190,1430,1820,1890
+32617,"Ocala, FL MSA",920,990,1200,1530,1650
+32618,"Levy County, FL HUD Metro FMR Area",1060,1180,1430,1820,1890
+32619,"Gainesville, FL HUD Metro FMR Area",1060,1180,1430,1820,1890
+32621,"Levy County, FL HUD Metro FMR Area",730,830,970,1240,1290
+32622,"Gainesville, FL HUD Metro FMR Area",1060,1180,1430,1820,1890
+32625,"Levy County, FL HUD Metro FMR Area",810,920,1080,1370,1430
+32626,"Levy County, FL HUD Metro FMR Area",750,850,1000,1270,1320
+32627,"Gainesville, FL HUD Metro FMR Area",1160,1250,1500,1880,1990
+32628,"Dixie County, FL",870,880,1150,1520,1520
+32631,"Gainesville, FL HUD Metro FMR Area",1080,1190,1440,1840,1910
+32633,"Gainesville, FL HUD Metro FMR Area",1160,1250,1500,1880,1990
+32634,"Ocala, FL MSA",920,990,1200,1530,1650
+32635,"Gainesville, FL HUD Metro FMR Area",1160,1250,1500,1880,1990
+32639,"Levy County, FL HUD Metro FMR Area",740,830,980,1260,1330
+32640,"Gainesville, FL HUD Metro FMR Area",1060,1180,1430,1820,1890
+32641,"Gainesville, FL HUD Metro FMR Area",1060,1180,1430,1820,1890
+32643,"Gainesville, FL HUD Metro FMR Area",1210,1300,1560,1950,2070
+32644,"Levy County, FL HUD Metro FMR Area",730,830,970,1240,1290
+32648,"Dixie County, FL",880,890,1170,1550,1550
+32653,"Gainesville, FL HUD Metro FMR Area",1060,1180,1430,1820,1890
+32655,"Gainesville, FL HUD Metro FMR Area",1160,1250,1500,1880,1990
+32656,"Jacksonville, FL HUD Metro FMR Area",1010,1030,1230,1520,1920
+32658,"Gainesville, FL HUD Metro FMR Area",1090,1180,1430,1820,1890
+32663,"Ocala, FL MSA",1120,1170,1370,1770,1900
+32664,"Ocala, FL MSA",1000,1060,1280,1620,1710
+32666,"Gainesville, FL HUD Metro FMR Area",860,900,1100,1390,1600
+32667,"Gainesville, FL HUD Metro FMR Area",1060,1180,1430,1820,1890
+32668,"Levy County, FL HUD Metro FMR Area",920,990,1200,1530,1650
+32669,"Levy County, FL HUD Metro FMR Area",1370,1490,1780,2230,2360
+32680,"Dixie County, FL",890,900,1180,1560,1560
+32681,"Ocala, FL MSA",920,990,1200,1530,1650
+32683,"Levy County, FL HUD Metro FMR Area",750,850,1000,1270,1320
+32686,"Ocala, FL MSA",920,990,1200,1530,1650
+32692,"Dixie County, FL",890,900,1180,1560,1560
+32693,"Levy County, FL HUD Metro FMR Area",1060,1180,1430,1820,1890
+32694,"Gainesville, FL HUD Metro FMR Area",1090,1180,1430,1820,1980
+32696,"Levy County, FL HUD Metro FMR Area",1060,1180,1430,1820,1890
+32697,"Union County, FL",1120,1130,1480,1860,1960
+32701,"Orlando-Kissimmee-Sanford, FL MSA",1570,1650,1880,2360,2790
+32702,"Ocala, FL MSA",1270,1340,1520,1920,2320
+32703,"Orlando-Kissimmee-Sanford, FL MSA",1560,1630,1860,2330,2760
+32704,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32707,"Orlando-Kissimmee-Sanford, FL MSA",1580,1660,1890,2370,2800
+32708,"Orlando-Kissimmee-Sanford, FL MSA",1760,1840,2100,2640,3110
+32709,"Orlando-Kissimmee-Sanford, FL MSA",1320,1450,1670,2190,2530
+32710,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32712,"Orlando-Kissimmee-Sanford, FL MSA",1990,2090,2380,2990,3530
+32713,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1370,1570,1930,2540,2760
+32714,"Orlando-Kissimmee-Sanford, FL MSA",1760,1840,2100,2640,3110
+32715,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32716,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32718,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32719,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32720,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1270,1340,1520,1940,2320
+32721,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1200,1380,1700,2240,2430
+32723,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1200,1380,1700,2240,2430
+32724,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1110,1270,1560,2060,2230
+32725,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1320,1510,1860,2450,2660
+32726,"Orlando-Kissimmee-Sanford, FL MSA",1270,1340,1520,1920,2320
+32727,"Orlando-Kissimmee-Sanford, FL MSA",1440,1510,1720,2160,2550
+32728,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1200,1380,1700,2240,2430
+32730,"Orlando-Kissimmee-Sanford, FL MSA",1470,1540,1760,2210,2610
+32732,"Orlando-Kissimmee-Sanford, FL MSA",1970,2070,2360,2980,3510
+32733,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32735,"Orlando-Kissimmee-Sanford, FL MSA",1660,1740,1980,2490,2940
+32736,"Orlando-Kissimmee-Sanford, FL MSA",1290,1350,1540,1930,2320
+32738,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1330,1520,1870,2460,2670
+32739,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1200,1380,1700,2240,2430
+32744,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1100,1270,1550,2040,2210
+32746,"Orlando-Kissimmee-Sanford, FL MSA",1910,2000,2280,2860,3380
+32747,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32750,"Orlando-Kissimmee-Sanford, FL MSA",1620,1700,1940,2440,2880
+32751,"Orlando-Kissimmee-Sanford, FL MSA",1780,1870,2130,2670,3160
+32752,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32753,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1200,1380,1700,2240,2430
+32754,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1020,1190,1380,1880,2130
+32756,"Orlando-Kissimmee-Sanford, FL MSA",1440,1510,1720,2160,2550
+32757,"Orlando-Kissimmee-Sanford, FL MSA",1450,1520,1730,2170,2570
+32759,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1110,1270,1560,2060,2230
+32762,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32763,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1250,1440,1770,2330,2530
+32764,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1300,1490,1810,2390,2620
+32765,"Orlando-Kissimmee-Sanford, FL MSA",2000,2100,2390,3000,3540
+32766,"Orlando-Kissimmee-Sanford, FL MSA",2160,2260,2580,3240,3830
+32767,"Orlando-Kissimmee-Sanford, FL MSA",1270,1340,1520,1920,2320
+32768,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32771,"Orlando-Kissimmee-Sanford, FL MSA",1560,1630,1860,2330,2760
+32772,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32773,"Orlando-Kissimmee-Sanford, FL MSA",1490,1560,1780,2230,2640
+32774,"Deltona-Daytona Beach-Ormond Beach, FL HUD Metro FMR Area",1200,1380,1700,2240,2430
+32775,"Palm Bay-Melbourne-Titusville, FL MSA",1270,1480,1710,2330,2650
+32776,"Orlando-Kissimmee-Sanford, FL MSA",1610,1690,1930,2420,2850
+32777,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32778,"Orlando-Kissimmee-Sanford, FL MSA",1270,1340,1520,1920,2320
+32779,"Orlando-Kissimmee-Sanford, FL MSA",1940,2040,2320,2910,3440
+32780,"Palm Bay-Melbourne-Titusville, FL MSA",1100,1280,1480,2020,2290
+32781,"Palm Bay-Melbourne-Titusville, FL MSA",1270,1480,1710,2330,2650
+32783,"Palm Bay-Melbourne-Titusville, FL MSA",1270,1480,1710,2330,2650
+32784,"Ocala, FL MSA",1270,1340,1520,1920,2320
+32789,"Orlando-Kissimmee-Sanford, FL MSA",1720,1800,2050,2570,3040
+32790,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32791,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32792,"Orlando-Kissimmee-Sanford, FL MSA",1710,1790,2040,2560,3020
+32793,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32794,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32795,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32796,"Palm Bay-Melbourne-Titusville, FL MSA",1110,1300,1500,2050,2320
+32798,"Orlando-Kissimmee-Sanford, FL MSA",1270,1340,1520,1920,2320
+32801,"Orlando-Kissimmee-Sanford, FL MSA",1860,1950,2220,2790,3290
+32802,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32803,"Orlando-Kissimmee-Sanford, FL MSA",1970,2060,2350,2950,3480
+32804,"Orlando-Kissimmee-Sanford, FL MSA",1720,1810,2060,2590,3050
+32805,"Orlando-Kissimmee-Sanford, FL MSA",1270,1340,1520,1920,2320
+32806,"Orlando-Kissimmee-Sanford, FL MSA",1520,1600,1820,2280,2700
+32807,"Orlando-Kissimmee-Sanford, FL MSA",1520,1600,1820,2280,2700
+32808,"Orlando-Kissimmee-Sanford, FL MSA",1460,1530,1740,2180,2580
+32809,"Orlando-Kissimmee-Sanford, FL MSA",1340,1400,1600,2010,2370
+32810,"Orlando-Kissimmee-Sanford, FL MSA",1580,1660,1890,2370,2800
+32811,"Orlando-Kissimmee-Sanford, FL MSA",1640,1720,1960,2460,2910
+32812,"Orlando-Kissimmee-Sanford, FL MSA",1520,1600,1820,2280,2700
+32814,"Orlando-Kissimmee-Sanford, FL MSA",2300,2410,2750,3450,4080
+32816,"Orlando-Kissimmee-Sanford, FL MSA",1600,1680,1910,2400,2840
+32817,"Orlando-Kissimmee-Sanford, FL MSA",1730,1820,2070,2600,3070
+32818,"Orlando-Kissimmee-Sanford, FL MSA",1470,1540,1760,2210,2610
+32819,"Orlando-Kissimmee-Sanford, FL MSA",1920,2010,2290,2870,3400
+32820,"Orlando-Kissimmee-Sanford, FL MSA",1810,1910,2160,2750,3270
+32821,"Orlando-Kissimmee-Sanford, FL MSA",1820,1900,2170,2720,3220
+32822,"Orlando-Kissimmee-Sanford, FL MSA",1680,1760,2010,2520,2980
+32824,"Orlando-Kissimmee-Sanford, FL MSA",1820,1910,2180,2740,3230
+32825,"Orlando-Kissimmee-Sanford, FL MSA",1760,1840,2100,2640,3110
+32826,"Orlando-Kissimmee-Sanford, FL MSA",1510,1580,1800,2260,2670
+32827,"Orlando-Kissimmee-Sanford, FL MSA",2290,2400,2740,3440,4060
+32828,"Orlando-Kissimmee-Sanford, FL MSA",1890,1980,2260,2840,3350
+32829,"Orlando-Kissimmee-Sanford, FL MSA",1940,2040,2320,2910,3440
+32830,"Orlando-Kissimmee-Sanford, FL MSA",1970,2070,2360,2960,3490
+32831,"Orlando-Kissimmee-Sanford, FL MSA",1850,1940,2210,2770,3280
+32832,"Orlando-Kissimmee-Sanford, FL MSA",2190,2300,2620,3290,3880
+32833,"Orlando-Kissimmee-Sanford, FL MSA",1420,1490,1700,2130,2520
+32835,"Orlando-Kissimmee-Sanford, FL MSA",1860,1950,2220,2790,3290
+32836,"Orlando-Kissimmee-Sanford, FL MSA",2070,2180,2480,3110,3680
+32837,"Orlando-Kissimmee-Sanford, FL MSA",1930,2030,2310,2900,3420
+32839,"Orlando-Kissimmee-Sanford, FL MSA",1550,1620,1850,2320,2740
+32853,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32854,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32855,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32856,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32857,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32858,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32859,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32860,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32861,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32862,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32867,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32868,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32869,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32872,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32877,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32878,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+32899,"Palm Bay-Melbourne-Titusville, FL MSA",1270,1480,1710,2330,2650
+32901,"Palm Bay-Melbourne-Titusville, FL MSA",1180,1380,1590,2170,2460
+32902,"Palm Bay-Melbourne-Titusville, FL MSA",1270,1480,1710,2330,2650
+32903,"Palm Bay-Melbourne-Titusville, FL MSA",1530,1780,2060,2810,3190
+32904,"Palm Bay-Melbourne-Titusville, FL MSA",1540,1800,2080,2840,3220
+32905,"Palm Bay-Melbourne-Titusville, FL MSA",1210,1410,1630,2220,2520
+32906,"Palm Bay-Melbourne-Titusville, FL MSA",1270,1480,1710,2330,2650
+32907,"Palm Bay-Melbourne-Titusville, FL MSA",1430,1670,1930,2630,2990
+32908,"Palm Bay-Melbourne-Titusville, FL MSA",1500,1750,2020,2750,3130
+32909,"Palm Bay-Melbourne-Titusville, FL MSA",1290,1510,1740,2370,2690
+32910,"Palm Bay-Melbourne-Titusville, FL MSA",1270,1480,1710,2330,2650
+32911,"Palm Bay-Melbourne-Titusville, FL MSA",1270,1480,1710,2330,2650
+32912,"Palm Bay-Melbourne-Titusville, FL MSA",1270,1480,1710,2330,2650
+32920,"Palm Bay-Melbourne-Titusville, FL MSA",990,1160,1340,1830,2070
+32922,"Palm Bay-Melbourne-Titusville, FL MSA",960,1120,1290,1760,2000
+32923,"Palm Bay-Melbourne-Titusville, FL MSA",1270,1480,1710,2330,2650
+32924,"Palm Bay-Melbourne-Titusville, FL MSA",1270,1480,1710,2330,2650
+32925,"Palm Bay-Melbourne-Titusville, FL MSA",1740,2030,2350,3200,3640
+32926,"Palm Bay-Melbourne-Titusville, FL MSA",1130,1310,1520,2070,2350
+32927,"Palm Bay-Melbourne-Titusville, FL MSA",1160,1360,1570,2140,2430
+32931,"Palm Bay-Melbourne-Titusville, FL MSA",1380,1610,1860,2540,2880
+32932,"Palm Bay-Melbourne-Titusville, FL MSA",1270,1480,1710,2330,2650
+32934,"Palm Bay-Melbourne-Titusville, FL MSA",1570,1830,2120,2890,3280
+32935,"Palm Bay-Melbourne-Titusville, FL MSA",1310,1530,1770,2410,2740
+32936,"Palm Bay-Melbourne-Titusville, FL MSA",1270,1480,1710,2330,2650
+32937,"Palm Bay-Melbourne-Titusville, FL MSA",1530,1790,2070,2820,3200
+32940,"Palm Bay-Melbourne-Titusville, FL MSA",1710,2000,2310,3150,3570
+32941,"Palm Bay-Melbourne-Titusville, FL MSA",1270,1480,1710,2330,2650
+32948,"Palm Bay-Melbourne-Titusville, FL MSA",960,970,1270,1550,2130
+32949,"Palm Bay-Melbourne-Titusville, FL MSA",1380,1620,1860,2540,2890
+32950,"Palm Bay-Melbourne-Titusville, FL MSA",1560,1820,2100,2860,3250
+32951,"Palm Bay-Melbourne-Titusville, FL MSA",1500,1760,2030,2770,3140
+32952,"Palm Bay-Melbourne-Titusville, FL MSA",1210,1410,1630,2220,2520
+32953,"Palm Bay-Melbourne-Titusville, FL MSA",1130,1310,1520,2070,2350
+32954,"Palm Bay-Melbourne-Titusville, FL MSA",1270,1480,1710,2330,2650
+32955,"Palm Bay-Melbourne-Titusville, FL MSA",1420,1660,1920,2620,2970
+32956,"Palm Bay-Melbourne-Titusville, FL MSA",1270,1480,1710,2330,2650
+32957,"Sebastian-Vero Beach-West Vero Corridor, FL MSA",1210,1220,1600,1950,2680
+32958,"Sebastian-Vero Beach-West Vero Corridor, FL MSA",1320,1330,1740,2120,2920
+32959,"Palm Bay-Melbourne-Titusville, FL MSA",1160,1360,1570,2140,2430
+32960,"Sebastian-Vero Beach-West Vero Corridor, FL MSA",1130,1140,1490,1820,2500
+32961,"Sebastian-Vero Beach-West Vero Corridor, FL MSA",1210,1220,1600,1950,2680
+32962,"Sebastian-Vero Beach-West Vero Corridor, FL MSA",1150,1160,1520,1850,2550
+32963,"Sebastian-Vero Beach-West Vero Corridor, FL MSA",1820,1840,2410,2940,4040
+32964,"Sebastian-Vero Beach-West Vero Corridor, FL MSA",1210,1220,1600,1950,2680
+32965,"Sebastian-Vero Beach-West Vero Corridor, FL MSA",1210,1220,1600,1950,2680
+32966,"Sebastian-Vero Beach-West Vero Corridor, FL MSA",1310,1320,1730,2110,2900
+32967,"Sebastian-Vero Beach-West Vero Corridor, FL MSA",1250,1260,1650,2010,2770
+32968,"Sebastian-Vero Beach-West Vero Corridor, FL MSA",1750,1760,2310,2820,3880
+32969,"Sebastian-Vero Beach-West Vero Corridor, FL MSA",1210,1220,1600,1950,2680
+32970,"Sebastian-Vero Beach-West Vero Corridor, FL MSA",1290,1300,1710,2080,2860
+32971,"Sebastian-Vero Beach-West Vero Corridor, FL MSA",1210,1220,1600,1950,2680
+32976,"Palm Bay-Melbourne-Titusville, FL MSA",1160,1360,1570,2140,2430
+32978,"Sebastian-Vero Beach-West Vero Corridor, FL MSA",1210,1220,1600,1950,2680
+33001,"Monroe County, FL",1650,2110,2390,3150,3240
+33002,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33004,"Fort Lauderdale, FL HUD Metro FMR Area",1590,1730,2130,2940,3480
+33008,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33009,"Fort Lauderdale, FL HUD Metro FMR Area",1780,1950,2390,3290,3900
+33010,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1670,1830,2230,2860,3310
+33011,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33012,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1840,2010,2450,3140,3630
+33013,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1580,1720,2100,2700,3110
+33014,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2020,2200,2690,3450,3990
+33015,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2130,2330,2840,3650,4210
+33016,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1960,2140,2610,3350,3870
+33017,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33018,"Fort Lauderdale, FL HUD Metro FMR Area",2030,2220,2710,3480,4020
+33019,"Fort Lauderdale, FL HUD Metro FMR Area",1860,2040,2500,3450,4080
+33020,"Fort Lauderdale, FL HUD Metro FMR Area",1770,1940,2380,3280,3890
+33021,"Fort Lauderdale, FL HUD Metro FMR Area",2020,2210,2710,3740,4430
+33022,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33023,"Fort Lauderdale, FL HUD Metro FMR Area",1660,1820,2230,3070,3640
+33024,"Fort Lauderdale, FL HUD Metro FMR Area",1700,1870,2290,3160,3740
+33025,"Fort Lauderdale, FL HUD Metro FMR Area",1890,2070,2540,3500,4150
+33026,"Fort Lauderdale, FL HUD Metro FMR Area",1950,2130,2620,3610,4280
+33027,"Fort Lauderdale, FL HUD Metro FMR Area",1710,1870,2300,3170,3760
+33028,"Fort Lauderdale, FL HUD Metro FMR Area",2390,2610,3210,4420,5240
+33029,"Fort Lauderdale, FL HUD Metro FMR Area",2400,2630,3230,4450,5410
+33030,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1460,1590,1940,2490,2920
+33031,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1760,1920,2340,3010,3480
+33032,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1720,1880,2290,2940,3400
+33033,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1660,1810,2210,2840,3280
+33034,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1440,1570,1920,2460,2920
+33035,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2000,2180,2660,3410,3950
+33036,"Monroe County, FL",1680,2150,2430,3210,3220
+33037,"Monroe County, FL",1690,2160,2450,3230,3240
+33039,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33040,"Monroe County, FL",1930,2470,2800,3690,3710
+33041,"Monroe County, FL",1720,2210,2500,3300,3310
+33042,"Monroe County, FL",2010,2570,2910,3840,3850
+33043,"Monroe County, FL",1730,2220,2510,3310,3320
+33045,"Monroe County, FL",1720,2210,2500,3300,3310
+33050,"Monroe County, FL",1410,1780,2050,2730,3010
+33051,"Monroe County, FL",1540,1970,2230,2940,3010
+33052,"Monroe County, FL",1720,2210,2500,3300,3310
+33054,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1450,1580,1930,2480,2860
+33055,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1730,1890,2310,2960,3430
+33056,"Fort Lauderdale, FL HUD Metro FMR Area",1750,1910,2330,2990,3460
+33060,"Fort Lauderdale, FL HUD Metro FMR Area",1510,1650,2030,2800,3320
+33061,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33062,"Fort Lauderdale, FL HUD Metro FMR Area",2090,2290,2810,3870,4590
+33063,"Fort Lauderdale, FL HUD Metro FMR Area",1750,1910,2350,3240,3840
+33064,"Fort Lauderdale, FL HUD Metro FMR Area",1830,2000,2460,3390,4020
+33065,"Fort Lauderdale, FL HUD Metro FMR Area",1830,2000,2460,3390,4020
+33066,"Fort Lauderdale, FL HUD Metro FMR Area",1670,1820,2240,3090,3660
+33067,"Fort Lauderdale, FL HUD Metro FMR Area",2000,2180,2680,3690,4380
+33068,"Fort Lauderdale, FL HUD Metro FMR Area",1850,2030,2490,3430,4070
+33069,"Fort Lauderdale, FL HUD Metro FMR Area",1770,1940,2380,3280,3890
+33070,"Monroe County, FL",1610,2060,2330,3070,3080
+33071,"Fort Lauderdale, FL HUD Metro FMR Area",1980,2170,2660,3670,4340
+33073,"Fort Lauderdale, FL HUD Metro FMR Area",2130,2330,2860,3940,4670
+33074,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33075,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33076,"Fort Lauderdale, FL HUD Metro FMR Area",2610,2850,3500,4820,5720
+33077,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33081,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33082,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33083,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33084,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33090,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33092,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33093,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33097,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33101,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33106,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33109,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2690,2930,3580,4590,5310
+33114,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33116,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33119,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33122,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2570,2800,3420,4390,5070
+33124,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33125,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1820,1980,2420,3110,3590
+33126,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1990,2170,2650,3400,3930
+33127,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1610,1750,2140,2750,3170
+33128,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1430,1560,1910,2460,2920
+33129,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2360,2580,3150,4040,4670
+33130,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2030,2220,2710,3480,4020
+33131,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2740,2990,3650,4680,5410
+33132,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2660,2900,3540,4540,5250
+33133,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2280,2490,3040,3900,4510
+33134,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2170,2370,2890,3710,4290
+33135,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1680,1830,2240,2870,3320
+33136,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1420,1550,1890,2460,2920
+33137,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2620,2860,3490,4480,5180
+33138,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1620,1770,2160,2770,3200
+33139,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2710,2960,3610,4630,5350
+33140,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2310,2520,3080,3950,4570
+33141,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2180,2380,2910,3730,4320
+33142,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1570,1710,2090,2680,3100
+33143,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2180,2380,2910,3730,4320
+33144,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1790,1960,2390,3070,3540
+33145,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2210,2420,2950,3790,4380
+33146,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2740,2990,3650,4680,5410
+33147,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1610,1760,2150,2760,3190
+33149,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2590,2820,3450,4420,5110
+33150,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1470,1610,1960,2520,2920
+33152,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33153,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33154,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2300,2510,3070,3940,4550
+33155,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2060,2240,2740,3520,4060
+33156,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2110,2300,2810,3610,4170
+33157,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1710,1870,2280,2930,3380
+33158,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2740,2990,3650,4680,5410
+33160,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2450,2670,3260,4180,4830
+33161,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1820,1980,2420,3110,3590
+33162,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1580,1730,2110,2710,3130
+33163,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33164,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33165,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1920,2100,2560,3290,3800
+33166,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1840,2010,2450,3140,3630
+33167,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1560,1700,2080,2670,3080
+33168,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1630,1780,2170,2790,3220
+33169,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1630,1780,2170,2790,3220
+33170,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1700,1860,2270,2910,3370
+33172,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2190,2390,2920,3750,4330
+33173,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2080,2270,2770,3560,4110
+33174,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1910,2090,2550,3270,3780
+33175,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2040,2230,2720,3490,4030
+33176,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1960,2140,2610,3350,3870
+33177,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2180,2370,2900,3720,4300
+33178,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2740,2990,3650,4680,5410
+33179,"Fort Lauderdale, FL HUD Metro FMR Area",2000,2190,2670,3430,3960
+33180,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2740,2990,3650,4680,5410
+33181,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1690,1840,2250,2890,3340
+33182,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2500,2730,3330,4270,4940
+33183,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1970,2150,2630,3380,3900
+33184,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2100,2290,2800,3590,4150
+33185,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2740,2990,3650,4680,5410
+33186,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2180,2380,2910,3730,4320
+33187,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2300,2510,3070,3940,4550
+33189,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1690,1840,2250,2890,3340
+33190,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1810,1970,2410,3090,3570
+33191,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33192,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33193,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1970,2150,2620,3360,3890
+33194,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2740,2990,3650,4680,5410
+33195,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33196,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",2250,2460,3000,3850,4450
+33197,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33198,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33222,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33231,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33233,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33234,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33238,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33239,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33242,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33243,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33245,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33247,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33255,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33256,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33257,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33261,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33265,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33266,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33269,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33280,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33283,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33296,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1830,2000,2440,3130,3620
+33301,"Fort Lauderdale, FL HUD Metro FMR Area",2310,2520,3100,4270,5060
+33302,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33303,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33304,"Fort Lauderdale, FL HUD Metro FMR Area",1920,2100,2580,3560,4210
+33305,"Fort Lauderdale, FL HUD Metro FMR Area",1740,1910,2340,3230,3820
+33306,"Fort Lauderdale, FL HUD Metro FMR Area",1340,1470,1800,2480,2940
+33307,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33308,"Fort Lauderdale, FL HUD Metro FMR Area",2110,2310,2840,3910,4640
+33309,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33310,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33311,"Fort Lauderdale, FL HUD Metro FMR Area",1360,1490,1830,2520,2990
+33312,"Fort Lauderdale, FL HUD Metro FMR Area",1590,1740,2140,2950,3490
+33313,"Fort Lauderdale, FL HUD Metro FMR Area",1710,1870,2300,3170,3760
+33314,"Fort Lauderdale, FL HUD Metro FMR Area",1950,2130,2620,3610,4280
+33315,"Fort Lauderdale, FL HUD Metro FMR Area",1700,1870,2290,3160,3740
+33316,"Fort Lauderdale, FL HUD Metro FMR Area",1880,2060,2530,3490,4130
+33317,"Fort Lauderdale, FL HUD Metro FMR Area",1870,2040,2510,3460,4100
+33318,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33319,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33320,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33321,"Fort Lauderdale, FL HUD Metro FMR Area",2040,2230,2740,3780,4470
+33322,"Fort Lauderdale, FL HUD Metro FMR Area",2030,2220,2730,3760,4460
+33323,"Fort Lauderdale, FL HUD Metro FMR Area",2430,2660,3270,4510,5340
+33324,"Fort Lauderdale, FL HUD Metro FMR Area",2200,2400,2950,4070,4820
+33325,"Fort Lauderdale, FL HUD Metro FMR Area",2000,2180,2680,3690,4380
+33326,"Fort Lauderdale, FL HUD Metro FMR Area",2300,2520,3090,4260,5050
+33327,"Fort Lauderdale, FL HUD Metro FMR Area",2610,2850,3500,4820,5720
+33328,"Fort Lauderdale, FL HUD Metro FMR Area",2050,2240,2750,3790,4490
+33329,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33330,"Fort Lauderdale, FL HUD Metro FMR Area",2610,2850,3500,4820,5720
+33331,"Fort Lauderdale, FL HUD Metro FMR Area",2610,2850,3500,4820,5720
+33332,"Fort Lauderdale, FL HUD Metro FMR Area",2610,2850,3500,4820,5720
+33334,"Fort Lauderdale, FL HUD Metro FMR Area",1740,1910,2340,3230,3820
+33335,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33338,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33339,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33345,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33346,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33348,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33351,"Fort Lauderdale, FL HUD Metro FMR Area",1850,2020,2480,3420,4050
+33355,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33359,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33388,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33394,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33401,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1800,1910,2270,2940,3410
+33402,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1780,1900,2250,2920,3380
+33403,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1440,1540,1820,2360,2740
+33404,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1440,1530,1810,2350,2720
+33405,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1440,1530,1810,2350,2720
+33406,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1630,1740,2060,2670,3100
+33407,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1720,1830,2170,2810,3260
+33408,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1820,1930,2290,2970,3440
+33409,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1810,1920,2280,2950,3430
+33410,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",2060,2190,2600,3370,3910
+33411,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1870,1990,2360,3060,3550
+33412,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1970,2090,2480,3210,3730
+33413,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",2010,2130,2530,3280,3800
+33414,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",2270,2410,2860,3710,4300
+33415,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1690,1800,2130,2760,3200
+33416,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1780,1900,2250,2920,3380
+33417,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1830,1950,2310,2990,3470
+33418,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",2280,2420,2870,3720,4310
+33419,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1780,1900,2250,2920,3380
+33420,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1780,1900,2250,2920,3380
+33421,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1780,1900,2250,2920,3380
+33422,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1780,1900,2250,2920,3380
+33424,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1780,1900,2250,2920,3380
+33425,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1780,1900,2250,2920,3380
+33426,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1940,2060,2440,3160,3670
+33427,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1780,1900,2250,2920,3380
+33428,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",2240,2380,2820,3650,4240
+33429,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1780,1900,2250,2920,3380
+33430,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",830,890,1050,1360,1580
+33431,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",2280,2420,2870,3720,4310
+33432,"Fort Lauderdale, FL HUD Metro FMR Area",2420,2570,3050,3950,4580
+33433,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",2420,2570,3050,3950,4580
+33434,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1510,1610,1910,2470,2870
+33435,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1960,2080,2470,3200,3710
+33436,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",2130,2270,2690,3490,4040
+33437,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1920,2040,2420,3140,3640
+33438,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1270,1350,1600,2070,2410
+33440,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1010,1020,1200,1480,1770
+33441,"Fort Lauderdale, FL HUD Metro FMR Area",1530,1660,2060,2840,3450
+33442,"Fort Lauderdale, FL HUD Metro FMR Area",1910,2090,2570,3540,4200
+33443,"Fort Lauderdale, FL HUD Metro FMR Area",1730,1900,2330,3210,3800
+33444,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1690,1800,2130,2760,3200
+33445,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1940,2060,2440,3160,3670
+33446,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1640,1750,2070,2680,3110
+33448,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1780,1900,2250,2920,3380
+33449,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",2680,2850,3380,4380,5080
+33454,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1780,1900,2250,2920,3380
+33455,"Port St. Lucie, FL MSA",1230,1240,1480,2040,2220
+33458,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",2080,2210,2630,3410,3950
+33460,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1640,1750,2070,2680,3110
+33461,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1710,1820,2160,2800,3250
+33462,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1620,1720,2040,2640,3070
+33463,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1730,1840,2180,2820,3280
+33465,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1780,1900,2250,2920,3380
+33466,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1780,1900,2250,2920,3380
+33467,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1800,1910,2270,2940,3410
+33468,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1780,1900,2250,2920,3380
+33469,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1910,1990,2370,3140,3540
+33470,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",2600,2770,3280,4250,4930
+33471,"Glades County, FL",1010,1040,1160,1400,1540
+33472,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",2320,2460,2920,3780,4390
+33473,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",2220,2470,2960,3860,4610
+33474,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1780,1900,2250,2920,3380
+33475,"Port St. Lucie, FL MSA",1450,1460,1750,2410,2570
+33476,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",910,970,1150,1490,1730
+33477,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",2420,2570,3050,3950,4580
+33478,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1930,2010,2400,3170,3570
+33480,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1910,2030,2410,3120,3620
+33481,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1780,1900,2250,2920,3380
+33482,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1780,1900,2250,2920,3380
+33483,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",2410,2560,3040,3940,4570
+33484,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1700,1810,2140,2770,3220
+33486,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",2260,2400,2850,3690,4280
+33487,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",2280,2420,2870,3720,4310
+33488,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1780,1900,2250,2920,3380
+33493,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1130,1200,1420,1840,2130
+33496,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",2550,2710,3210,4160,4830
+33497,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",1780,1900,2250,2920,3380
+33498,"West Palm Beach-Boca Raton, FL HUD Metro FMR Area",2220,2470,2960,3860,4610
+33503,"Tampa-St. Petersburg-Clearwater, FL MSA",1740,1860,2160,2770,3360
+33508,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33509,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33510,"Tampa-St. Petersburg-Clearwater, FL MSA",1500,1600,1860,2380,2890
+33511,"Tampa-St. Petersburg-Clearwater, FL MSA",1900,2020,2360,3020,3670
+33513,"Wildwood-The Villages, FL MSA",960,1020,1240,1540,1840
+33514,"Wildwood-The Villages, FL MSA",940,950,1240,1540,1840
+33521,"Wildwood-The Villages, FL MSA",940,960,1240,1540,1840
+33523,"Tampa-St. Petersburg-Clearwater, FL MSA",1090,1160,1350,1730,2100
+33524,"Tampa-St. Petersburg-Clearwater, FL MSA",1480,1580,1840,2350,2860
+33525,"Tampa-St. Petersburg-Clearwater, FL MSA",1100,1180,1370,1750,2130
+33526,"Tampa-St. Petersburg-Clearwater, FL MSA",1480,1580,1840,2350,2860
+33527,"Tampa-St. Petersburg-Clearwater, FL MSA",1020,1080,1260,1610,1960
+33530,"Tampa-St. Petersburg-Clearwater, FL MSA",1450,1560,1830,2340,2850
+33534,"Tampa-St. Petersburg-Clearwater, FL MSA",1460,1550,1810,2310,2820
+33537,"Tampa-St. Petersburg-Clearwater, FL MSA",1480,1580,1840,2350,2860
+33538,"Wildwood-The Villages, FL MSA",940,980,1240,1540,1840
+33539,"Tampa-St. Petersburg-Clearwater, FL MSA",1480,1580,1840,2350,2860
+33540,"Tampa-St. Petersburg-Clearwater, FL MSA",1060,1130,1320,1690,2050
+33541,"Tampa-St. Petersburg-Clearwater, FL MSA",1390,1480,1720,2200,2680
+33542,"Tampa-St. Petersburg-Clearwater, FL MSA",1180,1260,1470,1880,2290
+33543,"Tampa-St. Petersburg-Clearwater, FL MSA",2200,2340,2730,3490,4250
+33544,"Tampa-St. Petersburg-Clearwater, FL MSA",2130,2260,2640,3380,4110
+33545,"Tampa-St. Petersburg-Clearwater, FL MSA",2240,2380,2780,3550,4330
+33547,"Lakeland-Winter Haven, FL MSA",2390,2540,2970,3790,4620
+33548,"Tampa-St. Petersburg-Clearwater, FL MSA",2030,2160,2520,3220,3920
+33549,"Tampa-St. Petersburg-Clearwater, FL MSA",1690,1800,2100,2680,3270
+33550,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33556,"Tampa-St. Petersburg-Clearwater, FL MSA",1800,1910,2230,2850,3470
+33558,"Tampa-St. Petersburg-Clearwater, FL MSA",1520,1620,1890,2420,2940
+33559,"Tampa-St. Petersburg-Clearwater, FL MSA",1600,1700,1980,2530,3080
+33563,"Tampa-St. Petersburg-Clearwater, FL MSA",1340,1420,1660,2120,2580
+33564,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33565,"Tampa-St. Petersburg-Clearwater, FL MSA",1250,1330,1550,1980,2410
+33566,"Tampa-St. Petersburg-Clearwater, FL MSA",1450,1540,1800,2300,2800
+33567,"Tampa-St. Petersburg-Clearwater, FL MSA",1410,1500,1750,2240,2720
+33568,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33569,"Tampa-St. Petersburg-Clearwater, FL MSA",2150,2290,2670,3410,4160
+33570,"Tampa-St. Petersburg-Clearwater, FL MSA",1320,1410,1640,2100,2550
+33571,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33572,"Tampa-St. Petersburg-Clearwater, FL MSA",2210,2350,2740,3500,4260
+33573,"Tampa-St. Petersburg-Clearwater, FL MSA",1800,1910,2230,2850,3470
+33574,"Tampa-St. Petersburg-Clearwater, FL MSA",1130,1220,1440,1830,2240
+33575,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33576,"Tampa-St. Petersburg-Clearwater, FL MSA",1140,1220,1420,1820,2210
+33578,"Tampa-St. Petersburg-Clearwater, FL MSA",1850,1960,2290,2930,3560
+33579,"Tampa-St. Petersburg-Clearwater, FL MSA",2340,2490,2900,3710,4510
+33583,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33584,"Tampa-St. Petersburg-Clearwater, FL MSA",1500,1600,1860,2380,2890
+33585,"Wildwood-The Villages, FL MSA",940,950,1240,1540,1840
+33586,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33587,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33592,"Tampa-St. Petersburg-Clearwater, FL MSA",1170,1240,1450,1850,2260
+33593,"Tampa-St. Petersburg-Clearwater, FL MSA",1480,1580,1840,2350,2860
+33594,"Tampa-St. Petersburg-Clearwater, FL MSA",1880,2000,2330,2980,3630
+33595,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33596,"Tampa-St. Petersburg-Clearwater, FL MSA",2390,2550,2970,3800,4620
+33597,"Tampa-St. Petersburg-Clearwater, FL MSA",870,930,1080,1350,1610
+33598,"North Port-Bradenton-Sarasota, FL MSA",1320,1410,1640,2100,2550
+33601,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33602,"Tampa-St. Petersburg-Clearwater, FL MSA",2390,2550,2970,3800,4620
+33603,"Tampa-St. Petersburg-Clearwater, FL MSA",1480,1570,1830,2340,2850
+33604,"Tampa-St. Petersburg-Clearwater, FL MSA",1540,1640,1910,2440,2970
+33605,"Tampa-St. Petersburg-Clearwater, FL MSA",1320,1410,1640,2100,2550
+33606,"Tampa-St. Petersburg-Clearwater, FL MSA",2230,2380,2770,3540,4310
+33607,"Tampa-St. Petersburg-Clearwater, FL MSA",1960,2080,2430,3110,3780
+33609,"Tampa-St. Petersburg-Clearwater, FL MSA",1930,2060,2400,3070,3740
+33610,"Tampa-St. Petersburg-Clearwater, FL MSA",1390,1480,1730,2210,2690
+33611,"Tampa-St. Petersburg-Clearwater, FL MSA",2010,2140,2490,3180,3880
+33612,"Tampa-St. Petersburg-Clearwater, FL MSA",1410,1500,1750,2240,2720
+33613,"Tampa-St. Petersburg-Clearwater, FL MSA",1440,1540,1790,2290,2790
+33614,"Tampa-St. Petersburg-Clearwater, FL MSA",1660,1770,2060,2630,3210
+33615,"Tampa-St. Petersburg-Clearwater, FL MSA",1850,1960,2290,2930,3560
+33616,"Tampa-St. Petersburg-Clearwater, FL MSA",1850,1970,2300,2940,3580
+33617,"Tampa-St. Petersburg-Clearwater, FL MSA",1620,1720,2010,2570,3130
+33618,"Tampa-St. Petersburg-Clearwater, FL MSA",1490,1590,1850,2370,2880
+33619,"Tampa-St. Petersburg-Clearwater, FL MSA",1800,1910,2230,2850,3470
+33620,"Tampa-St. Petersburg-Clearwater, FL MSA",1520,1610,1880,2410,2930
+33621,"Tampa-St. Petersburg-Clearwater, FL MSA",2390,2550,2970,3800,4620
+33622,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33623,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33624,"Tampa-St. Petersburg-Clearwater, FL MSA",1780,1900,2210,2830,3440
+33625,"Tampa-St. Petersburg-Clearwater, FL MSA",1950,2080,2420,3090,3770
+33626,"Tampa-St. Petersburg-Clearwater, FL MSA",2220,2360,2750,3520,4280
+33629,"Tampa-St. Petersburg-Clearwater, FL MSA",1870,1990,2320,2970,3610
+33630,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33634,"Tampa-St. Petersburg-Clearwater, FL MSA",1850,1960,2290,2930,3560
+33635,"Tampa-St. Petersburg-Clearwater, FL MSA",1890,2010,2340,2990,3640
+33637,"Tampa-St. Petersburg-Clearwater, FL MSA",1590,1690,1970,2520,3070
+33646,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33647,"Tampa-St. Petersburg-Clearwater, FL MSA",2020,2150,2510,3210,3910
+33672,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33673,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33674,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33675,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33677,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33679,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33680,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33681,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33682,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33684,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33685,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33687,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33688,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33689,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33694,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1740,2030,2600,3160
+33701,"Tampa-St. Petersburg-Clearwater, FL MSA",1740,1850,2160,2760,3360
+33702,"Tampa-St. Petersburg-Clearwater, FL MSA",1610,1720,2000,2560,3110
+33703,"Tampa-St. Petersburg-Clearwater, FL MSA",1720,1830,2130,2720,3310
+33704,"Tampa-St. Petersburg-Clearwater, FL MSA",1490,1590,1850,2370,2880
+33705,"Tampa-St. Petersburg-Clearwater, FL MSA",1630,1730,2020,2580,3140
+33706,"Tampa-St. Petersburg-Clearwater, FL MSA",1710,1820,2120,2710,3300
+33707,"Tampa-St. Petersburg-Clearwater, FL MSA",1520,1620,1890,2420,2940
+33708,"Tampa-St. Petersburg-Clearwater, FL MSA",2020,2150,2510,3210,3910
+33709,"Tampa-St. Petersburg-Clearwater, FL MSA",1450,1540,1800,2300,2800
+33710,"Tampa-St. Petersburg-Clearwater, FL MSA",1670,1780,2070,2650,3220
+33711,"Tampa-St. Petersburg-Clearwater, FL MSA",1830,1950,2270,2900,3530
+33712,"Tampa-St. Petersburg-Clearwater, FL MSA",1530,1640,1920,2460,2990
+33713,"Tampa-St. Petersburg-Clearwater, FL MSA",1500,1600,1860,2380,2890
+33714,"Tampa-St. Petersburg-Clearwater, FL MSA",1390,1480,1730,2210,2690
+33715,"Tampa-St. Petersburg-Clearwater, FL MSA",2390,2550,2970,3800,4620
+33716,"Tampa-St. Petersburg-Clearwater, FL MSA",2180,2320,2700,3450,4200
+33730,"Tampa-St. Petersburg-Clearwater, FL MSA",1600,1710,1990,2540,3100
+33731,"Tampa-St. Petersburg-Clearwater, FL MSA",1600,1710,1990,2540,3100
+33732,"Tampa-St. Petersburg-Clearwater, FL MSA",1600,1710,1990,2540,3100
+33733,"Tampa-St. Petersburg-Clearwater, FL MSA",1600,1710,1990,2540,3100
+33734,"Tampa-St. Petersburg-Clearwater, FL MSA",1600,1710,1990,2540,3100
+33736,"Tampa-St. Petersburg-Clearwater, FL MSA",1600,1710,1990,2540,3100
+33738,"Tampa-St. Petersburg-Clearwater, FL MSA",1600,1710,1990,2540,3100
+33741,"Tampa-St. Petersburg-Clearwater, FL MSA",1600,1710,1990,2540,3100
+33742,"Tampa-St. Petersburg-Clearwater, FL MSA",1600,1710,1990,2540,3100
+33743,"Tampa-St. Petersburg-Clearwater, FL MSA",1600,1710,1990,2540,3100
+33744,"Tampa-St. Petersburg-Clearwater, FL MSA",2020,2150,2510,3210,3910
+33747,"Tampa-St. Petersburg-Clearwater, FL MSA",1600,1710,1990,2540,3100
+33755,"Tampa-St. Petersburg-Clearwater, FL MSA",1390,1480,1720,2200,2680
+33756,"Tampa-St. Petersburg-Clearwater, FL MSA",1430,1520,1770,2260,2750
+33757,"Tampa-St. Petersburg-Clearwater, FL MSA",1600,1710,1990,2540,3100
+33758,"Tampa-St. Petersburg-Clearwater, FL MSA",1600,1710,1990,2540,3100
+33759,"Tampa-St. Petersburg-Clearwater, FL MSA",1880,2000,2330,2980,3630
+33760,"Tampa-St. Petersburg-Clearwater, FL MSA",1630,1730,2020,2580,3140
+33761,"Tampa-St. Petersburg-Clearwater, FL MSA",1790,1900,2220,2840,3460
+33762,"Tampa-St. Petersburg-Clearwater, FL MSA",1850,1970,2300,2940,3580
+33763,"Tampa-St. Petersburg-Clearwater, FL MSA",1500,1600,1860,2380,2890
+33764,"Tampa-St. Petersburg-Clearwater, FL MSA",1710,1820,2120,2710,3300
+33765,"Tampa-St. Petersburg-Clearwater, FL MSA",1660,1770,2060,2630,3210
+33766,"Tampa-St. Petersburg-Clearwater, FL MSA",1600,1710,1990,2540,3100
+33767,"Tampa-St. Petersburg-Clearwater, FL MSA",2130,2260,2640,3380,4110
+33770,"Tampa-St. Petersburg-Clearwater, FL MSA",1490,1590,1850,2370,2880
+33771,"Tampa-St. Petersburg-Clearwater, FL MSA",1490,1590,1850,2370,2880
+33772,"Tampa-St. Petersburg-Clearwater, FL MSA",1570,1670,1950,2490,3030
+33773,"Tampa-St. Petersburg-Clearwater, FL MSA",1640,1750,2040,2610,3170
+33774,"Tampa-St. Petersburg-Clearwater, FL MSA",1530,1630,1900,2430,2960
+33775,"Tampa-St. Petersburg-Clearwater, FL MSA",1600,1710,1990,2540,3100
+33776,"Tampa-St. Petersburg-Clearwater, FL MSA",2350,2500,2910,3720,4530
+33777,"Tampa-St. Petersburg-Clearwater, FL MSA",1910,2030,2370,3030,3690
+33778,"Tampa-St. Petersburg-Clearwater, FL MSA",1680,1790,2090,2670,3250
+33779,"Tampa-St. Petersburg-Clearwater, FL MSA",1600,1710,1990,2540,3100
+33780,"Tampa-St. Petersburg-Clearwater, FL MSA",1600,1710,1990,2540,3100
+33781,"Tampa-St. Petersburg-Clearwater, FL MSA",1340,1420,1660,2120,2580
+33782,"Tampa-St. Petersburg-Clearwater, FL MSA",1840,1960,2280,2910,3550
+33784,"Tampa-St. Petersburg-Clearwater, FL MSA",1600,1710,1990,2540,3100
+33785,"Tampa-St. Petersburg-Clearwater, FL MSA",1780,1900,2210,2830,3440
+33786,"Tampa-St. Petersburg-Clearwater, FL MSA",2390,2550,2970,3800,4620
+33801,"Lakeland-Winter Haven, FL MSA",1180,1180,1440,1950,2420
+33802,"Lakeland-Winter Haven, FL MSA",1230,1230,1500,2030,2520
+33803,"Lakeland-Winter Haven, FL MSA",1410,1410,1720,2320,2890
+33804,"Lakeland-Winter Haven, FL MSA",1230,1230,1500,2030,2520
+33805,"Lakeland-Winter Haven, FL MSA",1200,1200,1460,1970,2450
+33806,"Lakeland-Winter Haven, FL MSA",1230,1230,1500,2030,2520
+33807,"Lakeland-Winter Haven, FL MSA",1230,1230,1500,2030,2520
+33809,"Lakeland-Winter Haven, FL MSA",1390,1400,1700,2300,2850
+33810,"Lakeland-Winter Haven, FL MSA",1380,1380,1680,2270,2820
+33811,"Lakeland-Winter Haven, FL MSA",1220,1220,1490,2010,2500
+33812,"Lakeland-Winter Haven, FL MSA",1510,1510,1840,2490,3090
+33813,"Lakeland-Winter Haven, FL MSA",1600,1600,1950,2630,3270
+33815,"Lakeland-Winter Haven, FL MSA",1020,1030,1250,1690,2100
+33820,"Lakeland-Winter Haven, FL MSA",1230,1230,1500,2030,2520
+33823,"Lakeland-Winter Haven, FL MSA",1000,1000,1220,1650,2050
+33825,"Lakeland-Winter Haven, FL MSA",980,990,1210,1620,2030
+33826,"Sebring, FL MSA",880,1010,1270,1540,2020
+33827,"Lakeland-Winter Haven, FL MSA",1510,1520,1850,2500,3100
+33830,"Lakeland-Winter Haven, FL MSA",1020,1030,1250,1690,2100
+33831,"Lakeland-Winter Haven, FL MSA",1230,1230,1500,2030,2520
+33834,"Lakeland-Winter Haven, FL MSA",1120,1130,1330,1800,2230
+33835,"Lakeland-Winter Haven, FL MSA",1140,1140,1390,1880,2330
+33836,"Lakeland-Winter Haven, FL MSA",1230,1230,1500,2030,2520
+33837,"Lakeland-Winter Haven, FL MSA",1680,1680,2050,2770,3440
+33838,"Lakeland-Winter Haven, FL MSA",1270,1270,1550,2090,2600
+33839,"Lakeland-Winter Haven, FL MSA",1280,1280,1560,2110,2620
+33840,"Lakeland-Winter Haven, FL MSA",1410,1410,1720,2320,2890
+33841,"Lakeland-Winter Haven, FL MSA",980,990,1210,1620,2030
+33843,"Lakeland-Winter Haven, FL MSA",980,990,1210,1620,2030
+33844,"Lakeland-Winter Haven, FL MSA",1150,1150,1400,1890,2350
+33845,"Lakeland-Winter Haven, FL MSA",1230,1230,1500,2030,2520
+33846,"Lakeland-Winter Haven, FL MSA",1230,1230,1500,2030,2520
+33847,"Lakeland-Winter Haven, FL MSA",980,990,1210,1620,2030
+33848,"Orlando-Kissimmee-Sanford, FL MSA",1270,1340,1520,1920,2320
+33849,"Lakeland-Winter Haven, FL MSA",1260,1290,1550,2060,2530
+33850,"Lakeland-Winter Haven, FL MSA",1030,1040,1260,1700,2110
+33851,"Lakeland-Winter Haven, FL MSA",1190,1190,1450,1960,2440
+33852,"Sebring, FL MSA",970,1120,1410,1710,2240
+33853,"Lakeland-Winter Haven, FL MSA",1000,1000,1220,1650,2050
+33854,"Lakeland-Winter Haven, FL MSA",980,990,1210,1620,2030
+33855,"Lakeland-Winter Haven, FL MSA",1080,1080,1320,1790,2210
+33856,"Lakeland-Winter Haven, FL MSA",980,990,1210,1620,2030
+33857,"Sebring, FL MSA",1000,1050,1350,1650,1920
+33858,"Lakeland-Winter Haven, FL MSA",1850,1880,2250,2990,3660
+33859,"Lakeland-Winter Haven, FL MSA",1110,1120,1360,1840,2280
+33860,"Lakeland-Winter Haven, FL MSA",1140,1140,1390,1880,2330
+33862,"Sebring, FL MSA",880,1010,1270,1540,2020
+33863,"Lakeland-Winter Haven, FL MSA",1230,1230,1500,2030,2520
+33865,"DeSoto County, FL",1150,1200,1390,1880,2250
+33867,"Lakeland-Winter Haven, FL MSA",1090,1090,1330,1800,2230
+33868,"Lakeland-Winter Haven, FL MSA",1050,1050,1280,1730,2150
+33870,"Sebring, FL MSA",860,990,1250,1510,1980
+33871,"Sebring, FL MSA",880,1010,1270,1540,2020
+33872,"Sebring, FL MSA",1010,1160,1460,1770,2320
+33873,"Hardee County, FL",1060,1070,1250,1690,2100
+33875,"Sebring, FL MSA",920,1060,1340,1620,2130
+33876,"Sebring, FL MSA",850,980,1240,1500,1970
+33877,"Lakeland-Winter Haven, FL MSA",1190,1190,1450,1960,2440
+33880,"Lakeland-Winter Haven, FL MSA",1100,1100,1340,1810,2250
+33881,"Lakeland-Winter Haven, FL MSA",1120,1130,1370,1850,2300
+33882,"Lakeland-Winter Haven, FL MSA",1230,1230,1500,2030,2520
+33883,"Lakeland-Winter Haven, FL MSA",1230,1230,1500,2030,2520
+33884,"Lakeland-Winter Haven, FL MSA",1430,1440,1750,2360,2940
+33885,"Lakeland-Winter Haven, FL MSA",1230,1230,1500,2030,2520
+33890,"Hardee County, FL",1040,1050,1230,1670,2060
+33896,"Lakeland-Winter Haven, FL MSA",1880,1910,2280,3020,3700
+33897,"Lakeland-Winter Haven, FL MSA",1830,1840,2230,3010,3740
+33898,"Lakeland-Winter Haven, FL MSA",1090,1090,1330,1800,2230
+33901,"Cape Coral-Fort Myers, FL MSA",1450,1450,1740,2270,2520
+33902,"Cape Coral-Fort Myers, FL MSA",1630,1640,1960,2560,2830
+33903,"Cape Coral-Fort Myers, FL MSA",1340,1340,1660,2180,2430
+33904,"Cape Coral-Fort Myers, FL MSA",1680,1690,2020,2640,2920
+33905,"Cape Coral-Fort Myers, FL MSA",1590,1600,1910,2490,2760
+33906,"Cape Coral-Fort Myers, FL MSA",1630,1640,1960,2560,2830
+33907,"Cape Coral-Fort Myers, FL MSA",1670,1680,2010,2620,2910
+33908,"Cape Coral-Fort Myers, FL MSA",1880,1890,2260,2950,3270
+33909,"Cape Coral-Fort Myers, FL MSA",1800,1810,2170,2830,3140
+33910,"Cape Coral-Fort Myers, FL MSA",1630,1640,1960,2560,2830
+33912,"Cape Coral-Fort Myers, FL MSA",1810,1820,2180,2850,3150
+33913,"Cape Coral-Fort Myers, FL MSA",1960,1970,2360,3080,3410
+33914,"Cape Coral-Fort Myers, FL MSA",1740,1750,2100,2740,3040
+33915,"Cape Coral-Fort Myers, FL MSA",1630,1640,1960,2560,2830
+33916,"Cape Coral-Fort Myers, FL MSA",1460,1470,1760,2300,2550
+33917,"Cape Coral-Fort Myers, FL MSA",1340,1340,1660,2180,2430
+33918,"Cape Coral-Fort Myers, FL MSA",1630,1640,1960,2560,2830
+33919,"Cape Coral-Fort Myers, FL MSA",1670,1680,2010,2620,2910
+33920,"Cape Coral-Fort Myers, FL MSA",1340,1340,1660,2180,2430
+33921,"Cape Coral-Fort Myers, FL MSA",1340,1340,1660,2300,2630
+33922,"Cape Coral-Fort Myers, FL MSA",1340,1340,1660,2180,2430
+33924,"Cape Coral-Fort Myers, FL MSA",1910,1920,2300,3010,3330
+33928,"Cape Coral-Fort Myers, FL MSA",2120,2130,2550,3330,3690
+33929,"Cape Coral-Fort Myers, FL MSA",1630,1640,1960,2560,2830
+33930,"Hendry County, FL",1090,1150,1340,1690,1940
+33931,"Cape Coral-Fort Myers, FL MSA",1630,1640,1960,2560,2830
+33932,"Cape Coral-Fort Myers, FL MSA",1630,1640,1960,2560,2830
+33935,"Glades County, FL",1140,1150,1350,1650,1950
+33936,"Cape Coral-Fort Myers, FL MSA",1350,1350,1660,2180,2430
+33938,"Punta Gorda, FL MSA",1160,1170,1470,2040,2330
+33944,"Glades County, FL",1060,1090,1240,1510,1710
+33945,"Cape Coral-Fort Myers, FL MSA",1630,1640,1960,2560,2830
+33946,"Punta Gorda, FL MSA",1220,1230,1540,2140,2440
+33947,"Punta Gorda, FL MSA",1220,1230,1550,2150,2450
+33948,"Punta Gorda, FL MSA",1210,1220,1540,2140,2440
+33949,"Punta Gorda, FL MSA",1160,1170,1470,2040,2330
+33950,"Punta Gorda, FL MSA",1180,1190,1500,2080,2370
+33951,"Punta Gorda, FL MSA",1160,1170,1470,2040,2330
+33952,"Punta Gorda, FL MSA",1090,1100,1380,1920,2180
+33953,"Punta Gorda, FL MSA",1570,1580,1990,2760,3150
+33954,"Punta Gorda, FL MSA",1530,1540,1940,2690,3070
+33955,"Cape Coral-Fort Myers, FL MSA",1410,1420,1760,2420,2740
+33956,"Cape Coral-Fort Myers, FL MSA",2440,2460,2940,3840,4250
+33957,"Cape Coral-Fort Myers, FL MSA",2410,2430,2900,3790,4200
+33960,"Sebring, FL MSA",1000,1100,1350,1670,2090
+33965,"Cape Coral-Fort Myers, FL MSA",1640,1650,2050,2690,2980
+33966,"Cape Coral-Fort Myers, FL MSA",1730,1740,2080,2720,3010
+33967,"Cape Coral-Fort Myers, FL MSA",1770,1780,2130,2780,3080
+33970,"Cape Coral-Fort Myers, FL MSA",1630,1640,1960,2560,2830
+33971,"Cape Coral-Fort Myers, FL MSA",1740,1750,2090,2730,3020
+33972,"Cape Coral-Fort Myers, FL MSA",1590,1600,1910,2490,2760
+33973,"Cape Coral-Fort Myers, FL MSA",1480,1490,1780,2320,2570
+33974,"Cape Coral-Fort Myers, FL MSA",1740,1750,2100,2740,3040
+33975,"Hendry County, FL",1070,1080,1270,1570,1870
+33976,"Cape Coral-Fort Myers, FL MSA",1770,1780,2130,2780,3080
+33980,"Punta Gorda, FL MSA",1040,1050,1320,1850,2040
+33981,"Punta Gorda, FL MSA",1310,1320,1660,2300,2630
+33982,"Punta Gorda, FL MSA",1040,1050,1320,1850,2040
+33983,"Punta Gorda, FL MSA",1190,1200,1510,2100,2390
+33990,"Cape Coral-Fort Myers, FL MSA",1690,1700,2040,2660,2950
+33991,"Cape Coral-Fort Myers, FL MSA",2020,2030,2430,3170,3510
+33993,"Cape Coral-Fort Myers, FL MSA",2090,2110,2520,3290,3640
+33994,"Cape Coral-Fort Myers, FL MSA",1630,1640,1960,2560,2830
+34101,"Naples-Marco Island, FL MSA",1400,1800,1990,2590,2810
+34102,"Naples-Marco Island, FL MSA",1270,1640,1810,2350,2560
+34103,"Naples-Marco Island, FL MSA",1550,2000,2210,2870,3120
+34104,"Naples-Marco Island, FL MSA",1390,1790,1980,2570,2800
+34105,"Naples-Marco Island, FL MSA",1630,2100,2320,3020,3280
+34106,"Naples-Marco Island, FL MSA",1400,1800,1990,2590,2810
+34107,"Naples-Marco Island, FL MSA",1400,1800,1990,2590,2810
+34108,"Naples-Marco Island, FL MSA",1650,2130,2350,3050,3320
+34109,"Naples-Marco Island, FL MSA",1480,1900,2100,2730,2970
+34110,"Cape Coral-Fort Myers, FL MSA",1570,2020,2230,2900,3160
+34112,"Naples-Marco Island, FL MSA",1230,1570,1730,2250,2440
+34113,"Naples-Marco Island, FL MSA",1470,1890,2090,2720,2950
+34114,"Naples-Marco Island, FL MSA",1570,2020,2230,2900,3150
+34116,"Naples-Marco Island, FL MSA",1330,1710,1890,2460,2670
+34117,"Naples-Marco Island, FL MSA",1410,1810,2000,2600,2830
+34119,"Cape Coral-Fort Myers, FL MSA",1490,1920,2120,2760,3000
+34120,"Naples-Marco Island, FL MSA",1730,2230,2460,3200,3470
+34133,"Cape Coral-Fort Myers, FL MSA",1630,1640,1960,2560,2830
+34134,"Cape Coral-Fort Myers, FL MSA",1760,1810,2150,2810,3110
+34135,"Cape Coral-Fort Myers, FL MSA",1820,1830,2190,2860,3170
+34136,"Cape Coral-Fort Myers, FL MSA",1630,1640,1960,2560,2830
+34137,"Naples-Marco Island, FL MSA",1340,1730,1910,2480,2700
+34138,"Naples-Marco Island, FL MSA",1400,1800,1990,2590,2810
+34139,"Naples-Marco Island, FL MSA",1400,1800,1990,2590,2810
+34140,"Naples-Marco Island, FL MSA",1630,2110,2330,3020,3290
+34141,"Miami-Miami Beach-Kendall, FL HUD Metro FMR Area",1460,1650,1970,2540,2900
+34142,"Naples-Marco Island, FL MSA",1230,1440,1680,2210,2400
+34145,"Naples-Marco Island, FL MSA",1640,2120,2340,3040,3310
+34146,"Naples-Marco Island, FL MSA",1400,1800,1990,2590,2810
+34201,"North Port-Bradenton-Sarasota, FL MSA",1650,2070,2410,3160,3780
+34202,"North Port-Bradenton-Sarasota, FL MSA",1850,2200,2550,3300,3940
+34203,"North Port-Bradenton-Sarasota, FL MSA",1220,1450,1680,2180,2600
+34204,"North Port-Bradenton-Sarasota, FL MSA",1340,1590,1850,2400,2860
+34205,"North Port-Bradenton-Sarasota, FL MSA",1140,1350,1570,2030,2430
+34206,"North Port-Bradenton-Sarasota, FL MSA",1340,1590,1850,2400,2860
+34207,"North Port-Bradenton-Sarasota, FL MSA",1210,1440,1670,2160,2580
+34208,"North Port-Bradenton-Sarasota, FL MSA",1270,1510,1750,2270,2710
+34209,"North Port-Bradenton-Sarasota, FL MSA",1520,1810,2100,2720,3250
+34210,"North Port-Bradenton-Sarasota, FL MSA",1280,1520,1770,2290,2740
+34211,"North Port-Bradenton-Sarasota, FL MSA",1770,2100,2440,3160,3770
+34212,"North Port-Bradenton-Sarasota, FL MSA",1690,2010,2330,3020,3600
+34215,"North Port-Bradenton-Sarasota, FL MSA",1390,1650,1920,2480,2970
+34216,"North Port-Bradenton-Sarasota, FL MSA",1530,1820,2110,2730,3260
+34217,"North Port-Bradenton-Sarasota, FL MSA",1530,1820,2110,2730,3260
+34219,"North Port-Bradenton-Sarasota, FL MSA",1750,2070,2410,3120,3730
+34220,"North Port-Bradenton-Sarasota, FL MSA",1340,1590,1850,2400,2860
+34221,"North Port-Bradenton-Sarasota, FL MSA",1320,1570,1820,2360,2810
+34222,"North Port-Bradenton-Sarasota, FL MSA",1230,1460,1700,2200,2630
+34223,"North Port-Bradenton-Sarasota, FL MSA",1150,1330,1560,2050,2430
+34224,"North Port-Bradenton-Sarasota, FL MSA",1080,1090,1370,1900,2170
+34228,"North Port-Bradenton-Sarasota, FL MSA",2130,2530,2940,3810,4540
+34229,"North Port-Bradenton-Sarasota, FL MSA",1660,1970,2290,2970,3540
+34230,"North Port-Bradenton-Sarasota, FL MSA",1480,1760,2050,2660,3170
+34231,"North Port-Bradenton-Sarasota, FL MSA",1480,1760,2050,2660,3170
+34232,"North Port-Bradenton-Sarasota, FL MSA",1570,1870,2170,2810,3350
+34233,"North Port-Bradenton-Sarasota, FL MSA",1590,1890,2200,2850,3400
+34234,"North Port-Bradenton-Sarasota, FL MSA",1220,1460,1690,2190,2610
+34235,"North Port-Bradenton-Sarasota, FL MSA",1520,1810,2100,2720,3250
+34236,"North Port-Bradenton-Sarasota, FL MSA",1690,2010,2340,3030,3620
+34237,"North Port-Bradenton-Sarasota, FL MSA",1340,1590,1850,2400,2860
+34238,"North Port-Bradenton-Sarasota, FL MSA",1700,2020,2350,3040,3630
+34239,"North Port-Bradenton-Sarasota, FL MSA",1430,1700,1970,2550,3050
+34240,"North Port-Bradenton-Sarasota, FL MSA",1990,2370,2750,3560,4250
+34241,"North Port-Bradenton-Sarasota, FL MSA",1700,2020,2350,3040,3630
+34242,"North Port-Bradenton-Sarasota, FL MSA",2000,2380,2760,3580,4270
+34243,"North Port-Bradenton-Sarasota, FL MSA",1740,2070,2400,3110,3710
+34249,"North Port-Bradenton-Sarasota, FL MSA",1480,1760,2050,2660,3170
+34250,"North Port-Bradenton-Sarasota, FL MSA",1320,1570,1820,2360,2810
+34251,"North Port-Bradenton-Sarasota, FL MSA",1640,1900,2200,2870,3410
+34260,"North Port-Bradenton-Sarasota, FL MSA",1340,1590,1850,2400,2860
+34264,"North Port-Bradenton-Sarasota, FL MSA",1340,1590,1850,2400,2860
+34266,"North Port-Bradenton-Sarasota, FL MSA",1050,1230,1490,1980,2360
+34267,"DeSoto County, FL",1240,1250,1420,1950,2190
+34268,"DeSoto County, FL",1180,1180,1350,1850,2080
+34269,"Punta Gorda, FL MSA",1240,1250,1420,1950,2190
+34270,"North Port-Bradenton-Sarasota, FL MSA",1340,1590,1850,2400,2860
+34272,"North Port-Bradenton-Sarasota, FL MSA",1480,1760,2050,2660,3170
+34274,"North Port-Bradenton-Sarasota, FL MSA",1480,1760,2050,2660,3170
+34275,"North Port-Bradenton-Sarasota, FL MSA",1400,1670,1940,2510,3000
+34276,"North Port-Bradenton-Sarasota, FL MSA",1480,1760,2050,2660,3170
+34277,"North Port-Bradenton-Sarasota, FL MSA",1480,1760,2050,2660,3170
+34280,"North Port-Bradenton-Sarasota, FL MSA",1340,1590,1850,2400,2860
+34282,"North Port-Bradenton-Sarasota, FL MSA",1340,1590,1850,2400,2860
+34284,"North Port-Bradenton-Sarasota, FL MSA",1480,1760,2050,2660,3170
+34285,"North Port-Bradenton-Sarasota, FL MSA",1270,1510,1750,2270,2710
+34286,"North Port-Bradenton-Sarasota, FL MSA",1720,2040,2370,3070,3660
+34287,"North Port-Bradenton-Sarasota, FL MSA",1180,1400,1630,2110,2520
+34288,"North Port-Bradenton-Sarasota, FL MSA",1660,1970,2290,2970,3540
+34289,"North Port-Bradenton-Sarasota, FL MSA",1490,1770,2060,2670,3180
+34290,"North Port-Bradenton-Sarasota, FL MSA",1480,1760,2050,2660,3170
+34291,"North Port-Bradenton-Sarasota, FL MSA",1560,1850,2150,2790,3320
+34292,"North Port-Bradenton-Sarasota, FL MSA",1620,1930,2240,2900,3460
+34293,"North Port-Bradenton-Sarasota, FL MSA",1570,1870,2170,2810,3350
+34295,"North Port-Bradenton-Sarasota, FL MSA",1480,1760,2050,2660,3170
+34420,"Ocala, FL MSA",920,990,1200,1530,1650
+34421,"Ocala, FL MSA",1120,1170,1370,1770,1900
+34423,"Homosassa Springs, FL MSA",990,990,1230,1710,2020
+34428,"Homosassa Springs, FL MSA",860,860,1080,1520,1820
+34429,"Homosassa Springs, FL MSA",990,1000,1240,1720,2040
+34430,"Ocala, FL MSA",1120,1170,1370,1770,1900
+34431,"Levy County, FL HUD Metro FMR Area",920,990,1200,1530,1650
+34432,"Ocala, FL MSA",990,1030,1210,1560,1680
+34433,"Homosassa Springs, FL MSA",1210,1220,1510,2100,2480
+34434,"Homosassa Springs, FL MSA",1150,1150,1430,1990,2350
+34436,"Homosassa Springs, FL MSA",860,860,1080,1520,1820
+34441,"Homosassa Springs, FL MSA",990,990,1230,1710,2020
+34442,"Homosassa Springs, FL MSA",880,890,1100,1530,1820
+34445,"Homosassa Springs, FL MSA",1110,1110,1380,1920,2270
+34446,"Homosassa Springs, FL MSA",990,1000,1240,1720,2040
+34447,"Homosassa Springs, FL MSA",990,990,1230,1710,2020
+34448,"Homosassa Springs, FL MSA",870,870,1080,1520,1820
+34449,"Levy County, FL HUD Metro FMR Area",860,860,1080,1520,1820
+34450,"Homosassa Springs, FL MSA",910,920,1140,1590,1880
+34451,"Homosassa Springs, FL MSA",990,990,1230,1710,2020
+34452,"Homosassa Springs, FL MSA",1070,1070,1330,1850,2190
+34453,"Homosassa Springs, FL MSA",950,960,1190,1660,1960
+34460,"Homosassa Springs, FL MSA",990,990,1230,1710,2020
+34461,"Homosassa Springs, FL MSA",980,980,1220,1700,2010
+34464,"Homosassa Springs, FL MSA",990,990,1230,1710,2020
+34465,"Homosassa Springs, FL MSA",1070,1070,1330,1850,2190
+34470,"Ocala, FL MSA",1100,1140,1340,1730,1860
+34471,"Ocala, FL MSA",1160,1210,1420,1830,1970
+34472,"Ocala, FL MSA",1170,1220,1430,1850,1980
+34473,"Ocala, FL MSA",1320,1370,1610,2080,2230
+34474,"Ocala, FL MSA",1480,1540,1800,2320,2500
+34475,"Ocala, FL MSA",920,990,1200,1530,1650
+34476,"Ocala, FL MSA",1250,1300,1520,1960,2110
+34477,"Ocala, FL MSA",1120,1170,1370,1770,1900
+34478,"Ocala, FL MSA",1120,1170,1370,1770,1900
+34479,"Ocala, FL MSA",1200,1250,1460,1880,2030
+34480,"Ocala, FL MSA",1110,1150,1350,1740,1870
+34481,"Ocala, FL MSA",1150,1200,1400,1810,1940
+34482,"Ocala, FL MSA",940,990,1200,1530,1650
+34483,"Ocala, FL MSA",1120,1170,1370,1770,1900
+34484,"Ocala, FL MSA",1260,1330,1550,1930,2260
+34487,"Homosassa Springs, FL MSA",990,990,1230,1710,2020
+34488,"Ocala, FL MSA",1040,1080,1270,1640,1760
+34489,"Ocala, FL MSA",1120,1170,1370,1770,1900
+34491,"Ocala, FL MSA",1070,1110,1300,1680,1840
+34492,"Ocala, FL MSA",1120,1170,1370,1770,1900
+34498,"Levy County, FL HUD Metro FMR Area",910,1030,1210,1540,1600
+34601,"Homosassa Springs, FL MSA",1180,1250,1460,1870,2270
+34602,"Tampa-St. Petersburg-Clearwater, FL MSA",1320,1410,1640,2100,2550
+34603,"Tampa-St. Petersburg-Clearwater, FL MSA",1330,1420,1650,2110,2570
+34604,"Tampa-St. Petersburg-Clearwater, FL MSA",1270,1360,1580,2020,2460
+34605,"Tampa-St. Petersburg-Clearwater, FL MSA",1330,1420,1650,2110,2570
+34606,"Tampa-St. Petersburg-Clearwater, FL MSA",1300,1380,1610,2060,2510
+34607,"Tampa-St. Petersburg-Clearwater, FL MSA",1380,1470,1710,2190,2660
+34608,"Tampa-St. Petersburg-Clearwater, FL MSA",1350,1440,1680,2150,2610
+34609,"Tampa-St. Petersburg-Clearwater, FL MSA",1630,1730,2020,2580,3140
+34610,"Tampa-St. Petersburg-Clearwater, FL MSA",1360,1450,1690,2160,2630
+34611,"Tampa-St. Petersburg-Clearwater, FL MSA",1330,1420,1650,2110,2570
+34613,"Tampa-St. Petersburg-Clearwater, FL MSA",1300,1380,1610,2060,2510
+34614,"Tampa-St. Petersburg-Clearwater, FL MSA",1200,1260,1490,1940,2350
+34636,"Tampa-St. Petersburg-Clearwater, FL MSA",1330,1420,1650,2110,2570
+34637,"Tampa-St. Petersburg-Clearwater, FL MSA",1900,2020,2360,3020,3670
+34638,"Tampa-St. Petersburg-Clearwater, FL MSA",2390,2540,2960,3780,4610
+34639,"Tampa-St. Petersburg-Clearwater, FL MSA",2010,2140,2490,3180,3880
+34652,"Tampa-St. Petersburg-Clearwater, FL MSA",1340,1420,1660,2120,2580
+34653,"Tampa-St. Petersburg-Clearwater, FL MSA",1350,1430,1670,2130,2600
+34654,"Tampa-St. Petersburg-Clearwater, FL MSA",1610,1720,2000,2560,3110
+34655,"Tampa-St. Petersburg-Clearwater, FL MSA",1790,1900,2220,2840,3460
+34656,"Tampa-St. Petersburg-Clearwater, FL MSA",1480,1580,1840,2350,2860
+34660,"Tampa-St. Petersburg-Clearwater, FL MSA",1600,1710,1990,2540,3100
+34661,"Tampa-St. Petersburg-Clearwater, FL MSA",1120,1190,1390,1770,2120
+34667,"Tampa-St. Petersburg-Clearwater, FL MSA",1330,1420,1650,2110,2570
+34668,"Tampa-St. Petersburg-Clearwater, FL MSA",1460,1550,1810,2310,2820
+34669,"Tampa-St. Petersburg-Clearwater, FL MSA",1430,1520,1770,2260,2750
+34673,"Tampa-St. Petersburg-Clearwater, FL MSA",1480,1580,1840,2350,2860
+34674,"Tampa-St. Petersburg-Clearwater, FL MSA",1480,1580,1840,2350,2860
+34677,"Tampa-St. Petersburg-Clearwater, FL MSA",1570,1670,1950,2490,3030
+34679,"Tampa-St. Petersburg-Clearwater, FL MSA",1340,1430,1660,2130,2590
+34680,"Tampa-St. Petersburg-Clearwater, FL MSA",1480,1580,1840,2350,2860
+34681,"Tampa-St. Petersburg-Clearwater, FL MSA",1720,1830,2130,2720,3310
+34682,"Tampa-St. Petersburg-Clearwater, FL MSA",1600,1710,1990,2540,3100
+34683,"Tampa-St. Petersburg-Clearwater, FL MSA",1720,1830,2130,2720,3310
+34684,"Tampa-St. Petersburg-Clearwater, FL MSA",1740,1850,2160,2760,3360
+34685,"Tampa-St. Petersburg-Clearwater, FL MSA",1930,2050,2390,3060,3720
+34688,"Tampa-St. Petersburg-Clearwater, FL MSA",1540,1640,1910,2440,2970
+34689,"Tampa-St. Petersburg-Clearwater, FL MSA",1340,1420,1660,2120,2580
+34690,"Tampa-St. Petersburg-Clearwater, FL MSA",1350,1440,1680,2150,2610
+34691,"Tampa-St. Petersburg-Clearwater, FL MSA",1470,1560,1820,2330,2830
+34692,"Tampa-St. Petersburg-Clearwater, FL MSA",1480,1580,1840,2350,2860
+34695,"Tampa-St. Petersburg-Clearwater, FL MSA",1810,1930,2250,2880,3500
+34697,"Tampa-St. Petersburg-Clearwater, FL MSA",1600,1710,1990,2540,3100
+34698,"Tampa-St. Petersburg-Clearwater, FL MSA",1590,1690,1970,2520,3070
+34705,"Orlando-Kissimmee-Sanford, FL MSA",1270,1340,1520,1920,2320
+34711,"Orlando-Kissimmee-Sanford, FL MSA",1880,1970,2250,2820,3340
+34712,"Orlando-Kissimmee-Sanford, FL MSA",1440,1510,1720,2160,2550
+34713,"Orlando-Kissimmee-Sanford, FL MSA",1440,1510,1720,2160,2550
+34714,"Lakeland-Winter Haven, FL MSA",1670,1750,2000,2510,2970
+34715,"Orlando-Kissimmee-Sanford, FL MSA",1970,2070,2360,2960,3500
+34729,"Orlando-Kissimmee-Sanford, FL MSA",1970,2070,2360,2960,3500
+34731,"Orlando-Kissimmee-Sanford, FL MSA",1270,1340,1520,1920,2320
+34734,"Orlando-Kissimmee-Sanford, FL MSA",2020,2120,2410,3030,3570
+34736,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+34737,"Orlando-Kissimmee-Sanford, FL MSA",1760,1840,2100,2640,3110
+34739,"Orlando-Kissimmee-Sanford, FL MSA",1600,1670,1960,2520,2990
+34740,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+34741,"Orlando-Kissimmee-Sanford, FL MSA",1630,1710,1950,2450,2890
+34742,"Orlando-Kissimmee-Sanford, FL MSA",1640,1720,1960,2460,2910
+34743,"Orlando-Kissimmee-Sanford, FL MSA",1710,1790,2040,2560,3020
+34744,"Orlando-Kissimmee-Sanford, FL MSA",1440,1510,1720,2160,2550
+34745,"Orlando-Kissimmee-Sanford, FL MSA",1640,1720,1960,2460,2910
+34746,"Orlando-Kissimmee-Sanford, FL MSA",1780,1870,2130,2670,3160
+34747,"Orlando-Kissimmee-Sanford, FL MSA",1860,1950,2220,2790,3290
+34748,"Orlando-Kissimmee-Sanford, FL MSA",1270,1340,1520,1920,2320
+34749,"Orlando-Kissimmee-Sanford, FL MSA",1440,1510,1720,2160,2550
+34753,"Orlando-Kissimmee-Sanford, FL MSA",1440,1510,1720,2160,2550
+34755,"Orlando-Kissimmee-Sanford, FL MSA",1440,1510,1720,2160,2550
+34756,"Orlando-Kissimmee-Sanford, FL MSA",1480,1550,1770,2220,2620
+34758,"Orlando-Kissimmee-Sanford, FL MSA",1730,1820,2070,2600,3070
+34759,"Lakeland-Winter Haven, FL MSA",1570,1590,1910,2550,3130
+34760,"Orlando-Kissimmee-Sanford, FL MSA",1970,2060,2350,2950,3480
+34761,"Orlando-Kissimmee-Sanford, FL MSA",1790,1880,2140,2690,3170
+34762,"Orlando-Kissimmee-Sanford, FL MSA",1310,1380,1570,1970,2330
+34769,"Orlando-Kissimmee-Sanford, FL MSA",1360,1420,1620,2030,2400
+34770,"Orlando-Kissimmee-Sanford, FL MSA",1640,1720,1960,2460,2910
+34771,"Orlando-Kissimmee-Sanford, FL MSA",1700,1780,2030,2550,3010
+34772,"Orlando-Kissimmee-Sanford, FL MSA",1850,1940,2210,2770,3280
+34773,"Orlando-Kissimmee-Sanford, FL MSA",2310,2420,2760,3460,4090
+34777,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+34778,"Orlando-Kissimmee-Sanford, FL MSA",1670,1760,2000,2510,2970
+34785,"Wildwood-The Villages, FL MSA",1040,1100,1280,1600,1870
+34786,"Orlando-Kissimmee-Sanford, FL MSA",2310,2420,2760,3460,4090
+34787,"Orlando-Kissimmee-Sanford, FL MSA",1970,2060,2350,2950,3480
+34788,"Orlando-Kissimmee-Sanford, FL MSA",1430,1500,1710,2150,2540
+34789,"Orlando-Kissimmee-Sanford, FL MSA",1440,1510,1720,2160,2550
+34797,"Orlando-Kissimmee-Sanford, FL MSA",1760,1840,2100,2640,3110
+34945,"Port St. Lucie, FL MSA",1370,1390,1730,2250,2550
+34946,"Port St. Lucie, FL MSA",1180,1230,1470,2040,2220
+34947,"Port St. Lucie, FL MSA",1180,1230,1470,2040,2220
+34948,"Port St. Lucie, FL MSA",1460,1470,1760,2420,2580
+34949,"Port St. Lucie, FL MSA",1460,1470,1760,2420,2580
+34950,"Port St. Lucie, FL MSA",1180,1230,1470,2040,2220
+34951,"Port St. Lucie, FL MSA",1220,1230,1470,2040,2350
+34952,"Port St. Lucie, FL MSA",1560,1570,1880,2590,2760
+34953,"Port St. Lucie, FL MSA",1880,1900,2270,3130,3330
+34954,"Port St. Lucie, FL MSA",1460,1470,1760,2420,2580
+34956,"Port St. Lucie, FL MSA",1180,1230,1470,2040,2220
+34957,"Port St. Lucie, FL MSA",1480,1490,1790,2470,2630
+34958,"Port St. Lucie, FL MSA",1450,1460,1750,2410,2570
+34972,"Orlando-Kissimmee-Sanford, FL MSA",1270,1340,1520,1920,2320
+34973,"Okeechobee County, FL",1030,1040,1350,1660,1790
+34974,"Port St. Lucie, FL MSA",1180,1230,1470,2040,2220
+34979,"Port St. Lucie, FL MSA",1460,1470,1760,2420,2580
+34981,"Port St. Lucie, FL MSA",1370,1390,1660,2290,2440
+34982,"Port St. Lucie, FL MSA",1230,1240,1480,2040,2220
+34983,"Port St. Lucie, FL MSA",1720,1740,2080,2870,3050
+34984,"Port St. Lucie, FL MSA",1890,1900,2280,3140,3350
+34985,"Port St. Lucie, FL MSA",1460,1470,1760,2420,2580
+34986,"Port St. Lucie, FL MSA",1650,1660,1990,2740,2920
+34987,"Port St. Lucie, FL MSA",2070,2090,2500,3440,3670
+34988,"Port St. Lucie, FL MSA",1460,1470,1760,2420,2580
+34990,"Port St. Lucie, FL MSA",1820,1840,2200,3030,3230
+34991,"Port St. Lucie, FL MSA",1450,1460,1750,2410,2570
+34992,"Port St. Lucie, FL MSA",1450,1460,1750,2410,2570
+34994,"Port St. Lucie, FL MSA",1480,1490,1790,2470,2630
+34995,"Port St. Lucie, FL MSA",1450,1460,1750,2410,2570
+34996,"Port St. Lucie, FL MSA",1340,1350,1620,2230,2380
+34997,"Port St. Lucie, FL MSA",1450,1460,1750,2410,2570
